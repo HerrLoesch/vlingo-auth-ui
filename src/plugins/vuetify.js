@@ -4,7 +4,12 @@ import {
   VApp,
   VGrid,
   VDataTable,
+  VBtn,
+  VForm,
+  VTextField,
+  VCheckbox,
   VCard,
+  VSelect,
   transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -15,6 +20,11 @@ Vue.use(Vuetify, {
     VGrid,
     VDataTable,
     VCard,
+    VSelect,
+    VCheckbox,
+    VBtn,
+    VTextField,
+    VForm,
     transitions
   },
   theme: {

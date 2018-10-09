@@ -1,7 +1,8 @@
 <template>
   <v-app id="app">
     <div id="nav">
-      <router-link to="/subscriptions">Get Tenants</router-link>
+      <router-link to="/subscriptions">Get Tenants</router-link> -
+      <router-link to="/newUser">Post User</router-link>
     </div>
     <router-view/>
   </v-app>
