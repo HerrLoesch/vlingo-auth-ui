@@ -2,6 +2,7 @@
   <v-app id="app">
     <div id="nav">
       <router-link to="/components">Components</router-link> -
+      <router-link to="/registerUser">Register User</router-link> -
       <router-link to="/subscriptions">Admin Tenants</router-link> -
     </div>
     <router-view/>

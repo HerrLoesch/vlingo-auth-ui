@@ -1,52 +1,64 @@
 <template>
     <v-container>
-        <v-card>
-            <v-card-text>
+        <v-text-field
+                v-model="user.userName"
+                label="Username*"
+                required
+                :rules="[v => !!v || 'Please, enter a user name.']"
+        ></v-text-field>
+        <v-layout>
+            <v-flex md10>
                 <v-text-field
-                        v-model="userName"
-                        label="Username"
+                        v-model="user.email"
+                        label="Email Address*"
+                        required
+                        :rules="emailRules"
                 ></v-text-field>
-                <v-checkbox
-                        v-model="sameNameAsEmail"
-                        label="Same as Email Address"
-                ></v-checkbox>
-                <v-text-field
-                        v-model="givenName"
-                        label="Given Name"
-                ></v-text-field>
-                <v-text-field
-                        v-model="secondName"
-                        label="Second Name"
-                ></v-text-field>
-                <v-text-field
-                        v-model="familyName"
-                        label="Family Name"
-                ></v-text-field>
-                <v-text-field
-                        v-model="email"
-                        label="Email Address"
-                ></v-text-field>
-                <v-text-field
-                        v-model="phone"
-                        label="Phone"
-                ></v-text-field>
-            </v-card-text>
-        </v-card>
+            </v-flex>
+            <v-flex md2>
+                <v-btn @click="mailAsUserName()"> As user name</v-btn>
+            </v-flex>
+        </v-layout>
+
+        <v-text-field
+                v-model="user.givenName"
+                label="Given Name*"
+                required
+                :rules="[v => !!v || 'Please, enter a given name.']"
+        ></v-text-field>
+        <v-text-field
+                v-model="user.secondName"
+                label="Second Name"
+        ></v-text-field>
+        <v-text-field
+                v-model="user.familyName"
+                label="Family Name*"
+                required
+                :rules="[v => !!v || 'Please, enter a family name.']"
+        ></v-text-field>
+
+        <v-text-field
+                v-model="user.phone"
+                label="Phone"
+        ></v-text-field>
     </v-container>
 </template>
 
 <script>
     export default {
-        name: "EditUserDetails",
+        name: "edit-user-details",
+        props: ['user'],
         data: () => ({
-            userName: '',
-            sameNameAsEmail: false,
-            givenName: '',
-            secondName: '',
-            familyName: '',
-            phone: '',
-            email: ''
-        })
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+/.test(v) || 'Email must be valid'
+            ]
+        }),
+        methods: {
+            mailAsUserName() {
+                this.user.userName = this.user.email
+            }
+        }
     }
 </script>
 
