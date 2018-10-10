@@ -2,7 +2,6 @@
     <v-container>
         <v-card>
             <v-card-text>
-        <v-form>
                 <v-text-field
                         v-model="userName"
                         label="Username"
@@ -31,10 +30,6 @@
                         v-model="phone"
                         label="Phone"
                 ></v-text-field>
-
-            <v-btn @click="register">Register</v-btn>
-            <v-btn @click="cancel">Cancel</v-btn>
-            </v-form>
             </v-card-text>
         </v-card>
     </v-container>
@@ -42,23 +37,16 @@
 
 <script>
     export default {
-        name: "edit-user-details",
+        name: "EditUserDetails",
         data: () => ({
             userName: '',
             sameNameAsEmail: false,
             givenName: '',
             secondName: '',
             familyName: '',
-            phone: ''
-        }),
-        methods: {
-            register() {
-                alert('register')
-            },
-            cancel() {
-                alert('cancel')
-            }
-        }
+            phone: '',
+            email: ''
+        })
     }
 </script>
 

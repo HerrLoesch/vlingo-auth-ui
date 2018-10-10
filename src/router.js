@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import TenantSubscriptionList from './components/TenantSubscriptionList'
-import EditUserDetails from './components/EditUserDetails'
-import EditCredentialDetails from './components/EditCredentialDetails'
+import TenantSubscriptionList from './views/TenantSubscriptionList'
+import ComponentOverview from './views/ComponentOverview'
 
 Vue.use(Router)
 
@@ -14,19 +13,14 @@ export default new Router({
       component: TenantSubscriptionList
     },
     {
+        path: '/components',
+        name: 'components',
+        component: ComponentOverview
+    },
+    {
         path: '/subscriptions',
         name: 'subscriptions',
         component: TenantSubscriptionList
-    },
-    {
-        path: '/editUser',
-        name: 'editUser',
-        component: EditUserDetails
-    },
-    {
-        path: '/editCredential',
-        name: 'editCredential',
-        component: EditCredentialDetails
     }
   ]
 })

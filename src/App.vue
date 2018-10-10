@@ -1,9 +1,8 @@
 <template>
   <v-app id="app">
     <div id="nav">
-      <router-link to="/subscriptions">Get Tenants</router-link> -
-      <router-link to="/editUser">Edit User</router-link> -
-      <router-link to="/editCredential">Edit Credential</router-link>
+      <router-link to="/components">Components</router-link> -
+      <router-link to="/subscriptions">Admin Tenants</router-link> -
     </div>
     <router-view/>
   </v-app>
