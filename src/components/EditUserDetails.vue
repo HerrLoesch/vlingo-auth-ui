@@ -32,26 +32,6 @@
                         label="Phone"
                 ></v-text-field>
 
-                <v-card>
-                    <v-card-text>
-                        <v-select
-                                v-model="credential.authority"
-                                :items="authorities"
-                                label="Authority"
-                        ></v-select>
-                        <v-text-field
-                                v-model="credential.id"
-                                label="Id"
-                        ></v-text-field>
-                        <v-text-field
-                                v-model="credential.secret"
-                                label="Secret"
-                                type="password"
-                                hint="At least 8 characters"
-                                counter
-                        ></v-text-field>
-                    </v-card-text>
-                </v-card>
             <v-btn @click="register">Register</v-btn>
             <v-btn @click="cancel">Cancel</v-btn>
             </v-form>
@@ -62,23 +42,14 @@
 
 <script>
     export default {
-        name: "new-user",
+        name: "edit-user-details",
         data: () => ({
             userName: '',
             sameNameAsEmail: false,
             givenName: '',
             secondName: '',
             familyName: '',
-            phone: '',
-            authorities: [
-                'vlingo',
-                'oAuth'
-            ],
-            credential: {
-                authority: '',
-                id: '',
-                secret: ''
-            }
+            phone: ''
         }),
         methods: {
             register() {

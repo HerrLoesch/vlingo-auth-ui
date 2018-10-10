@@ -2,7 +2,8 @@
   <v-app id="app">
     <div id="nav">
       <router-link to="/subscriptions">Get Tenants</router-link> -
-      <router-link to="/newUser">Post User</router-link>
+      <router-link to="/editUser">Edit User</router-link> -
+      <router-link to="/editCredential">Edit Credential</router-link>
     </div>
     <router-view/>
   </v-app>
