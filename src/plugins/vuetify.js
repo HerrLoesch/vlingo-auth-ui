@@ -12,6 +12,7 @@ import {
     VDivider,
     VSelect,
     VSubheader,
+    VTextarea,
     transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -28,11 +29,12 @@ Vue.use(Vuetify, {
         VSubheader,
         VTextField,
         VForm,
+        VTextarea,
         VDivider,
         transitions
     },
     theme: {
-        primary: '#ee44aa',
+        primary: '#4455ff',
         secondary: '#424242',
         accent: '#82B1FF',
         error: '#FF5252',
