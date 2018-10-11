@@ -1,13 +1,13 @@
 <template>
-<v-container>
-    <v-data-table :headers="headers" :items="tenants" class="elevation-1">
-        <template slot="items" slot-scope="props">
-            <td>{{ props.item.name }}</td>
-            <td class="text-xs-left">{{ props.item.description }}</td>
-            <td>{{ props.item.active }}</td>
-        </template>
-    </v-data-table>
-</v-container>
+    <v-container>
+        <v-data-table :headers="headers" :items="tenants" class="elevation-1">
+            <template slot="items" slot-scope="props">
+                <td>{{ props.item.name }}</td>
+                <td class="text-xs-left">{{ props.item.description }}</td>
+                <td>{{ props.item.active }}</td>
+            </template>
+        </v-data-table>
+    </v-container>
 </template>
 
 <script>
@@ -69,7 +69,3 @@
         })
     }
 </script>
-
-<style scoped>
-
-</style>

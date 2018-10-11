@@ -20,7 +20,3 @@
         props: ["permission"]
     }
 </script>
-
-<style scoped>
-
-</style>
