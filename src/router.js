@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import TenantSubscriptionList from './views/TenantSubscriptionList'
 import ComponentOverview from './views/ComponentOverview'
 import RegisterUser from './views/RegisterUser'
+import EditUser from './views/EditUser'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
         path: '/subscriptions',
         name: 'subscriptions',
         component: TenantSubscriptionList
+    },
+    {
+        path: '/editUser',
+        name: 'editUser',
+        component: EditUser
     }
   ]
 })

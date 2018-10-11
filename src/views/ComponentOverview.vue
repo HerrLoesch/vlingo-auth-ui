@@ -5,7 +5,7 @@
                 <h2>EditUserDetails</h2>
             </v-card-title>
             <v-card-text>
-                <EditUserDetails></EditUserDetails>
+                <EditUserDetails user="{}"></EditUserDetails>
             </v-card-text>
         </v-card>
         <v-card>
@@ -13,7 +13,7 @@
                 <h2>EditCredentialDetails</h2>
             </v-card-title>
             <v-card-text>
-                <EditCredentialDetails></EditCredentialDetails>
+                <EditCredentialDetails credential="{}"></EditCredentialDetails>
             </v-card-text>
         </v-card>
     </v-container>
