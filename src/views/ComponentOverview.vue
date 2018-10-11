@@ -24,6 +24,14 @@
                 <EditPermissionDetails permission="{}"></EditPermissionDetails>
             </v-card-text>
         </v-card>
+        <v-card>
+            <v-card-title>
+                <h2>EditPermissionConstraintsDetails</h2>
+            </v-card-title>
+            <v-card-text>
+                <EditPermissionConstraintsDetails constraint="{}"></EditPermissionConstraintsDetails>
+            </v-card-text>
+        </v-card>
     </v-container>
 </template>
 
@@ -31,13 +39,15 @@
     import EditUserDetails from '../components/EditUserDetails'
     import EditCredentialDetails from '../components/EditCredentialDetails'
     import EditPermissionDetails from '../components/EditPermissionDetails'
+    import EditPermissionConstraintsDetails from '../components/EditPermissionConstraintsDetails'
 
     export default {
         name: "component-overview",
         components: {
             EditUserDetails,
             EditCredentialDetails,
-            EditPermissionDetails
+            EditPermissionDetails,
+            EditPermissionConstraintsDetails
         }
     }
 </script>
