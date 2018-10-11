@@ -4,6 +4,7 @@ import TenantSubscriptionList from './views/TenantSubscriptionList'
 import ComponentOverview from './views/ComponentOverview'
 import RegisterUser from './views/RegisterUser'
 import EditUser from './views/EditUser'
+import ProvisionPermission from './views/ProvisionPermission'
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
         path: '/editUser',
         name: 'editUser',
         component: EditUser
+    },
+    {
+        path: '/provisionPermission',
+        name: 'provisionPermission',
+        component: ProvisionPermission
     }
   ]
 })
