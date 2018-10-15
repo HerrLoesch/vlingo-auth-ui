@@ -18,10 +18,10 @@
         </v-card>
         <v-card>
             <v-card-title>
-                <h2>EditPermissionDetails</h2>
+                <h2>NameAndDescriptionInput</h2>
             </v-card-title>
             <v-card-text>
-                <EditPermissionDetails permission="{}"></EditPermissionDetails>
+                <name-and-description-input></name-and-description-input>
             </v-card-text>
         </v-card>
         <v-card>
@@ -38,7 +38,7 @@
 <script>
     import EditUserDetails from '../components/EditUserDetails'
     import EditCredentialDetails from '../components/EditCredentialDetails'
-    import EditPermissionDetails from '../components/EditPermissionDetails'
+    import NameAndDescriptionInput from '../components/NameAndDescriptionInput'
     import EditPermissionConstraintsDetails from '../components/EditPermissionConstraintsDetails'
 
     export default {
@@ -46,7 +46,7 @@
         components: {
             EditUserDetails,
             EditCredentialDetails,
-            EditPermissionDetails,
+            NameAndDescriptionInput,
             EditPermissionConstraintsDetails
         }
     }
