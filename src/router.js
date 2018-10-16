@@ -5,40 +5,47 @@ import ComponentOverview from './views/ComponentOverview'
 import RegisterUser from './views/RegisterUser'
 import EditUser from './views/EditUser'
 import ProvisionPermission from './views/ProvisionPermission'
+import RegisterTenant from './views/RegisterTenant'
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: ComponentOverview
-    },
-    {
-        path: '/components',
-        name: 'components',
-        component: ComponentOverview
-    },
-    {
-        path: '/registerUser',
-        name: 'registerUser',
-        component: RegisterUser
-    },
-    {
-        path: '/subscriptions',
-        name: 'subscriptions',
-        component: TenantSubscriptionList
-    },
-    {
-        path: '/editUser',
-        name: 'editUser',
-        component: EditUser
-    },
-    {
-        path: '/provisionPermission',
-        name: 'provisionPermission',
-        component: ProvisionPermission
-    }
-  ]
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: ComponentOverview
+        },
+        {
+            path: '/components',
+            name: 'components',
+            component: ComponentOverview
+        },
+        {
+            path: '/registerUser',
+            name: 'registerUser',
+            component: RegisterUser
+        },
+        {
+            path: '/subscriptions',
+            name: 'subscriptions',
+            component: TenantSubscriptionList
+        },
+        {
+            path: '/editUser',
+            name: 'editUser',
+            component: EditUser
+        },
+        {
+            path: '/provisionPermission',
+            name: 'provisionPermission',
+            component: ProvisionPermission
+        },
+        {
+            path: '/registerTenant',
+            name: 'registerTenant',
+            component: RegisterTenant
+        }
+
+    ]
 })
