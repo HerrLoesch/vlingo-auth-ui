@@ -6,6 +6,7 @@ import RegisterUser from './views/RegisterUser'
 import EditUser from './views/EditUser'
 import ProvisionPermission from './views/ProvisionPermission'
 import RegisterTenant from './views/RegisterTenant'
+import ProvisionGroup from './views/ProvisionGroup'
 
 Vue.use(Router)
 
@@ -45,6 +46,11 @@ export default new Router({
             path: '/registerTenant',
             name: 'registerTenant',
             component: RegisterTenant
+        },
+        {
+            path: '/provisionGroup',
+            name: 'provisionGroup',
+            component: ProvisionGroup
         }
 
     ]

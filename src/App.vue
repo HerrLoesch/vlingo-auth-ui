@@ -7,6 +7,7 @@
       <router-link to="/provisionPermission">Provision Permission</router-link> -
       <router-link to="/subscriptions">Admin Tenants</router-link> -
       <router-link to="/registerTenant">Register Tenant</router-link> -
+      <router-link to="/provisionGroup">Provision Group</router-link> -
     </div>
     <router-view/>
   </v-app>
