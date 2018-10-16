@@ -4,7 +4,7 @@
             <v-card>
                 <v-card-text>
                     <v-subheader>Permission Info</v-subheader>
-                    <name-and-description-input :name="permission.name" :description="permission.description"></name-and-description-input>
+                    <name-and-description-input :value="permission"></name-and-description-input>
 
                     <v-divider></v-divider>
 
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import NameAndDescriptionInput from "../components/NameAndDescriptionInput"
+    import NameAndDescriptionInput from "../components/NameDescriptionInput"
     import EditPermissionConstraintsDetails from "../components/EditPermissionConstraintsDetails"
     export default {
         components: {

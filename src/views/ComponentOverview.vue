@@ -2,52 +2,44 @@
     <v-container>
         <v-card>
             <v-card-title>
-                <h2>EditUserDetails</h2>
+                <h2>edit-user-details</h2>
             </v-card-title>
             <v-card-text>
-                <EditUserDetails user="{}"></EditUserDetails>
+                <edit-user-details></edit-user-details>
             </v-card-text>
         </v-card>
         <v-card>
             <v-card-title>
-                <h2>EditCredentialDetails</h2>
+                <h2>edit-credential-details</h2>
             </v-card-title>
             <v-card-text>
-                <EditCredentialDetails credential="{}"></EditCredentialDetails>
+                <edit-credential-details></edit-credential-details>
             </v-card-text>
         </v-card>
         <v-card>
             <v-card-title>
-                <h2>NameAndDescriptionInput</h2>
+                <h2>name-description-input</h2>
             </v-card-title>
             <v-card-text>
-                <name-and-description-input></name-and-description-input>
+                <name-description-input></name-description-input>
             </v-card-text>
         </v-card>
         <v-card>
             <v-card-title>
-                <h2>EditPermissionConstraintsDetails</h2>
+                <h2>edit-permission-constraints-details</h2>
             </v-card-title>
             <v-card-text>
-                <EditPermissionConstraintsDetails constraint="{}"></EditPermissionConstraintsDetails>
+                <edit-permission-constraints-details></edit-permission-constraints-details>
             </v-card-text>
         </v-card>
     </v-container>
 </template>
 
 <script>
-    import EditUserDetails from '../components/EditUserDetails'
-    import EditCredentialDetails from '../components/EditCredentialDetails'
-    import NameAndDescriptionInput from '../components/NameAndDescriptionInput'
-    import EditPermissionConstraintsDetails from '../components/EditPermissionConstraintsDetails'
 
     export default {
-        name: "component-overview",
+        name: "ComponentOverview",
         components: {
-            EditUserDetails,
-            EditCredentialDetails,
-            NameAndDescriptionInput,
-            EditPermissionConstraintsDetails
         }
     }
 </script>

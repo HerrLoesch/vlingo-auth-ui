@@ -15,12 +15,9 @@
 </template>
 
 <script>
-    import EditUserDetails from '../components/EditUserDetails'
-
     export default {
         name: "edit-user",
         components: {
-            EditUserDetails
         },
         data: () => ({
             user: {},

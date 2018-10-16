@@ -31,8 +31,12 @@
 
 <script>
     export default {
-        name: "edit-permission-constraints-details",
-        props: ["constraint"],
+        props: {
+            constraint: {
+                type: Object,
+                default: () => ({})
+            }
+        },
         data: () => ({
             constraintNames: [
                 "Name1",

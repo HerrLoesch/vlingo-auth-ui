@@ -1,5 +1,5 @@
 <template>
-    <v-container id="edit-credential-details">
+    <v-container>
         <v-select
                 v-model="credential.authority"
                 :items="authorities"
@@ -25,8 +25,12 @@
 
 <script>
     export default {
-        name: "edit-credential-details",
-        props: ['credential'],
+        props: {
+            credential: {
+                type: Object,
+                default: () => ({})
+            }
+        },
         data: () => ({
             authorities: [
                 'vlingo',

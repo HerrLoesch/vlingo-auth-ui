@@ -46,8 +46,12 @@
 
 <script>
     export default {
-        name: "edit-user-details",
-        props: ['user'],
+        props: {
+            user: {
+                type: Object,
+                default: () => ({})
+            }
+        },
         data: () => ({
             emailRules: [
                 v => !!v || 'E-mail is required',
