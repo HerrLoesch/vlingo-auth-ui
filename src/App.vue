@@ -1,6 +1,7 @@
 <template>
   <v-app id="app">
     <div id="nav">
+        <router-link to="/mainArea">Application View</router-link> -
       <router-link to="/components">Components</router-link> -
       <router-link to="/registerUser">Register User</router-link> -
       <router-link to="/editUser">Edit User</router-link> -

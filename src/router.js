@@ -7,6 +7,7 @@ import EditUser from './views/EditUser'
 import ProvisionPermission from './views/ProvisionPermission'
 import RegisterTenant from './views/RegisterTenant'
 import ProvisionGroup from './views/ProvisionGroup'
+import MainArea from './views/MainArea'
 
 Vue.use(Router)
 
@@ -15,7 +16,12 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: ComponentOverview
+            component: MainArea
+        },
+        {
+            path: '/mainArea',
+            name: 'mainArea',
+            component: MainArea
         },
         {
             path: '/components',
