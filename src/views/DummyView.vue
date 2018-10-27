@@ -1,12 +1,10 @@
 <template>
-    <v-container>
-        Main Content
-    </v-container>
+    <v-container>This is a dummy view</v-container>
 </template>
 
 <script>
     export default {
-        name: "MainArea"
+        name: "dummy-view"
     }
 </script>
 

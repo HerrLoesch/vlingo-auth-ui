@@ -7,7 +7,7 @@ import EditUser from './views/EditUser'
 import ProvisionPermission from './views/ProvisionPermission'
 import RegisterTenant from './views/RegisterTenant'
 import ProvisionGroup from './views/ProvisionGroup'
-import MainArea from './views/MainArea'
+import DummyView from './views/DummyView'
 
 Vue.use(Router)
 
@@ -16,12 +16,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: MainArea
-        },
-        {
-            path: '/mainArea',
-            name: 'mainArea',
-            component: MainArea
+            component: ComponentOverview
         },
         {
             path: '/components',
@@ -39,9 +34,19 @@ export default new Router({
             component: TenantSubscriptionList
         },
         {
+            path: '/listUsers',
+            name: 'listUsers',
+            component: DummyView
+        },
+        {
             path: '/editUser',
             name: 'editUser',
             component: EditUser
+        },
+        {
+            path: '/editCredentials',
+            name: 'editCredentials',
+            component: DummyView
         },
         {
             path: '/provisionPermission',
@@ -58,6 +63,5 @@ export default new Router({
             name: 'provisionGroup',
             component: ProvisionGroup
         }
-
     ]
 })

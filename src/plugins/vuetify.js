@@ -13,6 +13,14 @@ import {
     VSelect,
     VSubheader,
     VTextarea,
+    VMenu,
+    VFooter,
+    VToolbar,
+    VNavigationDrawer,
+    VList,
+    VTooltip,
+    VIcon,
+    VImg,
     transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -24,13 +32,21 @@ Vue.use(Vuetify, {
         VDataTable,
         VCard,
         VSelect,
+        VNavigationDrawer,
         VCheckbox,
         VBtn,
+        VFooter,
+        VTooltip,
         VSubheader,
         VTextField,
         VForm,
         VTextarea,
         VDivider,
+        VMenu,
+        VToolbar,
+        VList,
+        VImg,
+        VIcon,
         transitions
     },
     theme: {
