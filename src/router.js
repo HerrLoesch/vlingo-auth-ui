@@ -17,7 +17,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: ComponentOverview
+            component: DummyView
         },
         {
             path: '/components',
@@ -47,6 +47,11 @@ export default new Router({
         {
             path: '/editCredentials',
             name: 'editCredentials',
+            component: DummyView
+        },
+        {
+            path: '/dummy',
+            name: 'dummy',
             component: DummyView
         },
         {
