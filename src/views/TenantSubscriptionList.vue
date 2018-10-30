@@ -32,9 +32,9 @@
                     Do you realy want to delete tenant <b>{{selectedItem.name}}</b>?
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn color="error" @click="deleteItem()">Yes</v-btn>
                     <v-spacer></v-spacer>
-                    <v-btn @click="closeConfirmation()">No</v-btn>
+                    <v-btn color="error" flat @click="deleteItem()">Yes</v-btn>
+                    <v-btn flat @click="closeConfirmation()">No</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -49,9 +49,9 @@
                     <name-description-input :value="this.editableItem"></name-description-input>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn color="error" @click="saveEditedItem()">Change</v-btn>
                     <v-spacer></v-spacer>
-                    <v-btn @click="closeEditDialog()">Cancel</v-btn>
+                    <v-btn color="error" flat @click="saveEditedItem()">Change</v-btn>
+                    <v-btn flat @click="closeEditDialog()">Cancel</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
