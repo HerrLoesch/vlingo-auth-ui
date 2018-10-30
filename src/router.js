@@ -8,6 +8,7 @@ import ProvisionPermission from './views/ProvisionPermission'
 import RegisterTenant from './views/RegisterTenant'
 import ProvisionGroup from './views/ProvisionGroup'
 import DummyView from './views/DummyView'
+import SignOn from './views/SignOn'
 
 Vue.use(Router)
 
@@ -57,6 +58,11 @@ export default new Router({
             path: '/registerTenant',
             name: 'registerTenant',
             component: RegisterTenant
+        },
+        {
+            path: '/signOn',
+            name: 'signOn',
+            component: SignOn
         },
         {
             path: '/provisionGroup',

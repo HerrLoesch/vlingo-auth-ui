@@ -67,6 +67,11 @@
             drawer: true,
             tenantViews: [
                 {
+                    title: "Sign On",
+                    name: "/signOn",
+                    icon: "far fa-check-circle"
+                },
+                {
                     title: "Subscriptions",
                     name: "/subscriptions",
                     icon: ""
