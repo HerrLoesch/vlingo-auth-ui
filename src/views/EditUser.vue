@@ -16,9 +16,7 @@
 
 <script>
     export default {
-        name: "edit-user",
-        components: {
-        },
+        components: {},
         data: () => ({
             user: {},
             valid: false

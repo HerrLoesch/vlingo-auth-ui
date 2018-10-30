@@ -40,7 +40,7 @@
         </v-dialog>
 
         <!-- Edit dialog -->
-        <v-dialog v-model="editDialogVisible" >
+        <v-dialog v-model="editDialogVisible">
             <v-card>
                 <v-card-title class="headline" primary-title>
                     Edit

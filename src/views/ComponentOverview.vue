@@ -39,7 +39,6 @@
 
     export default {
         name: "ComponentOverview",
-        components: {
-        }
+        components: {}
     }
 </script>

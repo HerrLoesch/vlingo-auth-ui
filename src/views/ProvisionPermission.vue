@@ -23,6 +23,7 @@
 <script>
     import NameAndDescriptionInput from "../components/NameDescriptionInput"
     import EditPermissionConstraintsDetails from "../components/EditPermissionConstraintsDetails"
+
     export default {
         components: {
             NameAndDescriptionInput,
