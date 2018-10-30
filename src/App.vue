@@ -69,7 +69,7 @@
                 {
                     title: "Sign On",
                     name: "/signOn",
-                    icon: "far fa-check-circle"
+                    icon: "check_circle_outline"
                 },
                 {
                     title: "Subscriptions",
@@ -86,12 +86,12 @@
                 {
                     title: "Register User",
                     name: "/registerUser",
-                    icon: "far fa-check-circle"
+                    icon: "check_circle_outline"
                 },
                 {
                     title: "Edit User",
                     name: "/editUser",
-                    icon: "far fa-check-circle"
+                    icon: "check_circle_outline"
 
                 },
                 {

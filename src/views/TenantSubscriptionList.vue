@@ -10,13 +10,13 @@
                             class="mr-2"
                             @click="showEditDialog(props.item)"
                     >
-                        fas fa-pen
+                        edit
                     </v-icon>
                     <v-icon
                             small
                             @click="askToDelete(props.item)"
                     >
-                        fas fa-trash-alt
+                        delete
                     </v-icon>
                 </td>
             </template>
@@ -78,10 +78,7 @@
 
 <script>
 
-    import NameDescriptionInput from "../components/NameDescriptionInput";
-
     export default {
-        components: {NameDescriptionInput},
         methods: {
             showEditDialog(item) {
                 this.selectedItem = item
