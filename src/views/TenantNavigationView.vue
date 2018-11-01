@@ -4,6 +4,28 @@
             <v-toolbar-title>
                 Vlingo
             </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+                <v-menu offset-y offset-x>
+                    <v-toolbar-title slot="activator">
+                        <v-btn icon>
+                            <v-icon>account_circle</v-icon>
+                        </v-btn>
+                    </v-toolbar-title>
+
+                    <v-list>
+                        <v-list-tile>
+                            <v-list-tile-title>
+                                Profile
+                            </v-list-tile-title>
+                        </v-list-tile>
+                        <v-divider></v-divider>
+                        <v-list-tile>
+                            <v-list-tile-title>Logout</v-list-tile-title>
+                        </v-list-tile>
+                    </v-list>
+                </v-menu>
+            </v-toolbar-items>
         </v-toolbar>
         <v-navigation-drawer
                 app
