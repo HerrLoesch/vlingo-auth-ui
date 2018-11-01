@@ -19,7 +19,7 @@
                             ></v-text-field>
                         </v-flex>
                         <v-flex md3>
-                            <v-btn @click="userNameAsCredentialId()">as credential id</v-btn>
+                            <v-btn @click="userNameAsCredentialId()">as credential</v-btn>
                         </v-flex>
                     </v-layout>
 
@@ -63,6 +63,7 @@
             signOn() {
                 let data = "valid: " + this.valid + " tenant: " + this.tenantId + " username: " + this.username + " credential: " + this.credentialId + " secret: " + this.secret
                 alert(data)
+                this.$emit("signedOn")
             }
         }
     }

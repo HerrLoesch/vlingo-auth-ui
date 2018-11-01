@@ -39,10 +39,12 @@
             register() {
                 let data = 'user: ' + JSON.stringify(this.user) + ' credential: ' + JSON.stringify(this.credential)
                 alert(data)
+                this.$emit("registered")
             },
             cancel() {
                 this.user = {}
                 this.credential = {}
+                this.$emit("canceled")
             }
         }
     }

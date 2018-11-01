@@ -1,34 +1,42 @@
 <template>
-    <v-app id="inspire">
+    <v-app id="inspire" >
 
-
-        <div v-if="adminView">
-            <AdminNavigationView></AdminNavigationView>
-        </div>
-        <div v-else-if="tenantView">
-            <TenantavigationView></TenantavigationView>
-        </div>
-        <div v-else>
-            <v-container justify-center>
-                <v-btn @click="adminView=true">Admin View</v-btn>
-                <v-btn @click="tenantView=true">Tenant View</v-btn>
-            </v-container>
-        </div>
+        <v-container>
+            <div v-if="isLoggedIn">
+                <TenantavigationView></TenantavigationView>
+            </div>
+            <div v-else-if="register">
+                <v-container>
+                <img src="./assets/logo.png">
+                <RegisterUser v-on:canceled="register=false" v-on:registered="isLoggedIn=true"></RegisterUser>
+                </v-container>
+            </div>
+            <div v-else>
+                <v-container>
+                    <img src="./assets/logo.png">
+                    <SignOn v-on:signedOn="isLoggedIn=true"></SignOn>
+                        <v-btn flat @click="register=true">register</v-btn>
+                        <v-btn flat @click="isLoggedIn=true">Debug Shortcut</v-btn>
+                </v-container>
+            </div>
+        </v-container>
     </v-app>
 </template>
 
 <script>
-    import AdminNavigationView from "./views/AdminNavigationView"
     import TenantavigationView from "./views/TenantNavigationView"
+    import RegisterUser from "./views/RegisterUser"
+    import SignOn from "./views/SignOn"
 
     export default {
         components: {
-            AdminNavigationView,
-            TenantavigationView
+            TenantavigationView,
+            RegisterUser,
+            SignOn
         },
         data: () => ({
-            adminView: false,
-            tenantView: false
+            register: false,
+            isLoggedIn: false
         })
     }
 </script>

@@ -24,6 +24,7 @@
             register() {
                 let data = 'tenant: ' + JSON.stringify(this.tenant)
                 alert(data)
+                this.$emit("registered")
             },
             cancel() {
                 this.tenant = {}
