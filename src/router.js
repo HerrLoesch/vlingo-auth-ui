@@ -9,6 +9,7 @@ import RegisterTenant from './views/RegisterTenant'
 import ProvisionGroup from './views/ProvisionGroup'
 import DummyView from './views/DummyView'
 import SignOn from './views/SignOn'
+import ListUsers from './views/ListUsers'
 
 Vue.use(Router)
 
@@ -30,14 +31,14 @@ export default new Router({
             component: RegisterUser
         },
         {
+            path: '/listUsers',
+            name: 'listUsers',
+            component: ListUsers
+        },
+        {
             path: '/subscriptions',
             name: 'subscriptions',
             component: TenantSubscriptionList
-        },
-        {
-            path: '/listUsers',
-            name: 'listUsers',
-            component: DummyView
         },
         {
             path: '/editUser',

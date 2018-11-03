@@ -1,49 +1,74 @@
 //import axios from 'axios'
+import _ from "lodash"
 
 const UserStore = {
   isInitialized: false,
+  idTreshold: 2,
   namespaced: true,
-  createTestData(){
-
-  },
   state: {
-    users: [{
-      email: "max@mustermail.de",
-      familyName: "Mustermann",
-      givenName: "Max",
-      userName: "Peter"
-    }],
+    users: [],
     errorOccured: false,
     isLoading: false
   },
   mutations: {
-    setUsers (state, users) {      
+
+    setUsers(state, users) {
       state.users = users
     },
-    addUser (state, user) {      
+    addUser(state, user) {
       state.users.push(user)
-      console.log('user added')
-      console.log(user)
     },
-    setIsLoading (state, isLoading) {
+    removeUser(state, user) {
+      const index = state.users.indexOf(user)
+      state.users.splice(index, 1)
+    },
+    refreshUserData(state, user) {
+      let existingUser = _.find(state.users, {id: user.id})
+
+      existingUser.userName = user.userName
+      existingUser.email = user.email
+      existingUser.familyName = user.familyName
+      existingUser.givenName = user.givenName
+      existingUser.secondName = user.secondName
+      existingUser.phone = user.phone
+    },
+    setIsLoading(state, isLoading) {
       state.isLoading = isLoading
     },
-    setErrorOccured (state, errorOccured) {
+    setErrorOccured(state, errorOccured) {
       state.isLoading = errorOccured
     }
   },
   actions: {
-    initializeUserStore: function ({ commit }) {
+    initializeUserStore: function ({
+      commit
+    }) {
       if (this.isInitialized || this.state.isLoading) {
         return
       }
 
-      commit('setIsLoading', true)
-      commit('setErrorOccured', false)
+      commit("setIsLoading", true)
+      commit("setErrorOccured", false)
 
       // just for testing purpose
-      commit('setUsers', this.createTestData())
-      commit('setIsLoading', false)
+
+        commit("setUsers", [{
+            email: "max@mustermail.de",
+            familyName: "Mustermann",
+            givenName: "Max",
+            userName: "Peter",
+            id: 1
+          },
+          {
+            email: "maria@mustermail.de",
+            familyName: "Mustermann",
+            givenName: "Maria",
+            userName: "maria@mustermail.de",
+            id: 2
+          }
+        ])
+        commit("setIsLoading", false)
+        this.isInitialized = true
 
       // -----------------------
 
@@ -61,10 +86,20 @@ const UserStore = {
         })
         */
     },
-    createUser: function({ commit }, user) {
-      commit('addUser', user)
+    createUser: function ({ commit }, user) {
+      this.idTreshold++
+      user.id = this.idTreshold
+      commit("addUser", user)
       /* TODO: Add actual API call */
-    }
+    },
+    deleteUser: function ({ commit }, user) {
+      commit("removeUser", user)
+      /* TODO: Add actual API call */
+    },
+    updateUser: function ({ commit }, newData) {
+      commit("refreshUserData", newData)
+      /* TODO: Add actual API call */
+    },
   }
 }
 

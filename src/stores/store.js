@@ -1,6 +1,6 @@
-import Vuex from 'vuex'
-import UserStore from './UserStore'
-import Vue from 'vue'
+import Vuex from "vuex"
+import UserStore from "./UserStore"
+import Vue from "vue"
 
 Vue.use(Vuex)
 
