@@ -20,7 +20,7 @@
                             </v-list-tile-title>
                         </v-list-tile>
                         <v-divider></v-divider>
-                        <v-list-tile>
+                        <v-list-tile @click="logOut()">
                             <v-list-tile-title>Logout</v-list-tile-title>
                         </v-list-tile>
                     </v-list>
@@ -163,6 +163,9 @@
         methods: {
             goTo(route) {
                 this.$router.push(route)
+            },
+            logOut() {
+                this.$store.dispatch("applicationState/logOut")
             }
         }
     }
