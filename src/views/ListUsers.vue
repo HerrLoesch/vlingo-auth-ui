@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-data-table :headers="headers" :items="users" class="elevation-1" :loading="isLoading">          
+        <v-data-table :headers="headers" :items="users" class="elevation-1" :loading="isLoading">
             <template slot="items" slot-scope="props">
                 <td>{{ props.item.userName }}</td>
                 <td class="text-xs-left">{{ props.item.email }}</td>
@@ -40,7 +40,7 @@
         </v-dialog>
 
         <!-- Edit dialog -->
-        <v-dialog v-model="editDialogVisible">
+        <v-dialog v-model="editDialogVisible" width="800">
             <v-card>
                 <v-card-title class="headline" primary-title>
                     Edit
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+    import {mapState} from 'vuex'
 
     export default {
         created() {
@@ -96,7 +96,7 @@
                 this.deleteConfirmationVisible = true
                 this.selectedItem = item
             },
-            deleteItem() {                
+            deleteItem() {
                 this.$store.dispatch("userStore/deleteUser", this.selectedItem)
 
                 this.showNotification("User \"" + this.selectedItem.userName + "\" was deleted.")
@@ -113,7 +113,7 @@
                 this.notificationVisible = true
             },
             saveEditedItem() {
-                this.$store.dispatch("userStore/updateUser", this.editableItem)               
+                this.$store.dispatch("userStore/updateUser", this.editableItem)
 
                 this.closeEditDialog()
                 this.showNotification("Changes are saved.")
@@ -130,11 +130,11 @@
             notificationVisible: false,
             notificationText: false,
             headers: [{
-                    text: 'Username',
-                    align: 'left',
-                    sortable: true,
-                    value: 'userName'
-                },
+                text: 'Username',
+                align: 'left',
+                sortable: true,
+                value: 'userName'
+            },
                 {
                     text: 'Email',
                     align: 'left',

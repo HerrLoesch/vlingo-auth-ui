@@ -3,7 +3,7 @@ import Vue from "vue"
 import "./plugins/vuetify"
 import App from "./App.vue"
 import router from "./router"
-import store from "./stores/store"
+import store from "./store/store"
 
 import upperFirst from "lodash/upperFirst"
 import camelCase from "lodash/camelCase"

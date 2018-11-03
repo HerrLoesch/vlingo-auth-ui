@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire" >
+    <v-app id="inspire">
 
         <v-container>
             <div v-if="isLoggedIn">
@@ -7,16 +7,19 @@
             </div>
             <div v-else-if="register">
                 <v-container>
-                <img src="./assets/logo.png">
-                <RegisterUser v-on:canceled="register=false" v-on:registered="isLoggedIn=true"></RegisterUser>
+                    <img src="./assets/logo.png">
+                    <RegisterUser v-on:canceled="register=false" v-on:registered="isLoggedIn=true"></RegisterUser>
                 </v-container>
             </div>
             <div v-else>
                 <v-container>
                     <img src="./assets/logo.png">
                     <SignOn v-on:signedOn="isLoggedIn=true"></SignOn>
-                        <v-btn flat @click="register=true">register</v-btn>
-                        <v-btn flat @click="isLoggedIn=true">Debug Shortcut</v-btn>
+                    <v-btn flat @click="register=true">register</v-btn>
+                    <v-tooltip bottom>
+                        <v-btn slot="activator" flat @click="debugShortcut()">Debug Shortcut</v-btn>
+                        <span>Click this if you don't want to enter login data.</span>
+                    </v-tooltip>
                 </v-container>
             </div>
         </v-container>
@@ -27,6 +30,7 @@
     import TenantavigationView from "./views/TenantNavigationView"
     import RegisterUser from "./views/RegisterUser"
     import SignOn from "./views/SignOn"
+    import {mapState} from 'vuex'
 
     export default {
         components: {
@@ -34,10 +38,15 @@
             RegisterUser,
             SignOn
         },
+        computed: mapState("applicationState", ["isLoggedIn"]),
         data: () => ({
-            register: false,
-            isLoggedIn: false
-        })
+            register: false
+        }),
+        methods: {
+            debugShortcut() {
+                this.$store.dispatch("applicationState/logIn", this.loginData)
+            }
+        }
     }
 </script>
 

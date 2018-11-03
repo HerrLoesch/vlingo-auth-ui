@@ -4,7 +4,7 @@
             <v-card>
                 <v-card-text>
                     <v-text-field
-                            v-model="tenantId"
+                            v-model="loginData.tenantId"
                             label="Tenant Id*"
                             required
                             :rules="[v => !!v || 'Please, enter an id of a tenant.']"
@@ -12,7 +12,7 @@
                     <v-layout>
                         <v-flex md9>
                             <v-text-field
-                                    v-model="username"
+                                    v-model="loginData.username"
                                     label="Username*"
                                     required
                                     :rules="[v => !!v || 'Please, enter a username.']"
@@ -24,14 +24,14 @@
                     </v-layout>
 
                     <v-text-field
-                            v-model="credentialId"
+                            v-model="loginData.credentialId"
                             label="Credential Id*"
                             required
                             :rules="[v => !!v || 'Please, enter the id of the credentials.']"
                     ></v-text-field>
 
                     <v-text-field
-                            v-model="secret"
+                            v-model="loginData.secret"
                             label="Secret*"
                             required
                             type="password"
@@ -51,19 +51,19 @@
     export default {
         data: () => ({
             valid: false,
-            tenantId: null,
-            username: null,
-            credentialId: null,
-            secret: null
+            loginData: {
+                tenantId: null,
+                username: null,
+                credentialId: null,
+                secret: null
+            }
         }),
         methods: {
             userNameAsCredentialId() {
                 this.credentialId = this.username
             },
             signOn() {
-                let data = "valid: " + this.valid + " tenant: " + this.tenantId + " username: " + this.username + " credential: " + this.credentialId + " secret: " + this.secret
-                alert(data)
-                this.$emit("signedOn")
+                this.$store.dispatch("applicationState/logIn", this.loginData)
             }
         }
     }
