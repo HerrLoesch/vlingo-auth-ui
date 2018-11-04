@@ -2,17 +2,13 @@
     <v-container>
         <v-text-field
                 v-model="user.userName"
-                label="Username*"
-                required
-                :rules="[v => !!v || 'Please, enter a user name.']"
+                label="Username"
         ></v-text-field>
         <v-layout>
             <v-flex md10>
                 <v-text-field
                         v-model="user.email"
-                        label="Email Address*"
-                        required
-                        :rules="emailRules"
+                        label="Email Address"
                 ></v-text-field>
             </v-flex>
             <v-flex md2>
@@ -22,9 +18,7 @@
 
         <v-text-field
                 v-model="user.givenName"
-                label="Given Name*"
-                required
-                :rules="[v => !!v || 'Please, enter a given name.']"
+                label="Given Name"
         ></v-text-field>
         <v-text-field
                 v-model="user.secondName"
@@ -32,9 +26,7 @@
         ></v-text-field>
         <v-text-field
                 v-model="user.familyName"
-                label="Family Name*"
-                required
-                :rules="[v => !!v || 'Please, enter a family name.']"
+                label="Family Name"
         ></v-text-field>
 
         <v-text-field
@@ -52,12 +44,6 @@
                 default: () => ({})
             }
         },
-        data: () => ({
-            emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /.+@.+/.test(v) || 'Email must be valid'
-            ]
-        }),
         methods: {
             mailAsUserName() {
                 this.user.userName = this.user.email

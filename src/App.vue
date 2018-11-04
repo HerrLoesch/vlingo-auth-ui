@@ -8,16 +8,16 @@
             <div v-else-if="register">
                 <v-container>
                     <img src="./assets/logo.png">
-                    <RegisterUser v-on:canceled="register=false" v-on:registered="isLoggedIn=true"></RegisterUser>
+                    <RegisterUser v-on:canceled="register=false" v-on:registered="logIn"></RegisterUser>
                 </v-container>
             </div>
             <div v-else>
                 <v-container>
                     <img src="./assets/logo.png">
-                    <SignOn v-on:signedOn="isLoggedIn=true"></SignOn>
+                    <SignOn></SignOn>
                     <v-btn flat @click="register=true">register</v-btn>
                     <v-tooltip bottom>
-                        <v-btn slot="activator" flat @click="debugShortcut()">Debug Shortcut</v-btn>
+                        <v-btn slot="activator" flat @click="logIn()">Debug Shortcut</v-btn>
                         <span>Click this if you don't want to enter login data.</span>
                     </v-tooltip>
                 </v-container>
@@ -43,8 +43,8 @@
             register: false
         }),
         methods: {
-            debugShortcut() {
-                this.$store.dispatch("applicationState/logIn", this.loginData)
+            logIn(user) {
+                this.$store.dispatch("applicationState/logIn", user)
             }
         }
     }

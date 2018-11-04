@@ -3,22 +3,16 @@
         <v-select
                 v-model="credential.authority"
                 :items="authorities"
-                label="Authority*"
-                reguired
-                :rules="[v => !!v || 'Please, select an authority.']"
+                label="Authority"
         ></v-select>
         <v-text-field
                 v-model="credential.id"
-                label="Id*"
-                required
-                :rules="[v => !!v || 'Please, enter an id.']"
+                label="Id"
         ></v-text-field>
         <v-text-field
                 v-model="credential.secret"
-                label="Secret*"
+                label="Secret"
                 type="password"
-                required
-                :rules="[v => !!v || 'Please, enter a secret.']"
         ></v-text-field>
     </v-container>
 </template>

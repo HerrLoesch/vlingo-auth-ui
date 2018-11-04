@@ -77,11 +77,12 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+    import {mapState} from "vuex"
+    import {INITIALIZE_USER_MODULE, DELETE_USER, UPDATE_USER, USER_MODULE} from "../store/user.module"
 
     export default {
         created() {
-            this.$store.dispatch("userStore/initializeUserStore")
+            this.$store.dispatch(INITIALIZE_USER_MODULE)
         },
         methods: {
             showEditDialog(item) {
@@ -97,7 +98,7 @@
                 this.selectedItem = item
             },
             deleteItem() {
-                this.$store.dispatch("userStore/deleteUser", this.selectedItem)
+                this.$store.dispatch(DELETE_USER, this.selectedItem)
 
                 this.showNotification("User \"" + this.selectedItem.userName + "\" was deleted.")
                 this.closeConfirmation()
@@ -113,14 +114,14 @@
                 this.notificationVisible = true
             },
             saveEditedItem() {
-                this.$store.dispatch("userStore/updateUser", this.editableItem)
+                this.$store.dispatch(UPDATE_USER, this.editableItem)
 
                 this.closeEditDialog()
                 this.showNotification("Changes are saved.")
                 this.editableItem = {}
             }
         },
-        computed: mapState("userStore", ["users", "isLoading"]),
+        computed: mapState(USER_MODULE, ["users", "isLoading"]),
         data: () => ({
             showLoadingBar: false,
             editableItem: {},

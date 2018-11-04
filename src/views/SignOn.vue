@@ -5,7 +5,7 @@
                 <v-card-text>
                     <v-text-field
                             v-model="loginData.tenantId"
-                            label="Tenant Id*"
+                            label="Tenant Id"
                             required
                             :rules="[v => !!v || 'Please, enter an id of a tenant.']"
                     ></v-text-field>
@@ -13,7 +13,7 @@
                         <v-flex md9>
                             <v-text-field
                                     v-model="loginData.username"
-                                    label="Username*"
+                                    label="Username"
                                     required
                                     :rules="[v => !!v || 'Please, enter a username.']"
                             ></v-text-field>
@@ -25,14 +25,14 @@
 
                     <v-text-field
                             v-model="loginData.credentialId"
-                            label="Credential Id*"
+                            label="Credential Id"
                             required
                             :rules="[v => !!v || 'Please, enter the id of the credentials.']"
                     ></v-text-field>
 
                     <v-text-field
                             v-model="loginData.secret"
-                            label="Secret*"
+                            label="Secret"
                             required
                             type="password"
                             :rules="[v => !!v || 'Please, enter the secret.']"

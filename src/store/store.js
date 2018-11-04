@@ -1,6 +1,6 @@
 import Vuex from "vuex"
 import ApplicationState from "./ApplicationState"
-import UserStore from "./UserStore"
+import {USER_MODULE, userModule} from "./user.module"
 import Vue from "vue"
 
 Vue.use(Vuex)
@@ -8,7 +8,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
     applicationState: ApplicationState,
-    userStore: UserStore
+    userModule: userModule
   }
 })
 
