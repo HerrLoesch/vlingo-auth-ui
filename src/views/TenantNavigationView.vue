@@ -34,10 +34,6 @@
         >
             <v-list>
 
-                <v-list-group name="users">
-                    <v-list-tile slot="activator">
-                        <v-list-tile-title>Users</v-list-tile-title>
-                    </v-list-tile>
 
                     <v-list-tile v-for="(userView, i) in userViews" :key="i" @click="goTo(userView.name)">
                         <v-list-tile-action>
@@ -45,7 +41,6 @@
                         </v-list-tile-action>
                         <v-list-tile-title v-text="userView.title"></v-list-tile-title>
                     </v-list-tile>
-                </v-list-group>
 
                 <v-list-group name="permissions">
                     <v-list-tile slot="activator">
@@ -92,13 +87,7 @@
         </v-navigation-drawer>
 
         <v-content>
-            <v-container fluid fill-height>
-                <v-layout justify-center align-center>
-                    <v-flex>
-                        <router-view></router-view>
-                    </v-flex>
-                </v-layout>
-            </v-container>
+            <router-view></router-view>
         </v-content>
         <v-footer app fixed>
             <span>&copy; 2018</span>
@@ -114,14 +103,9 @@
             drawer: true,
             userViews: [
                 {
-                    title: "Register User",
-                    name: "/registerUser",
-                    icon: "add_circle_outline"
-                },
-                {
-                    title: "List Users",
+                    title: "Users",
                     name: "/listUsers",
-                    icon: "list"
+                    icon: "people"
                 }
             ],
             groupViews: [
