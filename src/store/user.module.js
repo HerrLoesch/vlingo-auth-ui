@@ -72,14 +72,38 @@ export const userModule = {
                 familyName: "Mustermann",
                 givenName: "Max",
                 userName: "Peter",
-                id: 1
-                },
+                id: 1,
+                credentials: [
+                    {
+                        id: "test",
+                        authority: "Vlingo",
+                        secret: ""
+                    },
+                    {
+                        id: "another one",
+                        authority: "Vlingo",
+                        secret: ""
+                    },
+                ]
+            },
                 {
                     email: "maria@mustermail.de",
                     familyName: "Mustermann",
                     givenName: "Maria",
                     userName: "maria@mustermail.de",
-                    id: 2
+                    id: 2,
+                    credentials: [
+                        {
+                            id: "test",
+                            authority: "Vlingo",
+                            secret: ""
+                        },
+                        {
+                            id: "another one",
+                            authority: "Vlingo",
+                            secret: ""
+                        },
+                    ]
                 }
             ])
             commit(SET_ISLOADING, false)

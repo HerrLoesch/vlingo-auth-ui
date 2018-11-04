@@ -100,7 +100,7 @@
             closeConfirmation() {
                 this.deleteConfirmationVisible = false
             },
-            closeEditDialog() {
+            closeEditUserDialog() {
                 this.editDialogVisible = false
             },
             showNotification(text) {
@@ -111,7 +111,7 @@
                 this.selectedItem.name = this.editableItem.name
                 this.selectedItem.description = this.editableItem.description
 
-                this.closeEditDialog()
+                this.closeEditUserDialog()
                 this.showNotification("Changes are saved.")
                 this.editableItem = {}
 
@@ -121,7 +121,7 @@
             editableItem: {},
             selectedItem: {},
             deleteConfirmationVisible: false,
-            editDialogVisible: false,
+            editUserDialogVisible: false,
             notificationVisible: false,
             notificationText: false,
             headers: [

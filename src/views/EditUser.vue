@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-form v-model="valid">
-            <v-card class="elevation-0">
+            <v-card flat>
                 <v-card-text>
                     <edit-user-details :user="user"></edit-user-details>
                 </v-card-text>
