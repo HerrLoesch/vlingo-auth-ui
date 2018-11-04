@@ -48,6 +48,8 @@
 </template>
 
 <script>
+    import {LOGIN} from "../store/applicationState.module"
+
     export default {
         data: () => ({
             valid: false,
@@ -63,7 +65,7 @@
                 this.credentialId = this.username
             },
             signOn() {
-                this.$store.dispatch("applicationState/logIn", this.loginData)
+                this.$store.dispatch(LOGIN, this.loginData)
             }
         }
     }

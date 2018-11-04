@@ -2,7 +2,7 @@
     <v-app id="inspire">
 
         <v-container>
-            <div v-if="isLoggedIn">
+            <div v-if="loggedIn">
                 <TenantavigationView></TenantavigationView>
             </div>
             <div v-else-if="register">
@@ -30,7 +30,8 @@
     import TenantavigationView from "./views/TenantNavigationView"
     import RegisterUser from "./views/RegisterUser"
     import SignOn from "./views/SignOn"
-    import {mapState} from 'vuex'
+    import {mapState} from "vuex"
+    import {LOGIN, APPLICATION_STATE_MODULE} from "./store/applicationState.module"
 
     export default {
         components: {
@@ -38,13 +39,15 @@
             RegisterUser,
             SignOn
         },
-        computed: mapState("applicationState", ["isLoggedIn"]),
+        computed: mapState(APPLICATION_STATE_MODULE, {
+            loggedIn: state => state.isLoggedIn
+        }),
         data: () => ({
             register: false
         }),
         methods: {
             logIn(user) {
-                this.$store.dispatch("applicationState/logIn", user)
+                this.$store.dispatch(LOGIN, user)
             }
         }
     }

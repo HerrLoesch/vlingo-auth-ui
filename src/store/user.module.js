@@ -1,7 +1,6 @@
-//import axios from 'axios'
 import _ from "lodash"
 
-/* Vuex uses makes heavily use of magic strings.
+/* Vuex makes heavily use of magic strings.
    We have to compensate this with string constants.
    Unfortunatly, that gets a bit messy if you use also namespaces.
    The following part will help to keep most of the mess in this file.
@@ -21,7 +20,7 @@ const UPDATE = "updateUser"
 // "public" member
 export const USER_MODULE = "userModule"
 export const INITIALIZE_USER_MODULE = USER_MODULE + "/" + INITIALIZE
-export const CREATE_USER = "userModule/createUser"
+export const CREATE_USER = USER_MODULE + "/" + CREATE
 export const DELETE_USER = USER_MODULE + "/" + DELETE
 export const UPDATE_USER = USER_MODULE + "/" + UPDATE
 

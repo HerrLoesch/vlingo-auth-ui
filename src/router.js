@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import TenantSubscriptionList from './views/TenantSubscriptionList'
-import ComponentOverview from './views/ComponentOverview'
 import RegisterUser from './views/RegisterUser'
 import EditUser from './views/EditUser'
 import ProvisionPermission from './views/ProvisionPermission'
@@ -19,11 +18,6 @@ export default new Router({
             path: '/',
             name: 'home',
             component: DummyView
-        },
-        {
-            path: '/components',
-            name: 'components',
-            component: ComponentOverview
         },
         {
             path: '/registerUser',

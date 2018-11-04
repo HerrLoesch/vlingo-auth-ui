@@ -21,8 +21,9 @@
 </template>
 
 <script>
-    import EditUserDetails from '../components/EditUserDetails'
-    import EditCredentialDetails from '../components/EditCredentialDetails'
+    import EditUserDetails from "../components/EditUserDetails"
+    import EditCredentialDetails from "../components/EditCredentialDetails"
+    import {CREATE_USER} from "../store/user.module"
 
     export default {
         name: "register-user",
@@ -37,7 +38,7 @@
         }),
         methods: {
             register() {
-                this.$store.dispatch('userModule/createUser', this.user)
+                this.$store.dispatch(CREATE_USER, this.user)
                 this.$emit("registered", this.user)
             },
             cancel() {

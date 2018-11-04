@@ -121,7 +121,10 @@
                 this.editableItem = {}
             }
         },
-        computed: mapState(USER_MODULE, ["users", "isLoading"]),
+        computed: mapState(USER_MODULE, {
+            users: state => state.users,
+            isLoading: state => state.isLoading
+        }),
         data: () => ({
             showLoadingBar: false,
             editableItem: {},

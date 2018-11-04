@@ -107,6 +107,7 @@
 </template>
 
 <script>
+    import {LOGOUT} from "../store/applicationState.module"
 
     export default {
         data: () => ({
@@ -165,7 +166,7 @@
                 this.$router.push(route)
             },
             logOut() {
-                this.$store.dispatch("applicationState/logOut")
+                this.$store.dispatch(LOGOUT)
             }
         }
     }
