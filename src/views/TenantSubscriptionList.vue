@@ -107,7 +107,7 @@
                 this.notificationText = text
                 this.notificationVisible = true
             },
-            saveEditedItem() {
+            savedEditedUser() {
                 this.selectedItem.name = this.editableItem.name
                 this.selectedItem.description = this.editableItem.description
 

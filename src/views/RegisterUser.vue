@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-form v-model="valid">
-            <v-card>
+            <v-card class="elevation-0">
                 <v-card-text>
                     <v-subheader>User Info</v-subheader>
                     <edit-user-details :user="user"></edit-user-details>
@@ -12,8 +12,9 @@
                     <edit-credential-details :credential="credential"></edit-credential-details>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn :disabled="!valid" @click="register()">Register</v-btn>
-                    <v-btn @click="cancel()">Cancel</v-btn>
+                    <v-spacer></v-spacer>
+                    <v-btn color="accent" :disabled="!valid" @click="register()">Register</v-btn>
+                    <v-btn flat @click="cancel()">Cancel</v-btn>
                 </v-card-actions>
             </v-card>
         </v-form>

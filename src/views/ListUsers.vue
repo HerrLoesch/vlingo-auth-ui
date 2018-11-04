@@ -67,9 +67,6 @@
         <!-- Register dialog -->
         <v-dialog v-model="registerDialogVisible" width="800">
             <v-card>
-                <v-card-title class="headline" primary-title>
-                    Register
-                </v-card-title>
                 <register-user v-on:canceled="registerDialogVisible=false"
                                v-on:registered="registeredUser"></register-user>
             </v-card>
@@ -78,17 +75,9 @@
         <!-- Edit dialog -->
         <v-dialog v-model="editDialogVisible" width="800">
             <v-card>
-                <v-card-title class="headline" primary-title>
-                    Edit
-                </v-card-title>
-                <v-card-text>
-                    <edit-user-details :user="this.editableItem"></edit-user-details>
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="error" flat @click="saveEditedItem()">Change</v-btn>
-                    <v-btn flat @click="closeEditDialog()">Cancel</v-btn>
-                </v-card-actions>
+                <edit-user :user="this.editableItem"
+                          v-on:canceled="closeEditDialog"
+                          v-on:saved="savedEditedUser"></edit-user>
             </v-card>
         </v-dialog>
 
@@ -114,11 +103,12 @@
 
 <script>
     import {mapState} from "vuex"
-    import {INITIALIZE_USER_MODULE, DELETE_USER, UPDATE_USER, USER_MODULE} from "../store/user.module"
-    import RegisterUser from "./RegisterUser";
+    import {INITIALIZE_USER_MODULE, DELETE_USER, USER_MODULE} from "../store/user.module"
+    import RegisterUser from "./RegisterUser"
+    import EditUser from "./EditUser"
 
     export default {
-        components: {RegisterUser},
+        components: {EditUser, RegisterUser},
         created() {
             this.$store.dispatch(INITIALIZE_USER_MODULE)
         },
@@ -135,7 +125,6 @@
 
                 // deep copy to prevent direct edit of the actual list item.
                 this.editableItem = JSON.parse(JSON.stringify(item))
-
                 this.editDialogVisible = true
             },
             askToDelete(item) {
@@ -158,9 +147,7 @@
                 this.notificationText = text
                 this.notificationVisible = true
             },
-            saveEditedItem() {
-                this.$store.dispatch(UPDATE_USER, this.editableItem)
-
+            savedEditedUser() {
                 this.closeEditDialog()
                 this.showNotification("Changes are saved.")
                 this.editableItem = {}
