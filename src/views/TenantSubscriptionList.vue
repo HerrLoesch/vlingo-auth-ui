@@ -46,7 +46,7 @@
                     Edit
                 </v-card-title>
                 <v-card-text>
-                    <name-description-input :value="this.editableItem"></name-description-input>
+                    <name-description-input :value="this.editableUser"></name-description-input>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -91,10 +91,10 @@
                 this.selectedItem = item
             },
             deleteItem() {
-                const index = this.tenants.indexOf(this.selectedItem)
+                const index = this.tenants.indexOf(this.selectedUser)
                 this.tenants.splice(index, 1)
 
-                this.showNotification("Tenant \"" + this.selectedItem.name + "\" was deleted.")
+                this.showNotification("Tenant \"" + this.selectedUser.name + "\" was deleted.")
                 this.closeConfirmation()
             },
             closeConfirmation() {
@@ -108,8 +108,8 @@
                 this.notificationVisible = true
             },
             savedEditedUser() {
-                this.selectedItem.name = this.editableItem.name
-                this.selectedItem.description = this.editableItem.description
+                this.selectedUser.name = this.editableUser.name
+                this.selectedUser.description = this.editableUser.description
 
                 this.closeEditUserDialog()
                 this.showNotification("Changes are saved.")
@@ -118,8 +118,8 @@
             }
         },
         data: () => ({
-            editableItem: {},
-            selectedItem: {},
+            editableUser: {},
+            selectedUser: {},
             deleteConfirmationVisible: false,
             editUserDialogVisible: false,
             notificationVisible: false,

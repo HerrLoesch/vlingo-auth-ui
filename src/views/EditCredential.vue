@@ -3,7 +3,7 @@
         <v-form v-model="valid">
             <v-card flat>
                 <v-card-text>
-                    <edit-user-details :user="user"></edit-user-details>
+                    <edit-credential-details :credential="credential"></edit-credential-details>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -16,28 +16,37 @@
 </template>
 
 <script>
-    import {UPDATE_USER} from "../store/user.module"
+    import {UPDATE_CREDENTIAL_OF_USER} from "../store/user.module"
 
     export default {
-        components: {},
-        props:{
-            user: {
-                type: Object,
-                default: () => ({})
-            }
-        },
         data: () => ({
             valid: false
         }),
+        props: {
+            credential: {
+                type: Object,
+                default: () => ({}),
+                required: true
+            },
+            user: {
+                type: Object,
+                default: () => ({}),
+                required: true
+            }
+        },
         methods: {
             save() {
-                this.$store.dispatch(UPDATE_USER, this.user)
-                this.$emit("saved", this.user)
+                this.$store.dispatch(UPDATE_CREDENTIAL_OF_USER, this.user, this.credential)
+                this.$emit("saved", this.credential, this.user)
             },
             cancel() {
-                this.user = {}
+                this.credential = {}
                 this.$emit("canceled")
             }
         }
     }
 </script>
+
+<style scoped>
+
+</style>

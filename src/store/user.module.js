@@ -8,6 +8,8 @@ import _ from "lodash"
 
 // "private" member
 const ADD_LOCAL_USER = "addLocalUser"
+const ADD_LOCAL_CREDENTIAL = "addCredentialToUser"
+const UPDATE_LOCAL_CREDENTIAL = "updateCredentialToUser"
 const REMOVE_LOCAL_USER = "removeLocalUser"
 const UPDATE_LOCAL_USER = "updateLocalUser"
 const SET_LOCAL_USERS = "setLocalUsers"
@@ -16,6 +18,8 @@ const INITIALIZE = "initializeUserStore"
 const CREATE = "createUser"
 const DELETE = "deleteUser"
 const UPDATE = "updateUser"
+const ADD_CREDENTIAL = "addCredential"
+const UPDATE_CREDENTIAL = "updateCredential"
 
 // "public" member
 export const USER_MODULE = "userModule"
@@ -23,10 +27,12 @@ export const INITIALIZE_USER_MODULE = USER_MODULE + "/" + INITIALIZE
 export const CREATE_USER = USER_MODULE + "/" + CREATE
 export const DELETE_USER = USER_MODULE + "/" + DELETE
 export const UPDATE_USER = USER_MODULE + "/" + UPDATE
+export const ADD_CREDENTIAL_TO_USER = USER_MODULE + "/" + ADD_CREDENTIAL
+export const UPDATE_CREDENTIAL_OF_USER = USER_MODULE + "/" + UPDATE_CREDENTIAL
 
 export const userModule = {
     isInitialized: false,
-    idTreshold: 2,
+    idTreshold: 4,
     namespaced: true,
     state: {
         users: [],
@@ -56,6 +62,18 @@ export const userModule = {
         },
         [SET_ISLOADING](state, isLoading) {
             state.isLoading = isLoading
+        },
+        [ADD_LOCAL_CREDENTIAL](state, user, credential) {
+            let existingUser = _.find(state.users, {id: user.id})
+            existingUser.credentials.push(credential)
+        },
+        [UPDATE_LOCAL_CREDENTIAL](state, user, credential) {
+            let existingUser = _.find(state.users, {id: user.id})
+            let existingCredential = _.finde(existingUser.credentials, {id: credential.id})
+
+            // It is currently not possible to change the id!
+            existingCredential.authority = credential.authority
+            existingCredential.secret = credential.secret
         }
     },
     actions: {
@@ -63,7 +81,6 @@ export const userModule = {
             if (this.isInitialized || this.state.isLoading) {
                 return
             }
-
             commit(SET_ISLOADING, true)
 
             // just for testing purpose
@@ -72,16 +89,17 @@ export const userModule = {
                 familyName: "Mustermann",
                 givenName: "Max",
                 userName: "Peter",
+                phone: "5351 7878916",
                 id: 1,
                 credentials: [
                     {
                         id: "test",
-                        authority: "Vlingo",
+                        authority: "vlingo",
                         secret: ""
                     },
                     {
                         id: "another one",
-                        authority: "Vlingo",
+                        authority: "vlingo",
                         secret: ""
                     },
                 ]
@@ -91,20 +109,43 @@ export const userModule = {
                     familyName: "Mustermann",
                     givenName: "Maria",
                     userName: "maria@mustermail.de",
+                    phone: "7351 7874916",
                     id: 2,
                     credentials: [
                         {
+                            id: "one",
+                            authority: "vlingo",
+                            secret: ""
+                        },
+                        {
+                            id: "two",
+                            authority: "oAuth",
+                            secret: ""
+                        },
+                    ]
+                },
+                {
+                    email: "sabiene@Leutheusser-Schnarrenberger.de",
+                    familyName: "Leutheusser-Schnarrenberger",
+                    givenName: "Sabine",
+                    secondName: "Marie",
+                    userName: "sabineL@gmx.de",
+                    phone: "7351 7876816",
+                    id: 3,
+                    credentials: [
+                        {
                             id: "test",
-                            authority: "Vlingo",
+                            authority: "vlingo",
                             secret: ""
                         },
                         {
                             id: "another one",
-                            authority: "Vlingo",
+                            authority: "vlingo",
                             secret: ""
                         },
                     ]
                 }
+
             ])
             commit(SET_ISLOADING, false)
             this.isInitialized = true
@@ -112,16 +153,30 @@ export const userModule = {
         [CREATE]: function ({commit}, user) {
             this.idTreshold++
             user.id = this.idTreshold
-            commit(ADD_LOCAL_USER, user)
             /* TODO: Add actual API call */
+
+            commit(ADD_LOCAL_USER, user)
         },
         [DELETE]: function ({commit}, user) {
-            commit(REMOVE_LOCAL_USER, user)
             /* TODO: Add actual API call */
+
+            commit(REMOVE_LOCAL_USER, user)
         },
         [UPDATE]: function ({commit}, newData) {
-            commit(UPDATE_LOCAL_USER, newData)
             /* TODO: Add actual API call */
+
+            commit(UPDATE_LOCAL_USER, newData)
         },
+        [ADD_CREDENTIAL_TO_USER]: function({commit}, user, credential) {
+            /* TODO: Add actual API call */
+
+            commit(ADD_LOCAL_CREDENTIAL, user, credential)
+        }
+        ,
+        [UPDATE_CREDENTIAL]: function({commit}, user, credential) {
+            /* TODO: Add actual API call */
+
+            commit(UPDATE_LOCAL_CREDENTIAL, user, credential)
+        }
     }
 }
