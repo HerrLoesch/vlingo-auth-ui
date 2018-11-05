@@ -12,15 +12,15 @@
                 </v-container>
             </div>
             <div v-else>
-                <v-container>
-                    <img src="./assets/logo.png">
-                    <SignOn></SignOn>
-                    <v-btn flat @click="register=true">register</v-btn>
-                    <v-tooltip bottom>
-                        <v-btn slot="activator" flat @click="logIn()">Debug Shortcut</v-btn>
-                        <span>Click this if you don't want to enter login data.</span>
-                    </v-tooltip>
-                </v-container>
+                    <v-layout align-center justify-center column fill-height>
+                            <img height="100px" width="100px" src="./assets/logo.png">
+                            <SignOn></SignOn>
+                            <v-btn flat @click="register=true">register</v-btn>
+                            <v-tooltip bottom>
+                                <v-btn slot="activator" flat @click="logIn()">Debug Shortcut</v-btn>
+                                <span>Click this if you don't want to enter login data.</span>
+                            </v-tooltip>
+                    </v-layout>
             </div>
         </v-container>
     </v-app>

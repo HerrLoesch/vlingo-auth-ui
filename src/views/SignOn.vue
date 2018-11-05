@@ -3,13 +3,7 @@
         <v-form v-model="valid">
             <v-card>
                 <v-card-text>
-                    <v-text-field
-                            v-model="loginData.tenantId"
-                            label="Tenant Id"
-                            required
-                            :rules="[v => !!v || 'Please, enter an id of a tenant.']"
-                    ></v-text-field>
-                    <v-layout>
+                     <v-layout>
                         <v-flex md9>
                             <v-text-field
                                     v-model="loginData.username"
@@ -54,7 +48,6 @@
         data: () => ({
             valid: false,
             loginData: {
-                tenantId: null,
                 username: null,
                 credentialId: null,
                 secret: null
