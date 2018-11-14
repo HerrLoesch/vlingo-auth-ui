@@ -1,21 +1,14 @@
 <template>
     <v-container>
         <v-form v-model="valid">
-            <v-card>
+            <v-card width="400">
                 <v-card-text>
-                     <v-layout>
-                        <v-flex md9>
                             <v-text-field
                                     v-model="loginData.username"
                                     label="Username"
                                     required
                                     :rules="[v => !!v || 'Please, enter a username.']"
                             ></v-text-field>
-                        </v-flex>
-                        <v-flex md3>
-                            <v-btn @click="userNameAsCredentialId()">as credential</v-btn>
-                        </v-flex>
-                    </v-layout>
 
                     <v-text-field
                             v-model="loginData.credentialId"

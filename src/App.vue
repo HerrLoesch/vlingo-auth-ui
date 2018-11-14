@@ -2,26 +2,42 @@
     <v-app id="inspire">
 
         <v-container>
-            <div v-if="loggedIn">
-                <TenantavigationView></TenantavigationView>
-            </div>
-            <div v-else-if="register">
-                <v-container>
-                    <img src="./assets/logo.png">
-                    <RegisterUser v-on:canceled="register=false" v-on:registered="logIn"></RegisterUser>
-                </v-container>
-            </div>
-            <div v-else>
+            <v-layout align-center justify-center row fill-height>
+                <v-flex></v-flex>
+
+                <v-flex>
                     <v-layout align-center justify-center column fill-height>
-                            <img height="100px" width="100px" src="./assets/logo.png">
-                            <SignOn></SignOn>
-                            <v-btn flat @click="register=true">register</v-btn>
-                            <v-tooltip bottom>
-                                <v-btn slot="activator" flat @click="logIn()">Debug Shortcut</v-btn>
-                                <span>Click this if you don't want to enter login data.</span>
-                            </v-tooltip>
+                        <v-flex></v-flex>
+                        <v-flex>
+                            <div v-if="loggedIn">
+                                <TenantavigationView></TenantavigationView>
+                            </div>
+                            <div v-else-if="register">
+                                <v-container>
+                                    <img src="./assets/logo.png">
+                                    <RegisterUser v-on:canceled="register=false" v-on:registered="logIn"></RegisterUser>
+                                </v-container>
+                            </div>
+                            <div v-else>
+
+                                <img height="100px" width="100px" src="./assets/logo.png">
+                                <SignOn></SignOn>
+                                <v-btn flat @click="register=true">register</v-btn>
+                                <v-tooltip bottom>
+                                    <v-btn slot="activator" flat @click="logIn()">Debug Shortcut</v-btn>
+                                    <span>Click this if you don't want to enter login data.</span>
+                                </v-tooltip>
+
+                            </div>
+                        </v-flex>
+                        <v-flex></v-flex>
                     </v-layout>
-            </div>
+                </v-flex>
+                <v-flex></v-flex>
+
+            </v-layout>
+
+
         </v-container>
     </v-app>
 </template>
@@ -47,6 +63,7 @@
         }),
         methods: {
             logIn(user) {
+                this.register = false
                 this.$store.dispatch(LOGIN, user)
             }
         }
