@@ -59,44 +59,8 @@
                         <v-card-text>
                             <v-layout>
                                 <v-flex xs4>
-                                    <v-card>
-                                        <v-card-text>
-                                            <v-subheader>Credentials
-                                                <v-btn icon>
-                                                    <v-icon small @click="createCredential">add_circle_outline</v-icon>
-                                                </v-btn>
-                                            </v-subheader>
-                                            <v-list two-line>
-                                                <template v-for="(credential) in props.item.credentials">
-                                                    <v-list-tile :key="credential.id">
-                                                        <v-list-tile-content>
-                                                            <v-list-tile-title>{{credential.id}}</v-list-tile-title>
-                                                            <v-list-tile-sub-title>{{credential.authority}}
-                                                            </v-list-tile-sub-title>
-                                                        </v-list-tile-content>
-
-                                                        <v-list-tile-action>
-                                                            <v-btn icon @click="editCredential(credential)">
-                                                                <v-icon small>edit</v-icon>
-                                                            </v-btn>
-                                                        </v-list-tile-action>
-                                                        <v-list-tile-action>
-                                                            <v-btn icon>
-                                                                <v-icon small>delete</v-icon>
-                                                            </v-btn>
-                                                        </v-list-tile-action>
-                                                    </v-list-tile>
-                                                </template>
-                                            </v-list>
-                                        </v-card-text>
-                                    </v-card>
-                                </v-flex>
-                                <v-flex xs4>
-                                    <v-card>
-                                        <v-card-text>
-                                            This part is still under construction and currently broken!
-                                        </v-card-text>
-                                    </v-card>
+                                    <credential-list :credentials="props.item.credentials"
+                                                     :user="props.item"></credential-list>
                                 </v-flex>
                             </v-layout>
                         </v-card-text>
@@ -113,12 +77,12 @@
                     Delete?
                 </v-card-title>
                 <v-card-text>
-                    Do you realy want to delete user <b>{{selectedUser.userName}}</b>?
+                    Do you really want to delete user <b>{{selectedUser.userName}}</b>?
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="error" flat @click="deleteItem()">Yes</v-btn>
                     <v-btn flat @click="closeConfirmation()">No</v-btn>
+                    <v-btn color="error" flat @click="deleteItem()">Yes</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -137,16 +101,6 @@
                 <edit-user :user="this.editableUser"
                            v-on:canceled="closeEditUserDialog"
                            v-on:saved="savedEditedUser"></edit-user>
-            </v-card>
-        </v-dialog>
-
-        <!-- Edit credential dialog -->
-        <v-dialog v-model="editCredentialDialogVisible" width="800">
-            <v-card>
-                <edit-credential :user="editableUser"
-                                 :credential="selectedCredential"
-                                 v-on:canceled="editCredentialDialogVisible = false"
-                                 v-on:saved="saveEditCredential"></edit-credential>
             </v-card>
         </v-dialog>
 
@@ -175,11 +129,9 @@
     import {INITIALIZE_USER_MODULE, DELETE_USER, USER_MODULE} from "../store/user.module"
     import RegisterUser from "./RegisterUser"
     import EditUser from "./EditUser"
-    import EditCredential from "./EditCredential";
 
     export default {
         components: {
-            EditCredential,
             EditUser,
             RegisterUser
         },
@@ -187,19 +139,6 @@
             this.$store.dispatch(INITIALIZE_USER_MODULE)
         },
         methods: {
-            createCredential() {
-                this.selectedCredential = {}
-                this.editCredentialDialogVisible = true
-            },
-            editCredential(credential) {
-                // deep copy to prevent direct edit of the actual list item.
-                this.selectedCredential = JSON.parse(JSON.stringify(credential))
-                this.editCredentialDialogVisible = true
-            },
-            saveEditCredential(credential) {
-                this.editCredentialDialogVisible = false
-                this.showNotification("User \"" + credential.id + "\" was registered.")
-            },
             registeredUser(newUser) {
                 this.registerDialogVisible = false
                 this.showNotification("User \"" + newUser.userName + "\" was registered.")
@@ -246,10 +185,8 @@
             showLoadingBar: false,
             editableUser: {},
             selectedUser: {},
-            selectedCredential: {},
             deleteConfirmationVisible: false,
             registerDialogVisible: false,
-            editCredentialDialogVisible: false,
             editUserDialogVisible: false,
             notificationVisible: false,
             notificationText: false,

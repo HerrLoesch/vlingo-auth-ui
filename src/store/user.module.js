@@ -9,7 +9,8 @@ import _ from "lodash"
 // "private" member
 const ADD_LOCAL_USER = "addLocalUser"
 const ADD_LOCAL_CREDENTIAL = "addCredentialToUser"
-const UPDATE_LOCAL_CREDENTIAL = "updateCredentialToUser"
+const UPDATE_LOCAL_CREDENTIAL = "updateCredentialOfUser"
+const DELETE_LOCAL_CREDENTIAL = "deleteCredentialOfUser"
 const REMOVE_LOCAL_USER = "removeLocalUser"
 const UPDATE_LOCAL_USER = "updateLocalUser"
 const SET_LOCAL_USERS = "setLocalUsers"
@@ -20,6 +21,7 @@ const DELETE = "deleteUser"
 const UPDATE = "updateUser"
 const ADD_CREDENTIAL = "addCredential"
 const UPDATE_CREDENTIAL = "updateCredential"
+const DELETE_CREDENTIAL = "askForCredentialDeletion"
 
 // "public" member
 export const USER_MODULE = "userModule"
@@ -29,6 +31,7 @@ export const DELETE_USER = USER_MODULE + "/" + DELETE
 export const UPDATE_USER = USER_MODULE + "/" + UPDATE
 export const ADD_CREDENTIAL_TO_USER = USER_MODULE + "/" + ADD_CREDENTIAL
 export const UPDATE_CREDENTIAL_OF_USER = USER_MODULE + "/" + UPDATE_CREDENTIAL
+export const DELETE_CREDENTIAL_OF_USER = USER_MODULE + "/" + DELETE_CREDENTIAL
 
 export const userModule = {
     isInitialized: false,
@@ -63,17 +66,41 @@ export const userModule = {
         [SET_ISLOADING](state, isLoading) {
             state.isLoading = isLoading
         },
-        [ADD_LOCAL_CREDENTIAL](state, user, credential) {
-            let existingUser = _.find(state.users, {id: user.id})
-            existingUser.credentials.push(credential)
+        [ADD_LOCAL_CREDENTIAL](state, data) {
+            let existingUser = _.find(state.users, {id: data.user.id})
+
+            if (existingUser === null) {
+                // TODO: Replace by notification or something
+                console.log("User was not found.")
+                return
+            }
+
+            existingUser.credentials.push(data.credential)
         },
-        [UPDATE_LOCAL_CREDENTIAL](state, user, credential) {
-            let existingUser = _.find(state.users, {id: user.id})
-            let existingCredential = _.finde(existingUser.credentials, {id: credential.id})
+        [UPDATE_LOCAL_CREDENTIAL](state, updateData) {
+            let existingUser = _.find(state.users, {id: updateData.user.id})
+
+            if (existingUser === null) {
+                // TODO: Replace by notification or something
+                console.log("User was not found.")
+                return
+            }
+            let existingCredential = _.find(existingUser.credentials, {id: updateData.credential.id})
 
             // It is currently not possible to change the id!
-            existingCredential.authority = credential.authority
-            existingCredential.secret = credential.secret
+            existingCredential.authority = updateData.credential.authority
+            existingCredential.secret = updateData.credential.secret
+        },
+        [DELETE_LOCAL_CREDENTIAL](state, updateData) {
+            let existingUser = _.find(state.users, {id: updateData.user.id})
+
+            if (existingUser === null) {
+                // TODO: Replace by notification or something
+                console.log("User was not found.")
+                return
+            }
+
+            _.remove(existingUser.credentials, {id: updateData.credential.id})
         }
     },
     actions: {
@@ -167,16 +194,20 @@ export const userModule = {
 
             commit(UPDATE_LOCAL_USER, newData)
         },
-        [ADD_CREDENTIAL_TO_USER]: function({commit}, user, credential) {
+        [ADD_CREDENTIAL]: function({commit}, data) {
             /* TODO: Add actual API call */
 
-            commit(ADD_LOCAL_CREDENTIAL, user, credential)
-        }
-        ,
-        [UPDATE_CREDENTIAL]: function({commit}, user, credential) {
+            commit(ADD_LOCAL_CREDENTIAL, data)
+        },
+        [UPDATE_CREDENTIAL]: function({commit}, updateData) {
             /* TODO: Add actual API call */
 
-            commit(UPDATE_LOCAL_CREDENTIAL, user, credential)
+            commit(UPDATE_LOCAL_CREDENTIAL, updateData)
+        },
+        [DELETE_CREDENTIAL]: function({commit}, data) {
+            /* TODO: Add actual API call */
+
+            commit(DELETE_LOCAL_CREDENTIAL, data)
         }
     }
 }

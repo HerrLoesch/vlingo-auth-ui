@@ -16,27 +16,39 @@
 </template>
 
 <script>
-    import {UPDATE_CREDENTIAL_OF_USER} from "../store/user.module"
+    import {UPDATE_CREDENTIAL_OF_USER, ADD_CREDENTIAL_TO_USER} from "../store/user.module"
 
     export default {
         data: () => ({
-            valid: false
+            valid: false,
+            selectedCredential: {}
         }),
         props: {
             credential: {
                 type: Object,
-                default: () => ({}),
-                required: true
+                default: () => ({})
             },
             user: {
                 type: Object,
                 default: () => ({}),
                 required: true
+            },
+            mode: {
+                type: String,
+                default: () => ("create")
             }
         },
         methods: {
             save() {
-                this.$store.dispatch(UPDATE_CREDENTIAL_OF_USER, this.user, this.credential)
+
+                let data = { user: this.user, credential: this.credential }
+
+                if(this.mode == "update") {
+                    this.$store.dispatch(UPDATE_CREDENTIAL_OF_USER, data)
+                } else {
+                    this.$store.dispatch(ADD_CREDENTIAL_TO_USER, data)
+                }
+
                 this.$emit("saved", this.credential, this.user)
             },
             cancel() {
