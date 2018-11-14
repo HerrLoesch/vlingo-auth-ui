@@ -89,8 +89,11 @@
 
         <!-- Register dialog -->
         <v-dialog v-model="registerDialogVisible" width="800">
-            <v-card>
-                <register-user v-on:canceled="registerDialogVisible=false"
+            <v-card fluid>
+                <v-card-title class="headline teal darken-3 white--text" primary-title>
+                    Create User
+                </v-card-title>
+                <register-user fluid v-on:canceled="registerDialogVisible=false"
                                v-on:registered="registeredUser"></register-user>
             </v-card>
         </v-dialog>
@@ -98,6 +101,7 @@
         <!-- Edit user dialog -->
         <v-dialog v-model="editUserDialogVisible" width="800">
             <v-card>
+                <v-card-title class="headline teal darken-3 white--text" primary-title>Edit User</v-card-title>
                 <edit-user :user="this.editableUser"
                            v-on:canceled="closeEditUserDialog"
                            v-on:saved="savedEditedUser"></edit-user>

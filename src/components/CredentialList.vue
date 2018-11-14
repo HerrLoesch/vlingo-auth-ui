@@ -34,6 +34,9 @@
         <!-- Edit credential dialog -->
         <v-dialog v-model="editCredentialDialogVisible" width="800">
             <v-card>
+                <v-card-title class="headline teal darken-3 white--text" primary-title>
+                    {{inputMode}} credentials
+                </v-card-title>
                 <edit-credential :user="selectedUser"
                                  :mode="inputMode"
                                  :credential="selectedCredential"

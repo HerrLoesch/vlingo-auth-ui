@@ -1,24 +1,19 @@
 <template>
-    <v-container>
         <v-form v-model="valid">
-            <v-card flat>
+            <v-card  fluid>
                 <v-card-text>
-                    <v-subheader>User Info</v-subheader>
                     <edit-user-details :user="user"></edit-user-details>
-
                     <v-divider></v-divider>
 
-                    <v-subheader>Credential</v-subheader>
                     <edit-credential-details :credential="credential"></edit-credential-details>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="accent" :disabled="!valid" @click="register()">Register</v-btn>
                     <v-btn flat @click="cancel()">Cancel</v-btn>
+                    <v-btn color="accent" flat :disabled="!valid" @click="register()">Register</v-btn>
                 </v-card-actions>
             </v-card>
         </v-form>
-    </v-container>
 </template>
 
 <script>

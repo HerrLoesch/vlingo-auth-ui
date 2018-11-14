@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container fluid width="600">
         <v-form v-model="valid">
             <v-card flat>
                 <v-card-text>
@@ -7,8 +7,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="accent" :disabled="!valid" @click="save()">Save</v-btn>
                     <v-btn flat @click="cancel()">Cancel</v-btn>
+                    <v-btn color="accent" flat :disabled="!valid" @click="save()">Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-form>

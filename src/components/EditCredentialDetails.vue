@@ -1,19 +1,25 @@
 <template>
     <v-container>
-        <v-select
-                v-model="credential.authority"
-                :items="authorities"
-                label="Authority"
-        ></v-select>
-        <v-text-field
-                v-model="credential.id"
-                label="Id"
-        ></v-text-field>
-        <v-text-field
-                v-model="credential.secret"
-                label="Secret"
-                type="password"
-        ></v-text-field>
+        <v-layout>
+            <v-flex md3>
+                <v-select v-model="credential.authority"
+                          :items="authorities"
+                          label="Authority"
+                ></v-select>
+            </v-flex>
+            <v-flex md1></v-flex>
+            <v-text-field
+                    v-model="credential.id"
+                    label="Id"
+            ></v-text-field>
+        </v-layout>
+        <v-layout>
+            <v-text-field
+                    v-model="credential.secret"
+                    label="Secret"
+                    type="password"
+            ></v-text-field>
+        </v-layout>
     </v-container>
 </template>
 

@@ -1,38 +1,62 @@
 <template>
     <v-container>
-        <v-text-field
-                v-model="user.userName"
-                label="Username"
-        ></v-text-field>
         <v-layout>
-            <v-flex md10>
+            <v-flex>
+                <v-text-field
+                        v-model="user.userName"
+                        label="Username"
+                ></v-text-field>
+            </v-flex>
+            <v-flex md1>
+                <v-tooltip bottom>
+                    <v-btn slot="activator" icon @click="mailAsUserName()">
+                        <v-icon>compare_arrows</v-icon>
+                    </v-btn>
+                    <span>Uses the email address as user name or vice versa.</span>
+                </v-tooltip>
+            </v-flex>
+            <v-flex>
                 <v-text-field
                         v-model="user.email"
                         label="Email Address"
                 ></v-text-field>
             </v-flex>
-            <v-flex md2>
-                <v-btn @click="mailAsUserName()"> As user name</v-btn>
+        </v-layout>
+
+        <v-layout>
+            <v-flex>
+                <v-text-field
+                        v-model="user.givenName"
+                        label="Given Name"
+                ></v-text-field>
+            </v-flex>
+            <v-flex md1>
+
+            </v-flex>
+            <v-flex>
+                <v-text-field
+                        v-model="user.secondName"
+                        label="Second Name"
+                ></v-text-field>
             </v-flex>
         </v-layout>
 
-        <v-text-field
-                v-model="user.givenName"
-                label="Given Name"
-        ></v-text-field>
-        <v-text-field
-                v-model="user.secondName"
-                label="Second Name"
-        ></v-text-field>
-        <v-text-field
-                v-model="user.familyName"
-                label="Family Name"
-        ></v-text-field>
+        <v-layout>
+            <v-flex>
+                <v-text-field
+                        v-model="user.familyName"
+                        label="Family Name"
+                ></v-text-field>
+            </v-flex>
+            <v-flex md1></v-flex>
 
-        <v-text-field
-                v-model="user.phone"
-                label="Phone"
-        ></v-text-field>
+            <v-flex>
+                <v-text-field
+                        v-model="user.phone"
+                        label="Phone"
+                ></v-text-field>
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 
