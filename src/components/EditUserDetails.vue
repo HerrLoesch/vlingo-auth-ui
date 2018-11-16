@@ -1,19 +1,13 @@
 <template>
     <v-container>
         <v-layout>
-            <v-flex>
+            <v-flex md5>
                 <v-text-field
                         v-model="user.userName"
                         label="Username"
                 ></v-text-field>
             </v-flex>
             <v-flex md1>
-                <v-tooltip bottom>
-                    <v-btn slot="activator" icon @click="mailAsUserName()">
-                        <v-icon>compare_arrows</v-icon>
-                    </v-btn>
-                    <span>Uses the email address as user name or vice versa.</span>
-                </v-tooltip>
             </v-flex>
             <v-flex>
                 <v-text-field
@@ -24,7 +18,7 @@
         </v-layout>
 
         <v-layout>
-            <v-flex>
+            <v-flex md5>
                 <v-text-field
                         v-model="user.givenName"
                         label="Given Name"
@@ -42,7 +36,7 @@
         </v-layout>
 
         <v-layout>
-            <v-flex>
+            <v-flex md5>
                 <v-text-field
                         v-model="user.familyName"
                         label="Family Name"

@@ -178,6 +178,11 @@ export const userModule = {
             this.isInitialized = true
         },
         [CREATE]: function ({commit}, user) {
+
+            if(!this.isInitialized) {
+                this.dispatch(INITIALIZE_USER_MODULE)
+            }
+
             this.idTreshold++
             user.id = this.idTreshold
             /* TODO: Add actual API call */
