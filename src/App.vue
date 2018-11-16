@@ -2,7 +2,6 @@
     <v-app id="inspire">
 
         <v-container>
-            <notifications-hub></notifications-hub>
             <v-layout align-center justify-center row fill-height>
                 <v-flex></v-flex>
 
@@ -49,11 +48,9 @@
     import SignOn from "./views/SignOn"
     import {mapState} from "vuex"
     import {LOGIN, APPLICATION_STATE_MODULE} from "./store/applicationState.module"
-    import NotificationsHub from "./components/NotificationsHub";
 
     export default {
         components: {
-            NotificationsHub,
             TenantavigationView,
             RegisterUser,
             SignOn

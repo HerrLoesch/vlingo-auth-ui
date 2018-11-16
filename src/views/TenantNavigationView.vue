@@ -7,9 +7,7 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                <v-btn icon>
-                    <v-icon>notifications</v-icon>
-                </v-btn>
+               <notifications-hub></notifications-hub>
                 <v-menu offset-y offset-x>
                     <v-toolbar-title slot="activator">
                         <v-btn icon>
