@@ -35,11 +35,11 @@ export const DELETE_CREDENTIAL_OF_USER = USER_MODULE + "/" + DELETE_CREDENTIAL
 
 export const userModule = {
     isInitialized: false,
-    idTreshold: 4,
     namespaced: true,
     state: {
         users: [],
-        isLoading: false
+        isLoading: false,
+        idTreshold: 4
     },
     mutations: {
 
@@ -47,6 +47,10 @@ export const userModule = {
             state.users = users
         },
         [ADD_LOCAL_USER](state, user) {
+
+            state.idTreshold += 1
+            user.id = state.idTreshold
+
             state.users.push(user)
         },
         [REMOVE_LOCAL_USER](state, user) {
@@ -183,8 +187,6 @@ export const userModule = {
                 this.dispatch(INITIALIZE_USER_MODULE)
             }
 
-            this.idTreshold++
-            user.id = this.idTreshold
             /* TODO: Add actual API call */
 
             commit(ADD_LOCAL_USER, user)

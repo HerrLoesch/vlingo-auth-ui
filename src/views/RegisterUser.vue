@@ -34,6 +34,10 @@
         }),
         methods: {
             register() {
+                let credentials =  new Array()
+                credentials.push(this.credential)
+
+                this.user.credentials = credentials
                 this.$store.dispatch(CREATE_USER, this.user)
                 this.$emit("registered", this.user)
             },
