@@ -1,4 +1,5 @@
 import _ from "lodash"
+import {EventBus} from "../plugins/EventBus"
 
 /* Vuex makes heavily use of magic strings.
    We have to compensate this with string constants.
@@ -101,6 +102,7 @@ export const userModule = {
             if (existingUser === null) {
                 // TODO: Replace by notification or something
                 console.log("User was not found.")
+
                 return
             }
 
@@ -190,31 +192,37 @@ export const userModule = {
             /* TODO: Add actual API call */
 
             commit(ADD_LOCAL_USER, user)
+            EventBus.$emit("notification", "Added new user.")
         },
         [DELETE]: function ({commit}, user) {
             /* TODO: Add actual API call */
 
             commit(REMOVE_LOCAL_USER, user)
+            EventBus.$emit("notification", "User was deleted.")
         },
         [UPDATE]: function ({commit}, newData) {
             /* TODO: Add actual API call */
 
             commit(UPDATE_LOCAL_USER, newData)
+            EventBus.$emit("notification", "User information changed.")
         },
         [ADD_CREDENTIAL]: function({commit}, data) {
             /* TODO: Add actual API call */
 
             commit(ADD_LOCAL_CREDENTIAL, data)
+            EventBus.$emit("notification", "Added new credential.")
         },
         [UPDATE_CREDENTIAL]: function({commit}, updateData) {
             /* TODO: Add actual API call */
 
             commit(UPDATE_LOCAL_CREDENTIAL, updateData)
+            EventBus.$emit("notification", "Credential data changed.")
         },
         [DELETE_CREDENTIAL]: function({commit}, data) {
             /* TODO: Add actual API call */
 
             commit(DELETE_LOCAL_CREDENTIAL, data)
+            EventBus.$emit("notification", "Credential was deleted.")
         }
     }
 }

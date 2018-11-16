@@ -108,23 +108,6 @@
             </v-card>
         </v-dialog>
 
-        <!-- notification -->
-        <v-snackbar
-                v-model="notificationVisible"
-                :right="true"
-                :timeout="3000"
-                :top="true"
-        >
-            {{ notificationText }}
-            <v-btn
-                    color="red"
-                    flat
-                    @click="notificationVisible = false"
-            >
-                Close
-            </v-btn>
-        </v-snackbar>
-
     </v-container>
 </template>
 
@@ -145,7 +128,6 @@
         methods: {
             registeredUser(newUser) {
                 this.registerDialogVisible = false
-                this.showNotification("User \"" + newUser.userName + "\" was registered.")
             },
             showEditDialog(item) {
                 this.selectedUser = item
@@ -160,8 +142,6 @@
             },
             deleteItem() {
                 this.$store.dispatch(DELETE_USER, this.selectedUser)
-
-                this.showNotification("User \"" + this.selectedUser.userName + "\" was deleted.")
                 this.closeConfirmation()
             },
             closeConfirmation() {
@@ -170,13 +150,8 @@
             closeEditUserDialog() {
                 this.editUserDialogVisible = false
             },
-            showNotification(text) {
-                this.notificationText = text
-                this.notificationVisible = true
-            },
             savedEditedUser() {
                 this.closeEditUserDialog()
-                this.showNotification("Changes are saved.")
                 this.editableUser = {}
             }
         },
@@ -192,8 +167,6 @@
             deleteConfirmationVisible: false,
             registerDialogVisible: false,
             editUserDialogVisible: false,
-            notificationVisible: false,
-            notificationText: false,
             headers: [{
                 text: 'Username',
                 align: 'left',
