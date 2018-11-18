@@ -152,7 +152,7 @@
             groupViews: [
                 {
                     title: "Groups",
-                    name: "/dummy",
+                    name: "/listGroups",
                     icon: "group"
                 },
                 {

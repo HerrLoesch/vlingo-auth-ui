@@ -1,6 +1,7 @@
 <template>
     <v-container>
         <v-text-field
+                :disabled="mode === 'edit'"
                 v-model="value.name"
                 label="Name*"
                 required
@@ -20,6 +21,9 @@
             value: {
                 type: Object,
                 default: () => ({})
+            },
+            mode: {
+                type: String
             }
         }
     }

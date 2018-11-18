@@ -126,7 +126,7 @@
             this.$store.dispatch(INITIALIZE_USER_MODULE)
         },
         methods: {
-            registeredUser(newUser) {
+            registeredUser() {
                 this.registerDialogVisible = false
             },
             showEditDialog(item) {

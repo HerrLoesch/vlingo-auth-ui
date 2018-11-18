@@ -27,9 +27,7 @@ export const applicationStateModule = {
     },
     actions: {
         [LOGIN_USER]: function ({commit}, loginData) {
-            console.log("login")
-            console.log(loginData)
-            commit(SET_ISLOGEDIN, true)
+            commit(SET_ISLOGEDIN, loginData !== null)
         },
         [LOGOUT_USER]: function ({commit}) {
             console.log("logout")

@@ -43,7 +43,6 @@ export const userModule = {
         idTreshold: 4
     },
     mutations: {
-
         [SET_LOCAL_USERS](state, users) {
             state.users = users
         },

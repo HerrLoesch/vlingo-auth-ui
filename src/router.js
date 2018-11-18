@@ -3,11 +3,11 @@ import Router from "vue-router"
 import RegisterUser from "./views/RegisterUser"
 import EditUser from "./views/EditUser"
 import ProvisionPermission from "./views/ProvisionPermission"
-import RegisterTenant from "./views/RegisterTenant"
 import ProvisionGroup from "./views/ProvisionGroup"
 import DummyView from "./views/DummyView"
 import SignOn from "./views/SignOn"
 import ListUsers from "./views/ListUsers"
+import ListGroups from "./views/ListGroups"
 
 Vue.use(Router)
 
@@ -34,9 +34,9 @@ export default new Router({
             component: EditUser
         },
         {
-            path: "/editCredentials",
-            name: "editCredentials",
-            component: DummyView
+            path: "/listGroups",
+            name: "listGroups",
+            component: ListGroups
         },
         {
             path: "/dummy",
@@ -47,11 +47,6 @@ export default new Router({
             path: "/provisionPermission",
             name: "provisionPermission",
             component: ProvisionPermission
-        },
-        {
-            path: "/registerTenant",
-            name: "registerTenant",
-            component: RegisterTenant
         },
         {
             path: "/signOn",
