@@ -38,6 +38,7 @@
                     this.$store.dispatch(UPDATE_GROUP, this.group)
                 } else {
                     this.$store.dispatch(ADD_GROUP, this.group)
+                    this.group = {}
                 }
 
                 this.$emit("saved", this.group)

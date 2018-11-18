@@ -31,7 +31,7 @@ export const groupModule = {
     state: {
         isLoading: false,
         groups: [],
-        idTreshold: 2
+        idTreshold: 0
     },
     mutations: {
         [ADD_GROUP_MUTATION](state, group) {
@@ -44,7 +44,8 @@ export const groupModule = {
             existingGroup.description = group.description
         },
         [DELETE_GROUP_MUTATION](state, group) {
-            state.groups = _.remove(state.groups, {id: group.id})
+            let index = state.groups.indexOf(group)
+            state.groups.splice(index, 1)
         },
         [SET_ISLOADING](state, isLoading) {
             state.isLoading = isLoading

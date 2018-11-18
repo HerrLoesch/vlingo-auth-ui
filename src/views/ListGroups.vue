@@ -59,7 +59,7 @@
                     Delete?
                 </v-card-title>
                 <v-card-text>
-                    Do you really want to delete group <b>{{selectedGroup.name}}</b>?
+                    Do you really want to delete group <b>{{editableGroup.name}}</b>?
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -76,8 +76,8 @@
                     Create Group
                 </v-card-title>
                 <CreateOrEditGroup mode="create"
-                                   v-on:canceled="closeEditGroupDialog"
-                                   v-on:saved="savedEditedGroup"></CreateOrEditGroup>
+                                   v-on:canceled="createDialogVisible = false"
+                                   v-on:saved="createDialogVisible = false"></CreateOrEditGroup>
             </v-card>
         </v-dialog>
 
@@ -85,7 +85,7 @@
         <v-dialog v-model="editGroupDialogVisible" width="400">
             <v-card>
                 <v-card-title class="headline teal darken-4 white--text" primary-title>Edit Group</v-card-title>
-                <CreateOrEditGroup mode="edit" :value="this.editableGroup"
+                <CreateOrEditGroup mode="edit" :value="editableGroup"
                            v-on:canceled="closeEditGroupDialog"
                            v-on:saved="savedEditedGroup"></CreateOrEditGroup>
             </v-card>
@@ -107,22 +107,17 @@
             this.$store.dispatch(INITIALIZE_GROUPS)
         },
         methods: {
-            createGroup() {
-                this.createDialogVisible = false
-            },
             showEditDialog(item) {
-                this.selectedGroup = item
-
                 // deep copy to prevent direct edit of the actual list item.
                 this.editableGroup = JSON.parse(JSON.stringify(item))
                 this.editGroupDialogVisible = true
             },
             askToDelete(item) {
+                this.editableGroup = item
                 this.deleteConfirmationVisible = true
-                this.selectedGroup = item
             },
             deleteItem() {
-                this.$store.dispatch(DELETE_GROUP, this.selectedGroup)
+                this.$store.dispatch(DELETE_GROUP, this.editableGroup)
                 this.closeConfirmation()
             },
             closeConfirmation() {
@@ -144,7 +139,6 @@
             search: "",
             showLoadingBar: false,
             editableGroup: {},
-            selectedGroup: {},
             deleteConfirmationVisible: false,
             createDialogVisible: false,
             editGroupDialogVisible: false,
