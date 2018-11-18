@@ -43,7 +43,7 @@
 </template>
 
 <script>
-    import TenantavigationView from "./views/TenantNavigationView"
+    import TenantavigationView from "./views/ApplicationFrame"
     import RegisterUser from "./views/RegisterUser"
     import SignOn from "./views/SignOn"
     import {mapState} from "vuex"

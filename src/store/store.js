@@ -6,10 +6,10 @@ import Vue from "vue"
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  modules: {
-    [APPLICATION_STATE_MODULE]: applicationStateModule,
-    [USER_MODULE]: userModule
-  }
+    modules: {
+        [APPLICATION_STATE_MODULE]: applicationStateModule,
+        [USER_MODULE]: userModule
+    }
 })
 
 export default store

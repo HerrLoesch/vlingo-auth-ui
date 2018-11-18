@@ -26,12 +26,12 @@ export const applicationStateModule = {
         },
     },
     actions: {
-        [LOGIN_USER]: function ({ commit }, loginData) {
+        [LOGIN_USER]: function ({commit}, loginData) {
             console.log("login")
             console.log(loginData)
             commit(SET_ISLOGEDIN, true)
         },
-        [LOGOUT_USER]: function ({ commit }) {
+        [LOGOUT_USER]: function ({commit}) {
             console.log("logout")
             commit(SET_ISLOGEDIN, false)
         },

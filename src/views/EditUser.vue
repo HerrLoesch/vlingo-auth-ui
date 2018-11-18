@@ -20,7 +20,7 @@
 
     export default {
         components: {},
-        props:{
+        props: {
             user: {
                 type: Object,
                 default: () => ({})

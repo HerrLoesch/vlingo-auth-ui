@@ -185,7 +185,7 @@ export const userModule = {
         },
         [CREATE]: function ({commit}, user) {
 
-            if(!this.isInitialized) {
+            if (!this.isInitialized) {
                 this.dispatch(INITIALIZE_USER_MODULE)
             }
 
@@ -206,19 +206,19 @@ export const userModule = {
             commit(UPDATE_LOCAL_USER, newData)
             EventBus.$emit("notification", "User information changed.")
         },
-        [ADD_CREDENTIAL]: function({commit}, data) {
+        [ADD_CREDENTIAL]: function ({commit}, data) {
             /* TODO: Add actual API call */
 
             commit(ADD_LOCAL_CREDENTIAL, data)
             EventBus.$emit("notification", "Added new credential.")
         },
-        [UPDATE_CREDENTIAL]: function({commit}, updateData) {
+        [UPDATE_CREDENTIAL]: function ({commit}, updateData) {
             /* TODO: Add actual API call */
 
             commit(UPDATE_LOCAL_CREDENTIAL, updateData)
             EventBus.$emit("notification", "Credential data changed.")
         },
-        [DELETE_CREDENTIAL]: function({commit}, data) {
+        [DELETE_CREDENTIAL]: function ({commit}, data) {
             /* TODO: Add actual API call */
 
             commit(DELETE_LOCAL_CREDENTIAL, data)

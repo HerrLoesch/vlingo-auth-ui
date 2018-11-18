@@ -1,11 +1,11 @@
 <template>
     <v-card>
-            <v-subheader dark class="grey lighten-1">Credentials
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                    <v-icon small @click="createCredential">add_circle_outline</v-icon>
-                </v-btn>
-            </v-subheader>
+        <v-subheader dark class="grey lighten-1">Credentials
+            <v-spacer></v-spacer>
+            <v-btn icon>
+                <v-icon small @click="createCredential">add_circle_outline</v-icon>
+            </v-btn>
+        </v-subheader>
         <v-card-text>
             <v-list two-line>
                 <template v-for="credential in credentials">
@@ -72,7 +72,7 @@
         components: {
             EditCredential
         },
-        props:{
+        props: {
             credentials: {
                 type: Array,
                 default: () => ([])
@@ -111,7 +111,7 @@
             },
             deleteCredential() {
                 this.deleteConfirmationVisible = false
-                this.$store.dispatch(DELETE_CREDENTIAL_OF_USER, {user: this.user, credential: this.selectedCredential })
+                this.$store.dispatch(DELETE_CREDENTIAL_OF_USER, {user: this.user, credential: this.selectedCredential})
             }
         }
     }

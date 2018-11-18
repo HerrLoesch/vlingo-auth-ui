@@ -41,9 +41,9 @@
         methods: {
             save() {
 
-                let data = { user: this.user, credential: this.credential }
+                let data = {user: this.user, credential: this.credential}
 
-                if(this.mode == "update") {
+                if (this.mode == "update") {
                     this.$store.dispatch(UPDATE_CREDENTIAL_OF_USER, data)
                 } else {
                     this.$store.dispatch(ADD_CREDENTIAL_TO_USER, data)

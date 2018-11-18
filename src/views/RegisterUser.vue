@@ -1,19 +1,19 @@
 <template>
-        <v-form v-model="valid">
-            <v-card  fluid>
-                <v-card-text>
-                    <edit-user-details :user="user"></edit-user-details>
-                    <v-divider></v-divider>
+    <v-form v-model="valid">
+        <v-card fluid>
+            <v-card-text>
+                <edit-user-details :user="user"></edit-user-details>
+                <v-divider></v-divider>
 
-                    <edit-credential-details :credential="credential"></edit-credential-details>
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn flat @click="cancel()">Cancel</v-btn>
-                    <v-btn color="accent" flat :disabled="!valid" @click="register()">Register</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-form>
+                <edit-credential-details :credential="credential"></edit-credential-details>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn flat @click="cancel()">Cancel</v-btn>
+                <v-btn color="accent" flat :disabled="!valid" @click="register()">Register</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-form>
 </template>
 
 <script>
@@ -34,7 +34,7 @@
         }),
         methods: {
             register() {
-                let credentials =  new Array()
+                let credentials = new Array()
                 credentials.push(this.credential)
 
                 this.user.credentials = credentials

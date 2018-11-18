@@ -3,12 +3,12 @@
         <v-form v-model="valid">
             <v-card width="400">
                 <v-card-text>
-                            <v-text-field
-                                    v-model="loginData.username"
-                                    label="Username"
-                                    required
-                                    :rules="[v => !!v || 'Please, enter a username.']"
-                            ></v-text-field>
+                    <v-text-field
+                            v-model="loginData.username"
+                            label="Username"
+                            required
+                            :rules="[v => !!v || 'Please, enter a username.']"
+                    ></v-text-field>
 
                     <v-text-field
                             v-model="loginData.credentialId"

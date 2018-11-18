@@ -1,13 +1,15 @@
 <template>
     <v-container fluid>
         <v-toolbar app fixed prominent clipped-left>
-            <v-toolbar-side-icon @click="drawer = !drawer"><v-icon>dehaze</v-icon></v-toolbar-side-icon>
+            <v-toolbar-side-icon @click="drawer = !drawer">
+                <v-icon>dehaze</v-icon>
+            </v-toolbar-side-icon>
             <v-toolbar-title>
                 Vlingo
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-               <notifications-hub></notifications-hub>
+                <notifications-hub></notifications-hub>
                 <v-menu offset-y offset-x>
                     <v-toolbar-title slot="activator">
                         <v-btn icon>
@@ -46,7 +48,7 @@
                             </v-list-tile-title>
                         </v-list-tile>
                         <v-divider></v-divider>
-                        <v-list-tile >
+                        <v-list-tile>
                             <v-list-tile-title>
                                 <v-icon left>help</v-icon>
                                 Documentation
@@ -183,8 +185,7 @@
                     icon: "person_outline"
                 }
             ],
-            miscViews: [
-            ]
+            miscViews: []
         }),
         methods: {
             goTo(route) {
