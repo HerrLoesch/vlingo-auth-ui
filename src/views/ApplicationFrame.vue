@@ -62,6 +62,7 @@
                 width="200"
                 clipped
                 app
+                class="elevation-2"
                 v-model="drawer"
         >
             <v-list>
@@ -123,7 +124,9 @@
         </v-navigation-drawer>
 
         <v-content>
-            <router-view></router-view>
+            <v-fade-transition mode="out-in">
+                <router-view></router-view>
+            </v-fade-transition>
         </v-content>
         <v-footer app fixed>
             <span>&copy; 2018</span>

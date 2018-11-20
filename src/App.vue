@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+    <v-app id="inspire" class="green lighten-5">
 
         <v-container>
             <v-layout align-center justify-center row fill-height>
@@ -10,13 +10,17 @@
                         <v-flex></v-flex>
                         <v-flex>
                             <div v-if="loggedIn">
-                                <TenantavigationView></TenantavigationView>
+                                <ApplicationFrame></ApplicationFrame>
                             </div>
                             <div v-else-if="register">
+
                                 <v-container>
-                                    <img src="./assets/logo.png">
+
+                                    <img height="100px" width="100px" src="./assets/logo.png">
                                     <RegisterUser v-on:canceled="register=false" v-on:registered="logIn"></RegisterUser>
+
                                 </v-container>
+
                             </div>
                             <div v-else>
 
@@ -37,13 +41,12 @@
 
             </v-layout>
 
-
         </v-container>
     </v-app>
 </template>
 
 <script>
-    import TenantavigationView from "./views/ApplicationFrame"
+    import ApplicationFrame from "./views/ApplicationFrame"
     import RegisterUser from "./views/RegisterUser"
     import SignOn from "./views/SignOn"
     import {mapState} from "vuex"
@@ -51,7 +54,7 @@
 
     export default {
         components: {
-            TenantavigationView,
+            ApplicationFrame,
             RegisterUser,
             SignOn
         },
