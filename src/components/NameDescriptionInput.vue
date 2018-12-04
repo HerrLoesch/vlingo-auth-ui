@@ -1,8 +1,8 @@
 <template>
     <v-container>
         <v-text-field
-                :disabled="mode === 'edit'"
-                v-model="value.name"
+                :disabled="isInEditMode"
+                v-model="name"
                 label="Name*"
                 required
                 :rules="[v => !!v || 'Please, enter a name.']"
@@ -24,6 +24,17 @@
             },
             mode: {
                 type: String
+            }
+        },
+        data:() => ({
+           name: "",
+           isInEditMode: false
+        }),
+        watch: {
+            value: function(newValue) {
+                this.isInEditMode = false
+                this.name = newValue.name
+                this.isInEditMode = this.mode === 'edit'
             }
         }
     }

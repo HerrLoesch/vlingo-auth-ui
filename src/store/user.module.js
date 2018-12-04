@@ -35,7 +35,7 @@ export const UPDATE_CREDENTIAL_OF_USER = USER_MODULE + "/" + UPDATE_CREDENTIAL
 export const DELETE_CREDENTIAL_OF_USER = USER_MODULE + "/" + DELETE_CREDENTIAL
 
 export const userModule = {
-    isInitialized: false,
+    isUserModuleInitialized: false,
     namespaced: true,
     state: {
         users: [],
@@ -110,7 +110,7 @@ export const userModule = {
     },
     actions: {
         [INITIALIZE]: function ({commit}) {
-            if (this.isInitialized || this.state.isLoading) {
+            if (this.isUserModuleInitialized || this.state.isLoading) {
                 return
             }
             commit(SET_ISLOADING, true)
@@ -180,11 +180,11 @@ export const userModule = {
 
             ])
             commit(SET_ISLOADING, false)
-            this.isInitialized = true
+            this.isUserModuleInitialized = true
         },
         [CREATE]: function ({commit}, user) {
 
-            if (!this.isInitialized) {
+            if (!this.isUserModuleInitialized) {
                 this.dispatch(INITIALIZE_USER_MODULE)
             }
 

@@ -85,7 +85,7 @@
         <v-dialog v-model="editGroupDialogVisible" width="400">
             <v-card>
                 <v-card-title class="headline teal darken-4 white--text" primary-title>Edit Group</v-card-title>
-                <CreateOrEditGroup mode="edit" :value="editableGroup"
+                <CreateOrEditGroup mode="edit" :group="editableGroup"
                            v-on:canceled="closeEditGroupDialog"
                            v-on:saved="savedEditedGroup"></CreateOrEditGroup>
             </v-card>
@@ -103,7 +103,7 @@
         components: {
             CreateOrEditGroup
         },
-        created() {
+        mounted() {
             this.$store.dispatch(INITIALIZE_GROUPS)
         },
         methods: {

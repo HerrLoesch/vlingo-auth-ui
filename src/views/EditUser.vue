@@ -35,7 +35,6 @@
                 this.$emit("saved", this.user)
             },
             cancel() {
-                this.user = {}
                 this.$emit("canceled")
             }
         }

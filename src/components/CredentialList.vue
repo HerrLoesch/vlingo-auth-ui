@@ -83,7 +83,7 @@
             }
         },
         computed: {
-            selectedGroup() {
+            selectedUser() {
                 return this.user
             }
         },

@@ -27,7 +27,7 @@ export const DELETE_GROUP = GROUP_MODULE + "/" + DELETE_GROUP_ACTION
 
 export const groupModule = {
     namespaced: true,
-    isInitialized: false,
+    isGroupModuleInitialized: false,
     state: {
         isLoading: false,
         groups: [],
@@ -53,7 +53,7 @@ export const groupModule = {
     },
     actions: {
         [INITIALIZE_GROUPS_ACTION]: function ({commit}) {
-            if (this.isInitialized) {
+            if (this.isGroupModuleInitialized) {
                 return
             }
 
@@ -63,7 +63,7 @@ export const groupModule = {
             commit(ADD_GROUP_MUTATION, {name: "Second Group", description: "First group of its kind..."})
 
             commit(SET_ISLOADING, false)
-            this.isInitialized = true
+            this.isGroupModuleInitialized = true
         },
         [ADD_GROUP_ACTION]: function ({commit}, group) {
             commit(ADD_GROUP_MUTATION, group)

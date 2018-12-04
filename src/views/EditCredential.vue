@@ -3,7 +3,7 @@
         <v-form v-model="valid">
             <v-card flat>
                 <v-card-text>
-                    <edit-credential-details :credential="credential"></edit-credential-details>
+                    <edit-credential-details :credential="selectedCredential"></edit-credential-details>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -20,8 +20,7 @@
 
     export default {
         data: () => ({
-            valid: false,
-            selectedCredential: {}
+            valid: false
         }),
         props: {
             credential: {
@@ -38,6 +37,11 @@
                 default: () => ("create")
             }
         },
+        computed: {
+          selectedCredential() {
+              return this.credential
+          }
+        },
         methods: {
             save() {
 
@@ -52,7 +56,6 @@
                 this.$emit("saved", this.credential, this.user)
             },
             cancel() {
-                this.credential = {}
                 this.$emit("canceled")
             }
         }

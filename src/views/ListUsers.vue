@@ -130,8 +130,6 @@
                 this.registerDialogVisible = false
             },
             showEditDialog(item) {
-                this.selectedUser = item
-
                 // deep copy to prevent direct edit of the actual list item.
                 this.editableUser = JSON.parse(JSON.stringify(item))
                 this.editUserDialogVisible = true
