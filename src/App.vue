@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire" class="green lighten-5">
+    <v-app id="inspire" class="grey lighten-5">
 
         <v-container>
 

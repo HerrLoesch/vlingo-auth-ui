@@ -65,9 +65,8 @@
                 class="elevation-2"
                 v-model="drawer"
         >
-            <v-list>
+            <v-list color="primary">
 
-                <v-subheader>Users</v-subheader>
                 <v-list-tile v-for="(userView, i) in userViews" :key="i" @click="goTo(userView.name)">
                     <v-list-tile-action>
                         <v-icon>{{userView.icon}}</v-icon>
@@ -75,8 +74,6 @@
                     <v-list-tile-title v-text="userView.title"></v-list-tile-title>
                 </v-list-tile>
 
-                <v-divider></v-divider>
-                <v-subheader>Groups</v-subheader>
                 <v-list-tile v-for="(groupView, i) in groupViews" :key="i+10" @click="goTo(groupView.name)">
                     <v-list-tile-action>
                         <v-icon>{{groupView.icon}}</v-icon>
@@ -84,8 +81,6 @@
                     <v-list-tile-title v-text="groupView.title"></v-list-tile-title>
                 </v-list-tile>
 
-                <v-divider></v-divider>
-                <v-subheader>Roles</v-subheader>
                 <v-list-tile v-for="(roleView, i) in roleViews" :key="i+100" @click="goTo(roleView.name)">
                     <v-list-tile-action>
                         <v-icon outline class="outlined">{{roleView.icon}}</v-icon>
@@ -93,8 +88,6 @@
                     <v-list-tile-title v-text="roleView.title"></v-list-tile-title>
                 </v-list-tile>
 
-                <v-divider></v-divider>
-                <v-subheader>Permissions</v-subheader>
                 <v-list-tile v-for="(permissionView, i) in permissionViews" :key="i+1000"
                              @click="goTo(permissionView.name)">
                     <v-list-tile-action>
@@ -145,11 +138,6 @@
                     title: "Users",
                     name: "/listUsers",
                     icon: "supervisor_account"
-                },
-                {
-                    title: "Add User",
-                    name: "/registerUser",
-                    icon: "person_add"
                 }
             ],
             groupViews: [
@@ -157,21 +145,11 @@
                     title: "Groups",
                     name: "/listGroups",
                     icon: "group"
-                },
-                {
-                    title: "Add Group",
-                    name: "/dummy",
-                    icon: "group_add"
                 }
             ],
             permissionViews: [
                 {
                     title: "Permissions",
-                    name: "/dummy",
-                    icon: "list"
-                },
-                {
-                    title: "Add Permission",
                     name: "/dummy",
                     icon: "lock"
                 }
@@ -181,11 +159,6 @@
                     title: "Roles",
                     name: "/dummy",
                     icon: "people_outline"
-                },
-                {
-                    title: "Add Role",
-                    name: "/dummy",
-                    icon: "person_outline"
                 }
             ],
             miscViews: []
