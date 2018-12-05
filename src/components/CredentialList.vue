@@ -1,14 +1,15 @@
 <template>
     <v-card>
-        <v-subheader dark class="grey lighten-1">Credentials
+        <v-subheader class="secondary">
+            Credentials
             <v-spacer></v-spacer>
             <v-btn icon>
-                <v-icon small @click="createCredential">add_circle_outline</v-icon>
+                <v-icon color="primary" @click="createCredential">add_circle_outline</v-icon>
             </v-btn>
         </v-subheader>
-        <v-card-text>
             <v-list two-line>
                 <template v-for="credential in credentials">
+
                     <v-list-tile :key="credential.id">
                         <v-list-tile-content>
                             <v-list-tile-title>{{credential.id}}</v-list-tile-title>
@@ -29,7 +30,6 @@
                     </v-list-tile>
                 </template>
             </v-list>
-        </v-card-text>
 
         <!-- Edit credential dialog -->
         <v-dialog v-model="editCredentialDialogVisible" width="800">
