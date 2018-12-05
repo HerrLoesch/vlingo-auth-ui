@@ -2,28 +2,27 @@
     <v-app id="inspire" class="green lighten-5">
 
         <v-container>
-            <v-layout align-center justify-center row fill-height>
+
+            <div v-if="loggedIn">
+                <ApplicationFrame></ApplicationFrame>
+            </div>
+
+            <v-layout v-else align-center justify-center row fill-height>
                 <v-flex></v-flex>
 
                 <v-flex>
                     <v-layout align-center justify-center column fill-height>
                         <v-flex></v-flex>
                         <v-flex>
-                            <div v-if="loggedIn">
-                                <ApplicationFrame></ApplicationFrame>
-                            </div>
-                            <div v-else-if="register">
+                            <div v-if="register">
 
                                 <v-container>
-
                                     <img height="100px" width="100px" src="./assets/logo.png">
                                     <RegisterUser v-on:canceled="register=false" v-on:registered="logIn"></RegisterUser>
-
                                 </v-container>
 
                             </div>
                             <div v-else>
-
                                 <img height="100px" width="100px" src="./assets/logo.png">
                                 <SignOn></SignOn>
                                 <v-btn flat @click="register=true">register</v-btn>
@@ -72,26 +71,3 @@
         }
     }
 </script>
-
-<style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-    }
-
-    #nav {
-        padding: 30px;
-    }
-
-    #nav a {
-        font-weight: bold;
-        color: #2c3e50;
-    }
-
-    #nav a.router-link-exact-active {
-        color: #42b983;
-    }
-</style>
