@@ -5,7 +5,7 @@
                 <v-icon>dehaze</v-icon>
             </v-toolbar-side-icon>
             <v-toolbar-title>
-                Vlingo
+                <img height="75px" src="../assets/logo.png">
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
