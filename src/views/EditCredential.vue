@@ -5,6 +5,9 @@
                 <v-card-text>
                     <edit-credential-details :credential="selectedCredential"></edit-credential-details>
                 </v-card-text>
+
+                <v-divider></v-divider>
+
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn flat @click="cancel()">Cancel</v-btn>

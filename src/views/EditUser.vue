@@ -5,6 +5,7 @@
                 <v-card-text>
                     <edit-user-details :user="user"></edit-user-details>
                 </v-card-text>
+                <v-divider></v-divider>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn flat @click="cancel()">Cancel</v-btn>

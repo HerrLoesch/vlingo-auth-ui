@@ -1,6 +1,6 @@
 <template>
     <v-card fluid width="400">
-        <v-card-title class="headline teal darken-4 white--text" primary-title>Edit Group</v-card-title>
+        <v-card-title class="headline teal darken-4 white--text" primary-title>{{title}}</v-card-title>
 
         <v-card-text>
             <v-form v-model="valid">
@@ -33,6 +33,15 @@
         data: () => ({
             valid: false
         }),
+        computed: {
+          title: function() {
+              if (this.mode === "edit") {
+                  return "Edit Group"
+              } else {
+                  return "Create Group"
+              }
+          }
+        },
         methods: {
             save() {
 

@@ -77,9 +77,6 @@
         <!-- Create group dialog -->
         <v-dialog v-model="createDialogVisible" width="400">
             <v-card fluid>
-                <v-card-title class="headline teal darken-4 white--text" primary-title>
-                    Create Group
-                </v-card-title>
                 <CreateOrEditGroup mode="create"
                                    v-on:canceled="createDialogVisible = false"
                                    v-on:saved="createDialogVisible = false"></CreateOrEditGroup>
