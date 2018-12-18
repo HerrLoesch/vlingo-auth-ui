@@ -7,9 +7,8 @@
                 <v-icon color="primary" @click="createCredential">add_circle_outline</v-icon>
             </v-btn>
         </v-subheader>
-            <v-list two-line>
+            <v-list two-line dense>
                 <template v-for="credential in credentials">
-
                     <v-list-tile :key="credential.id">
                         <v-list-tile-content>
                             <v-list-tile-title>{{credential.id}}</v-list-tile-title>
@@ -28,6 +27,8 @@
                             </v-btn>
                         </v-list-tile-action>
                     </v-list-tile>
+
+
                 </template>
             </v-list>
 
