@@ -11,6 +11,10 @@ import {EventBus} from "../plugins/EventBus"
 const ADD_GROUP_MUTATION = "addGroupMutation"
 const UPDATE_GROUP_MUTATION = "updateGroupMutation"
 const DELETE_GROUP_MUTATION = "deleteGroupMutation"
+
+const GROUP_BY_ID_GETTER = "getGroupById"
+const GROUPS_BY_IDS_GETTER = "getGroupsByIds"
+
 const ADD_GROUP_ACTION = "addGroupAction"
 const UPDATE_GROUP_ACTION = "updateGroupAction"
 const DELETE_GROUP_ACTION = "deleteGroupAction"
@@ -23,6 +27,8 @@ export const INITIALIZE_GROUPS = GROUP_MODULE + "/" + INITIALIZE_GROUPS_ACTION
 export const ADD_GROUP = GROUP_MODULE + "/" + ADD_GROUP_ACTION
 export const UPDATE_GROUP = GROUP_MODULE + "/" + UPDATE_GROUP_ACTION
 export const DELETE_GROUP = GROUP_MODULE + "/" + DELETE_GROUP_ACTION
+export const GET_GROUP_BY_ID = GROUP_MODULE + "/" + GROUP_BY_ID_GETTER
+export const GET_GROUPS_BY_IDS = GROUP_MODULE + "/" + GROUPS_BY_IDS_GETTER
 
 
 export const groupModule = {
@@ -51,6 +57,21 @@ export const groupModule = {
             state.isLoading = isLoading
         },
     },
+    getters: {
+        [GROUP_BY_ID_GETTER]: (state) => (id) => {
+          return state.groups.find(group => group.id === id)
+        },
+        [GROUPS_BY_IDS_GETTER]: (state, getters) => (ids) => {
+
+            let insideGroups = []
+            _.forEach(ids, (id) => {
+                let group = getters.getGroupById(id)
+                insideGroups.push(group)
+            })
+
+            return insideGroups
+        }
+    },
     actions: {
         [INITIALIZE_GROUPS_ACTION]: function ({commit}) {
             if (this.isGroupModuleInitialized) {
@@ -59,8 +80,9 @@ export const groupModule = {
 
             commit(SET_ISLOADING, true)
 
-            commit(ADD_GROUP_MUTATION, {name: "First Group", description: "First group of its kind..."})
-            commit(ADD_GROUP_MUTATION, {name: "Second Group", description: "First group of its kind..."})
+            let firstGroup = {name: "First Group", description: "First group of its kind...", insideGroups: [], groupMembers: []}
+            commit(ADD_GROUP_MUTATION, firstGroup)
+            commit(ADD_GROUP_MUTATION, {name: "Second Group", description: "First group of its kind...", insideGroups: [firstGroup.id], groupMembers: [1]})
 
             commit(SET_ISLOADING, false)
             this.isGroupModuleInitialized = true
