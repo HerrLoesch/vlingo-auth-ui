@@ -8,6 +8,7 @@ import {EventBus} from "../plugins/EventBus"
  */
 
 // "private" member
+// TODO: follow naming structure as shown for modules
 const ADD_LOCAL_USER = "addLocalUser"
 const ADD_LOCAL_CREDENTIAL = "addCredentialToUser"
 const UPDATE_LOCAL_CREDENTIAL = "updateCredentialOfUser"
@@ -23,6 +24,7 @@ const UPDATE = "updateUser"
 const ADD_CREDENTIAL = "addCredential"
 const UPDATE_CREDENTIAL = "updateCredential"
 const DELETE_CREDENTIAL = "askForCredentialDeletion"
+const ALL_USERS_GETTER = "getAllUsers"
 
 // "public" member
 export const USER_MODULE = "userModule"
@@ -33,6 +35,7 @@ export const UPDATE_USER = USER_MODULE + "/" + UPDATE
 export const ADD_CREDENTIAL_TO_USER = USER_MODULE + "/" + ADD_CREDENTIAL
 export const UPDATE_CREDENTIAL_OF_USER = USER_MODULE + "/" + UPDATE_CREDENTIAL
 export const DELETE_CREDENTIAL_OF_USER = USER_MODULE + "/" + DELETE_CREDENTIAL
+export const GET_ALL_USERS = USER_MODULE + "/" + ALL_USERS_GETTER
 
 export const userModule = {
     isUserModuleInitialized: false,
@@ -106,6 +109,19 @@ export const userModule = {
             }
 
             _.remove(existingUser.credentials, {id: updateData.credential.id})
+        }
+    },
+    getters: {
+        [ALL_USERS_GETTER]: (state) => {
+
+            let resultUsers = []
+            _.forEach(state.users, user => {
+                // create a clone to avoid unmanaged changes to the state
+                let clone = JSON.parse(JSON.stringify(user))
+                resultUsers.push(clone)
+            })
+
+            return resultUsers
         }
     },
     actions: {

@@ -1,9 +1,9 @@
 <template>
     <v-card>
-        <v-card-title class="headline teal darken-4 white--text" primary-title>Edit Inside Groups</v-card-title>
+        <v-card-title class="headline teal darken-4 white--text" primary-title>Edit Inner Groups for <b> {{group.name}}</b></v-card-title>
 {{group.text}}
         <v-card-text style="height: 300px;">
-            <v-switch :key="idx" @click="addChangedValue(insideGroup)" v-for="(insideGroup, idx) in insideGroups" v-model="insideGroup.isInsideGroup" :label="insideGroup.name"
+            <v-switch :key="idx" @click="addChangedValue(innerGroup)" v-for="(innerGroup, idx) in innerGroups" v-model="innerGroup.isInnerGroup" :label="innerGroup.name"
             ></v-switch>
         </v-card-text>
 
@@ -18,13 +18,13 @@
 </template>
 
 <script>
-    import {GET_ALL_GROUPS, UPDATE_INSIDE_GROUP_STATUS} from "../store/group.module"
+    import {GET_ALL_GROUPS, UPDATE_INNER_GROUP_STATUS} from "../store/group.module"
     import _ from "lodash"
 
     export default {
-        name: "EditGroupMembers",
+        name: "EditInnerGroups",
         data: () => ({
-            changedGroups: []
+            changedMembers: []
         }),
         props: {
             group: {
@@ -34,18 +34,18 @@
             }
         },
         methods: {
-            addChangedValue(insideGroup) {
+            addChangedValue(innerGroup) {
                 // value was changed back, thus we have no change
-                let index = this.changedGroups.indexOf(insideGroup)
+                let index = this.changedMembers.indexOf(innerGroup)
                 if( index <= -1){
-                    this.changedGroups.splice(index, 1)
+                    this.changedMembers.splice(index, 1)
                 }
                 else {
-                    this.changedGroups.push(insideGroup)
+                    this.changedMembers.push(innerGroup)
                 }
             },
             save() {
-                this.$store.dispatch(UPDATE_INSIDE_GROUP_STATUS, {parentGroup: this.group, changedInisideGroups: this.changedGroups})
+                this.$store.dispatch(UPDATE_INNER_GROUP_STATUS, {parentGroup: this.group, changedInnerGroups: this.changedMembers})
                 this.$emit("saved")
             },
             cancel() {
@@ -53,7 +53,7 @@
             }
         },
         computed: {
-            insideGroups: function () {
+            innerGroups: function () {
                 let groups = this.$store.getters[GET_ALL_GROUPS]
 
                 let resultGroups = []
@@ -65,16 +65,16 @@
 
                     // TODO: That is not enought to protect us from circular references!
                     // TODO: We have to check if any of the children is a parent of the current group...
-                    if (_.includes(existingGroup.insideGroups, this.group.id)) {
+                    if (_.includes(existingGroup.innerGroups, this.group.id)) {
                         return
                     }
 
-                    existingGroup.isInsideGroup = _.includes(this.group.insideGroups, existingGroup.id)
+                    existingGroup.isInnerGroup = _.includes(this.group.innerGroups, existingGroup.id)
 
                     resultGroups.push(existingGroup)
                 })
 
-                return resultGroups
+                return _.orderBy(resultGroups, ["name"], ["asc"])
             }
         }
     }

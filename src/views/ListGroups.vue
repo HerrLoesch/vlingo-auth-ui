@@ -36,10 +36,17 @@
                         <td class="text-xs-left">{{ props.item.name }}</td>
                         <td class="text-xs-left">{{ props.item.description }}</td>
                         <td class="justify-center layout px-0">
-                            <v-icon small
+                            <v-icon
+                                    small
                                     class="mr-2"
                                     @click="showEditGroupMembersDialog(props.item)">
-                                settings
+                                supervisor_account
+                            </v-icon>
+                            <v-icon
+                                    small
+                                    class="mr-2"
+                                    @click="showEditInnerGroupsDialog(props.item)">
+                                group
                             </v-icon>
                             <v-icon small
                                     class="mr-2"
@@ -85,17 +92,25 @@
 
         <!-- Edit group dialog -->
         <v-dialog v-model="editGroupDialogVisible" width="400" scrollable>
-                <CreateOrEditGroup mode="edit" :group="editableGroup"
-                           v-on:canceled="closeEditGroupDialogs"
-                           v-on:saved="closeEditGroupDialogs"></CreateOrEditGroup>
+            <CreateOrEditGroup mode="edit" :group="editableGroup"
+                               v-on:canceled="closeEditGroupDialogs"
+                               v-on:saved="closeEditGroupDialogs"></CreateOrEditGroup>
         </v-dialog>
 
-        <!-- Manage members dialog -->
-        <v-dialog v-model="editGroupMembersDialogVisible" width="400" scrollable>
-                <EditGroupMembers  :group="editableGroup"
-                                   v-on:canceled="closeEditGroupDialogs"
-                                   v-on:saved="closeEditGroupDialogs"></EditGroupMembers>
+        <!-- Manage inner groups dialog -->
+        <v-dialog v-model="editInnerGroupsDialogVisible" width="400" scrollable>
+            <EditInnerGroups :group="editableGroup"
+                              v-on:canceled="closeEditGroupDialogs"
+                              v-on:saved="closeEditGroupDialogs"></EditInnerGroups>
         </v-dialog>
+
+        <!-- Manage group members dialog -->
+        <v-dialog v-model="editGroupMembersDialogVisible" width="400" scrollable>
+            <EditGroupMembers :group="editableGroup"
+                              v-on:canceled="closeEditGroupDialogs"
+                              v-on:saved="closeEditGroupDialogs"></EditGroupMembers>
+        </v-dialog>
+
 
     </v-container>
 </template>
@@ -104,25 +119,33 @@
     import {mapState} from "vuex"
     import {GROUP_MODULE, INITIALIZE_GROUPS, DELETE_GROUP} from "../store/group.module"
     import CreateOrEditGroup from "./CreateOrEditGroup";
-    import EditGroupMembers from "./EditInsideGroups";
+    import EditInnerGroups from "./EditInnerGroups";
+    import EditGroupMembers from "./EditGroupMembers";
 
     export default {
         components: {
-            EditGroupMembers,
-            CreateOrEditGroup
+            EditInnerGroups,
+            CreateOrEditGroup,
+            EditGroupMembers
         },
         mounted() {
             this.$store.dispatch(INITIALIZE_GROUPS)
         },
         methods: {
-            showEditGroupMembersDialog(item){
+            setEditableGroupToClone(item) {
                 // deep copy to prevent direct edit of the actual list item.
                 this.editableGroup = JSON.parse(JSON.stringify(item))
+            },
+            showEditGroupMembersDialog(item) {
+                this.setEditableGroupToClone(item)
                 this.editGroupMembersDialogVisible = true
             },
+            showEditInnerGroupsDialog(item) {
+                this.setEditableGroupToClone(item)
+                this.editInnerGroupsDialogVisible = true
+            },
             showEditDialog(item) {
-                // deep copy to prevent direct edit of the actual list item.
-                this.editableGroup = JSON.parse(JSON.stringify(item))
+                this.setEditableGroupToClone(item)
                 this.editGroupDialogVisible = true
             },
             askToDelete(item) {
@@ -138,6 +161,7 @@
             },
             closeEditGroupDialogs() {
                 this.editGroupDialogVisible = false
+                this.editInnerGroupsDialogVisible = false
                 this.editGroupMembersDialogVisible = false
                 this.editableGroup = {}
             }
@@ -153,6 +177,7 @@
             deleteConfirmationVisible: false,
             createDialogVisible: false,
             editGroupDialogVisible: false,
+            editInnerGroupsDialogVisible: false,
             editGroupMembersDialogVisible: false,
             headers: [
                 {
