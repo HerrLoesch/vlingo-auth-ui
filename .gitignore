@@ -25,3 +25,9 @@ yarn-error.log*
 firebase\.json
 
 \.firebaserc
+
+cypress/plugins/
+
+cypress/support/
+
+cypress/videos/

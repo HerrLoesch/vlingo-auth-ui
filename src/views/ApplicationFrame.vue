@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container fluid id="ApplicationFrame">
         <v-toolbar app fixed prominent clipped-left>
             <v-toolbar-side-icon @click="drawer = !drawer">
                 <v-icon>dehaze</v-icon>

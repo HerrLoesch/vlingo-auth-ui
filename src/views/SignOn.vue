@@ -1,9 +1,10 @@
 <template>
-    <v-container>
+    <v-container id="SignOn">
         <v-form v-model="valid">
             <v-card width="400">
                 <v-card-text>
                     <v-text-field
+                            id="username"
                             v-model="loginData.username"
                             label="Username"
                             required
@@ -11,6 +12,7 @@
                     ></v-text-field>
 
                     <v-text-field
+                            id="credentialId"
                             v-model="loginData.credentialId"
                             label="Credential Id"
                             required
@@ -18,6 +20,7 @@
                     ></v-text-field>
 
                     <v-text-field
+                            id="secret"
                             v-model="loginData.secret"
                             label="Secret"
                             required
@@ -27,7 +30,9 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn :disabled="!valid" @click="signOn()">Sign On</v-btn>
+                    <v-btn id="loginButton"
+                           :disabled="!valid" @click="signOn()">Sign On
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </v-form>
@@ -38,6 +43,7 @@
     import {LOGIN} from "../store/applicationState.module"
 
     export default {
+        name: "SignOn",
         data: () => ({
             valid: false,
             loginData: {
