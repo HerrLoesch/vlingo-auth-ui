@@ -105,7 +105,7 @@
                     <v-list-tile-title v-text="miscView.title"></v-list-tile-title>
                 </v-list-tile>
 
-                <v-list-tile @click="logOut">
+                <v-list-tile @click="logOut" id="logoutButton">
                     <v-list-tile-action>
                         <v-icon>power_settings_new</v-icon>
                     </v-list-tile-action>
