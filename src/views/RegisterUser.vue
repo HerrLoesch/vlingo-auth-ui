@@ -1,5 +1,5 @@
 <template>
-    <v-form v-model="valid">
+    <v-form v-model="valid" id="register-user">
         <v-card fluid>
             <v-card-text>
                 <edit-user-details :user="user"></edit-user-details>
@@ -13,7 +13,7 @@
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn flat @click="cancel()">Cancel</v-btn>
-                <v-btn color="accent" flat :disabled="!valid" @click="register()">Register</v-btn>
+                <v-btn id="registerButton" color="accent" flat :disabled="!valid" @click="register()">Register</v-btn>
             </v-card-actions>
         </v-card>
     </v-form>

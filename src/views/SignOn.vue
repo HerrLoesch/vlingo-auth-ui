@@ -1,5 +1,5 @@
 <template>
-    <v-container id="SignOn">
+    <v-container id="sign-on">
         <v-form v-model="valid">
             <v-card width="400">
                 <v-card-text>
@@ -43,7 +43,7 @@
     import {LOGIN} from "../store/applicationState.module"
 
     export default {
-        name: "SignOn",
+        name: "sing-on",
         data: () => ({
             valid: false,
             loginData: {

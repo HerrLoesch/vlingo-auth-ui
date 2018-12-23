@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container id="edit-credential">
         <v-form v-model="valid">
             <v-card flat>
                 <v-card-text>

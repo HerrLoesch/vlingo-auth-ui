@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "test:integration": "npx cypress run"
+    "test:integration": "npx cypress open"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0-rc.1",

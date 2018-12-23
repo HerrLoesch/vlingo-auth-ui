@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container fluid id="users-list">
         <v-card>
             <v-toolbar class="teal darken-3 white--text">
                 <span class="headline">Users</span>

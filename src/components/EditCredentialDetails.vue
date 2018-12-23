@@ -1,8 +1,8 @@
 <template>
-    <v-container>
+    <v-container id="edit-credential-details">
         <v-layout>
             <v-flex md3>
-                <v-select v-model="credential.authority"
+                <v-select id="authority" v-model="credential.authority"
                           :items="authorities"
                           label="Authority"
                 ></v-select>

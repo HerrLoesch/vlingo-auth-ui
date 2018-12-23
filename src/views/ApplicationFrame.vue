@@ -64,6 +64,7 @@
                 app
                 class="elevation-2"
                 v-model="drawer"
+                id="application-drawer"
         >
             <v-list color="primary">
 

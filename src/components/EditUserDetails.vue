@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container id="edit-user-details">
         <v-layout>
             <v-flex md5>
                 <v-text-field
