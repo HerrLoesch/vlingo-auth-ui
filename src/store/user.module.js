@@ -143,12 +143,12 @@ export const userModule = {
                     {
                         id: "test",
                         authority: "vlingo",
-                        secret: ""
+                        secret: "123"
                     },
                     {
                         id: "another one",
                         authority: "vlingo",
-                        secret: ""
+                        secret: "444"
                     },
                 ]
             },
@@ -163,12 +163,12 @@ export const userModule = {
                         {
                             id: "one",
                             authority: "vlingo",
-                            secret: ""
+                            secret: "123"
                         },
                         {
                             id: "two",
                             authority: "oAuth",
-                            secret: ""
+                            secret: "444"
                         },
                     ]
                 },
