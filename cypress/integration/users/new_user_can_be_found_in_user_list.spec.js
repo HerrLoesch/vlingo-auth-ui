@@ -10,7 +10,7 @@ describe("When a new user is created", () => {
 
         cy.fixture("newUser").then((user) => {
             usedUserData = user
-            cy.enterNewUser(user, ".v-dialog--active")
+            cy.enterUserDetails(user, ".v-dialog--active")
             cy.get("#registerButton").click()
         })
 

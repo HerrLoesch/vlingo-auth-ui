@@ -37,42 +37,42 @@ Cypress.Commands.add("standardLogin", () => {
     cy.wait(1000)
 })
 
-Cypress.Commands.add("enterNewUser", (user, parent) => {
+Cypress.Commands.add("enterUserDetails", (user, parent) => {
 
     cy.get(parent).within(() => {
 
         if (user.userName !== undefined) {
-            cy.get("[aria-label=Username]").type(user.userName)
+            cy.get("[aria-label=Username]").clear().type(user.userName)
         }
 
         if (user.email !== undefined) {
-            cy.get("[aria-label='Email Address']").type(user.email)
+            cy.get("[aria-label='Email Address']").clear().type(user.email)
         }
 
         if (user.givenName !== undefined) {
-            cy.get("[aria-label='Given Name']").type(user.givenName)
+            cy.get("[aria-label='Given Name']").clear().type(user.givenName)
         }
 
         if (user.secondName !== undefined) {
-            cy.get("[aria-label='Second Name']").type(user.secondName)
+            cy.get("[aria-label='Second Name']").clear().type(user.secondName)
         }
 
         if (user.familyName !== undefined) {
-            cy.get("[aria-label='Family Name']").type(user.familyName)
+            cy.get("[aria-label='Family Name']").clear().type(user.familyName)
         }
 
         if (user.phone !== undefined) {
-            cy.get("[aria-label='Phone']").type(user.phone)
+            cy.get("[aria-label='Phone']").clear().type(user.phone)
         }
 
-        if (user.credential !== null) {
-            cy.get("[aria-label='Id']").type(user.credential.id)
-            cy.get("[aria-label='Secret']").type(user.credential.secret)
+        if (user.credential !== undefined) {
+            cy.get("[aria-label='Id']").clear().type(user.credential.id)
+            cy.get("[aria-label='Secret']").clear().type(user.credential.secret)
         }
     })
 
     // menus have an own layer and so they are not part of the parent
-    if(user.credential !== null) {
+    if(user.credential !== undefined) {
         cy.get("#authority").parent().click()
         cy.get(".v-menu__content").contains(user.credential.authority).click()
     }

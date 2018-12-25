@@ -8,7 +8,7 @@ describe("When I register a new user on the start page ", function () {
 
         cy.fixture("newUser").then((user => {
             usedUserData = user
-            cy.enterNewUser(user, "#register-user")
+            cy.enterUserDetails(user, "#register-user")
             cy.get("#registerButton").click()
         }))
     })
