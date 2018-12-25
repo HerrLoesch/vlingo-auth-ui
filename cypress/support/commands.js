@@ -37,37 +37,44 @@ Cypress.Commands.add("standardLogin", () => {
     cy.wait(1000)
 })
 
-Cypress.Commands.add("enterNewUser", (user) => {
+Cypress.Commands.add("enterNewUser", (user, parent) => {
 
-    if(user.userName !== undefined) {
-        cy.get("[aria-label=Username]").type(user.userName)
-    }
+    cy.get(parent).within(() => {
 
-    if (user.email !== undefined) {
-        cy.get("[aria-label='Email Address']").type(user.email)
-    }
+        if (user.userName !== undefined) {
+            cy.get("[aria-label=Username]").type(user.userName)
+        }
 
-    if (user.givenName !== undefined) {
-        cy.get("[aria-label='Given Name']").type(user.givenName)
-    }
+        if (user.email !== undefined) {
+            cy.get("[aria-label='Email Address']").type(user.email)
+        }
 
-    if (user.secondName !== undefined) {
-        cy.get("[aria-label='Second Name']").type(user.secondName)
-    }
+        if (user.givenName !== undefined) {
+            cy.get("[aria-label='Given Name']").type(user.givenName)
+        }
 
-    if (user.familyName !== undefined) {
-        cy.get("[aria-label='Family Name']").type(user.familyName)
-    }
+        if (user.secondName !== undefined) {
+            cy.get("[aria-label='Second Name']").type(user.secondName)
+        }
 
-    if (user.phone !== undefined) {
-        cy.get("[aria-label='Phone']").type(user.phone)
-    }
+        if (user.familyName !== undefined) {
+            cy.get("[aria-label='Family Name']").type(user.familyName)
+        }
 
-    if (user.credential !== null) {
+        if (user.phone !== undefined) {
+            cy.get("[aria-label='Phone']").type(user.phone)
+        }
+
+        if (user.credential !== null) {
+            cy.get("[aria-label='Id']").type(user.credential.id)
+            cy.get("[aria-label='Secret']").type(user.credential.secret)
+        }
+    })
+
+    // menus have an own layer and so they are not part of the parent
+    if(user.credential !== null) {
         cy.get("#authority").parent().click()
         cy.get(".v-menu__content").contains(user.credential.authority).click()
-
-        cy.get("[aria-label='Id']").type(user.credential.id)
-        cy.get("[aria-label='Secret']").type(user.credential.secret)
     }
+
 })

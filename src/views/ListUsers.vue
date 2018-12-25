@@ -21,6 +21,7 @@
                        bottom
                        right
                        fab
+                       id="addUserButton"
                 >
                     <v-icon>add</v-icon>
                 </v-btn>
