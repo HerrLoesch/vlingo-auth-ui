@@ -8,13 +8,13 @@ describe("When a new user is created", () => {
 
         cy.get("#addUserButton").click()
 
-        cy.fixture("newUser").then((user, ) => {
+        cy.fixture("newUser").then((user) => {
             usedUserData = user
             cy.enterNewUser(user, ".v-dialog--active")
             cy.get("#registerButton").click()
         })
 
-        cy.wait(2000)
+        cy.wait(1500)
     })
 
     it("then he can be found in the user list.", () => {
