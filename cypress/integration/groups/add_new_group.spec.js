@@ -10,11 +10,8 @@ describe("When a new group is added", () => {
         cy.fixture("newGroup").then((group) => {
             usedInputData = group
 
-            cy.get(".v-dialog--active").within(() => {
-                cy.get("#descriptionField").clear().type(group.description)
-                cy.get("#nameField").clear().type(group.name)
-                cy.contains("Save").click()
-            })
+            cy.enterGroupDetails(group, ".v-dialog--active")
+            cy.get(".v-dialog--active").contains("Save").click()
         })
 
     })

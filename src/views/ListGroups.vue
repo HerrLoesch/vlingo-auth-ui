@@ -50,6 +50,7 @@
                                 group
                             </v-icon>
                             <v-icon small
+                                    id="editGroupButton"
                                     class="mr-2"
                                     @click="showEditDialog(props.item)">
                                 edit

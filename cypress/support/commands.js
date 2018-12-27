@@ -76,5 +76,17 @@ Cypress.Commands.add("enterUserDetails", (user, parent) => {
         cy.get("#authority").parent().click()
         cy.get(".v-menu__content").contains(user.credential.authority).click()
     }
+})
 
+Cypress.Commands.add("enterGroupDetails", (group, parent) => {
+    cy.get(parent).within(() => {
+
+        if (group.name !== undefined) {
+            cy.get("#nameField").clear().type(group.name)
+        }
+
+        if (group.description !== undefined) {
+            cy.get("#descriptionField").clear().type(group.description)
+        }
+    })
 })
