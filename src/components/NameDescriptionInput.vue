@@ -2,7 +2,7 @@
     <v-container id="name-description-input">
         <v-text-field
                 :disabled="isInEditMode"
-                v-model="name"
+                v-model="value.name"
                 label="Name"
                 required
                 id="nameField"
@@ -29,13 +29,11 @@
             }
         },
         data:() => ({
-           name: "",
            isInEditMode: false
         }),
         watch: {
             value: function(newValue) {
                 this.isInEditMode = false
-                this.name = newValue.name
                 this.isInEditMode = this.mode === 'edit'
             }
         }
