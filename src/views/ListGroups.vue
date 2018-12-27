@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container fluid id="groups-list">
         <v-card>
             <v-toolbar class="teal darken-4 white--text">
                 <span class="headline">Groups</span>
@@ -21,6 +21,7 @@
                        bottom
                        right
                        fab
+                       id="addGroupButton"
                 >
                     <v-icon>add</v-icon>
                 </v-btn>

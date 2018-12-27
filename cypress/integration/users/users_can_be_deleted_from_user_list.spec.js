@@ -17,16 +17,20 @@ describe("When a user is deleted from user list", () => {
     })
 
     it("then he can no longer be found.", () => {
-        cy.get("#users-list").get("[aria-label='Search']").clear()
-        cy.get("#users-list").get("[aria-label='Search']").type(usedUserData.userName)
-        cy.get("#users-list").should("not.contain", usedUserData.email)
+        cy.get("#users-list").within(() => {
+            cy.get("[aria-label='Search']").clear()
+            cy.get("[aria-label='Search']").type(usedUserData.userName)
+            cy.get(".v-table").should("not.contain", usedUserData.email)
+        })
+
     })
 
     it("instead an error text is shown.", () => {
         let errorText = "Your search for \"" + usedUserData.userName + "\" found no results."
-
-        cy.get("#users-list").get("[aria-label='Search']").clear()
-        cy.get("#users-list").get("[aria-label='Search']").type(usedUserData.userName)
-        cy.get("#users-list").should("contain", errorText)
+        cy.get("#users-list").within(() => {
+            cy.get("[aria-label='Search']").clear()
+            cy.get("[aria-label='Search']").type(usedUserData.userName)
+            cy.should("contain", errorText)
+        })
     })
 })

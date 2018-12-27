@@ -1,5 +1,5 @@
 <template>
-    <v-card fluid width="400">
+    <v-card fluid width="400" id="create-or-edit-group">
         <v-card-title class="headline teal darken-4 white--text" primary-title>{{title}}</v-card-title>
 
         <v-card-text>

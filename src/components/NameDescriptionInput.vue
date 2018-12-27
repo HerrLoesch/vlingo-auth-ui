@@ -1,14 +1,16 @@
 <template>
-    <v-container>
+    <v-container id="name-description-input">
         <v-text-field
                 :disabled="isInEditMode"
                 v-model="name"
-                label="Name*"
+                label="Name"
                 required
+                id="nameField"
                 :rules="[v => !!v || 'Please, enter a name.']"
         ></v-text-field>
         <v-textarea
                 boxstyle
+                id="descriptionField"
                 v-model="value.description"
                 label="Description">
         </v-textarea>
