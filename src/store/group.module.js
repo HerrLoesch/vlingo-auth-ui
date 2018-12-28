@@ -53,7 +53,7 @@ export const groupModule = {
             group.id = state.idTreshold
             state.groups.push(group)
         },
-        [UPDATE_GROUP_ACTION](state, group) {
+        [UPDATE_GROUP_MUTATION](state, group) {
             let existingGroup = _.find(state.groups, {id: group.id})
             existingGroup.description = group.description
         },
