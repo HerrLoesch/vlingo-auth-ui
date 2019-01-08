@@ -15,15 +15,14 @@
                             v-for="(notification, index) in notifications"
                             :key="index"
                     >
-                        <v-list-tile-content>
-                            <v-list-tile-title>{{ notification }}</v-list-tile-title>
-                        </v-list-tile-content>
                         <v-list-tile-action>
                             <v-btn icon ripple @click="remove(index)">
                                 <v-icon color="grey lighten-1">highlight_off</v-icon>
                             </v-btn>
                         </v-list-tile-action>
-                        <v-divider></v-divider>
+                        <v-list-tile-content>
+                            <v-list-tile-title>{{ notification }}</v-list-tile-title>
+                        </v-list-tile-content>
                     </v-list-tile>
                 </v-list>
             </v-card-text>
