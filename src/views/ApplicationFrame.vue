@@ -82,19 +82,19 @@
                     <v-list-tile-title v-text="groupView.title"></v-list-tile-title>
                 </v-list-tile>
 
-                <v-list-tile v-for="(roleView, i) in roleViews" :key="i+100" @click="goTo(roleView.name)">
-                    <v-list-tile-action>
-                        <v-icon outline class="outlined">{{roleView.icon}}</v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-title v-text="roleView.title"></v-list-tile-title>
-                </v-list-tile>
-
                 <v-list-tile v-for="(permissionView, i) in permissionViews" :key="i+1000"
                              @click="goTo(permissionView.name)">
                     <v-list-tile-action>
                         <v-icon>{{permissionView.icon}}</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-title v-text="permissionView.title"></v-list-tile-title>
+                </v-list-tile>
+
+                <v-list-tile v-for="(roleView, i) in roleViews" :key="i+100" @click="goTo(roleView.name)">
+                    <v-list-tile-action>
+                        <v-icon outline class="outlined">{{roleView.icon}}</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-title v-text="roleView.title"></v-list-tile-title>
                 </v-list-tile>
 
                 <v-divider></v-divider>
@@ -151,7 +151,7 @@
             permissionViews: [
                 {
                     title: "Permissions",
-                    name: "/dummy",
+                    name: "/listPermissions",
                     icon: "lock"
                 }
             ],
