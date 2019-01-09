@@ -1,7 +1,8 @@
 <template>
     <v-container fluid id="users-list">
         <v-card>
-            <v-toolbar class="teal darken-3 white--text">
+            <v-toolbar class="teal darken-2 white--text">
+
                 <span class="headline">Users</span>
 
                 <v-spacer></v-spacer>

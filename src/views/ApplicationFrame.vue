@@ -13,14 +13,14 @@
                 <v-menu offset-y offset-x>
                     <v-toolbar-title slot="activator">
                         <v-btn icon>
-                            <v-icon>person</v-icon>
+                            <v-icon>person_outline</v-icon>
                         </v-btn>
                     </v-toolbar-title>
 
                     <v-list>
                         <v-list-tile>
                             <v-list-tile-title>
-                                <v-icon left>person</v-icon>
+                                <v-icon left>person_outline</v-icon>
                                 Profile
                             </v-list-tile-title>
                         </v-list-tile>
@@ -123,7 +123,7 @@
             </v-fade-transition>
         </v-content>
         <v-footer app fixed>
-            <span>&copy; 2018</span>
+            <span>&copy; 2019</span>
         </v-footer>
     </v-container>
 </template>
@@ -138,7 +138,7 @@
                 {
                     title: "Users",
                     name: "/listUsers",
-                    icon: "supervisor_account"
+                    icon: "person"
                 }
             ],
             groupViews: [

@@ -1,7 +1,7 @@
 <template>
     <v-container fluid id="groups-list">
         <v-card>
-            <v-toolbar class="teal darken-4 white--text">
+            <v-toolbar class="teal darken-3 white--text">
                 <span class="headline">Groups</span>
 
                 <v-spacer></v-spacer>
