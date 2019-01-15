@@ -1,13 +1,6 @@
 <template>
     <v-container>
         <v-select
-                v-model="constraint.baseConstraint"
-                :items="constraintNames"
-                label="Constraint*"
-                reguired
-                :rules="[v => !!v || 'Please, select a constraint.']"
-        ></v-select>
-        <v-select
                 v-model="constraint.type"
                 :items="types"
                 label="Type*"
@@ -35,14 +28,11 @@
             constraint: {
                 type: Object,
                 default: () => ({})
-            }
+            },
+            mode: "update"
         },
         data: () => ({
-            constraintNames: [
-                "Name1",
-                "Name2",
-                "Name3"
-            ],
+            selectedConstraint: {},
             types: [
                 "String",
                 "Integer",

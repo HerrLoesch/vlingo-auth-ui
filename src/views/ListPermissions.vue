@@ -57,8 +57,23 @@
                         </td>
                     </tr>
                 </template>
+
+                <!-- Expanded View-->
+                <template slot="expand" slot-scope="props">
+                    <v-card flat class="grey lighten-3">
+                        <v-card-text>
+                            <v-layout>
+                                <v-flex xs4>
+                                    <constraint-list :constraints="props.item.constraints"
+                                                     :permission="props.item"></constraint-list>
+                                </v-flex>
+                            </v-layout>
+                        </v-card-text>
+                    </v-card>
+                </template>
             </v-data-table>
         </v-card>
+
 
         <!-- Delete confirmation -->
         <v-dialog v-model="deleteConfirmationVisible" width="400">
@@ -109,9 +124,11 @@
 <script>
 
     import CreateOrEditPermission from "./CreateOrEditPermission"
+    import ConstraintList from "../components/ConstraintList";
 
     export default {
         components: {
+            ConstraintList,
             CreateOrEditPermission
         },
         name: "ListPermissions",

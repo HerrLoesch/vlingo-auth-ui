@@ -41,7 +41,7 @@
             }
         },
         computed: {
-          selectedCredential() {
+          selectedConstraint() {
               return this.credential
           }
         },

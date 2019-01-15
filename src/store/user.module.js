@@ -23,7 +23,7 @@ const DELETE = "deleteUser"
 const UPDATE = "updateUser"
 const ADD_CREDENTIAL = "addCredential"
 const UPDATE_CREDENTIAL = "updateCredential"
-const DELETE_CREDENTIAL = "askForCredentialDeletion"
+const DELETE_CREDENTIAL = "askForConstraintDeletion"
 const ALL_USERS_GETTER = "getAllUsers"
 
 // "public" member
