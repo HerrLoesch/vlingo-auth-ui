@@ -37,12 +37,6 @@
                         <td class="text-xs-left">{{ props.item.name }}</td>
                         <td class="text-xs-left">{{ props.item.description }}</td>
                         <td class="justify-center layout px-0">
-                            <v-icon
-                                    small
-                                    class="mr-2"
-                                    @click="showEditGroupMembersDialog(props.item)">
-                                link
-                            </v-icon>
                             <v-icon small
                                     id="editGroupButton"
                                     class="mr-2"
@@ -108,16 +102,6 @@
                                v-on:saved="closeEditDialogs"></CreateOrEditPermission>
         </v-dialog>
 
-        <!-- Manage group members dialog -->
-        <v-dialog v-model="editConstraintsDialogVisible" width="400" scrollable>
-
-            TODO: Edit Constraints
-
-           <!-- <EditGroupMembers :group="editablePermission"
-                              v-on:canceled="closeEditDialogs"
-                              v-on:saved="closeEditDialogs"></EditGroupMembers> -->
-        </v-dialog>
-
     </v-container>
 </template>
 
@@ -140,7 +124,6 @@
             deleteConfirmationVisible: false,
             createDialogVisible: false,
             editDialogVisible: false,
-            editConstraintsDialogVisible: false,
             permissions: [
                 {
                     name: "Permission 1",
@@ -205,10 +188,6 @@
                 // deep copy to prevent direct edit of the actual list item.
                 this.editablePermission = JSON.parse(JSON.stringify(item))
             },
-            showEditGroupMembersDialog(item) {
-                this.setEditableGroupToClone(item)
-                this.editConstraintsDialogVisible = true
-            },
             showEditDialog(item) {
                 this.setEditableGroupToClone(item)
                 this.editDialogVisible = true
@@ -226,7 +205,6 @@
             },
             closeEditDialogs() {
                 this.editDialogVisible = false
-                this.editConstraintsDialogVisible = false
                 this.editablePermission = {}
             }
         }
