@@ -32,6 +32,6 @@ describe("When a user is deleted from user list", () => {
             cy.get("[aria-label='Search']").type(usedUserData.userName)
         })
 
-        cy.should("contain", errorText)
+        cy.get("#users-list").should("contain", errorText)
     })
 })
