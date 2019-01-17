@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card id="constraint-list">
         <v-toolbar dense card class="secondary">
             Constraints
 
@@ -28,8 +28,6 @@
                         </v-btn>
                     </v-list-tile-action>
                 </v-list-tile>
-
-
             </template>
         </v-list>
 
@@ -39,11 +37,10 @@
                 <v-card-title class="headline teal darken-3 white--text" primary-title>
                     {{inputMode}} constraint
                 </v-card-title>
-                <edit-permission-constraints-details
+                <edit-constraints-details
                                  :constraint="selectedConstraint"
                                  v-on:canceled="editConstraintDialogVisible = false"
-                                 v-on:saved="editConstraintDialogVisible = false"></edit-permission-constraints-details>
-
+                                 v-on:saved="editConstraintDialogVisible = false"></edit-constraints-details>
 
                 <v-divider></v-divider>
 
@@ -76,11 +73,11 @@
 
 <script>
     // import {DELETE_CREDENTIAL_OF_USER} from "../store/user.module"
-    import EditPermissionConstraintsDetails from "./EditPermissionConstraintsDetails";
+    import EditConstraintsDetails from "./EditConstraintsDetails";
 
     export default {
         components: {
-            EditPermissionConstraintsDetails,
+            EditConstraintsDetails,
         },
         props: {
             constraints: {

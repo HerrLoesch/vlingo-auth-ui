@@ -134,13 +134,13 @@
                             name: "Constraint 1",
                             description: "First constraint",
                             type: "vlingo",
-                            value: "1"
+                            value: "string"
                         },
                         {
                             name: "Constraint 2",
                             description: "Second constraint",
-                            type: "vlingo",
-                            value: "1"
+                            type: "string",
+                            value: "2"
                         }
                     ]
                 },
@@ -152,14 +152,14 @@
                         {
                             name: "Constraint 3",
                             description: "Third constraint",
-                            type: "vlingo",
-                            value: "1"
+                            type: "string",
+                            value: "3"
                         },
                         {
                             name: "Constraint 4",
                             description: "Fourth constraint",
-                            type: "vlingo",
-                            value: "1"
+                            type: "string",
+                            value: "4"
                         }
                     ]
                 }

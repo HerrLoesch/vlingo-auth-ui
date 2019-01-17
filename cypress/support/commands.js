@@ -90,3 +90,33 @@ Cypress.Commands.add("enterGroupDetails", (group, parent) => {
         }
     })
 })
+
+Cypress.Commands.add("enterPermissionDetails", (permission, parent) => {
+    cy.get(parent).within(() => {
+
+        if (permission.name !== undefined) {
+            cy.get("#nameField").clear().type(permission.name)
+        }
+
+        if (permission.description !== undefined) {
+            cy.get("#descriptionField").clear().type(permission.description)
+        }
+
+        if(permission.constraint !== undefined) {
+
+            if (permission.constraint.name !== undefined) {
+                cy.get("#constraintName").clear().type(permission.constraint.name)
+            }
+
+            if (permission.constraint.value !== undefined) {
+                cy.get("#constraintValue").clear().type(permission.constraint.value)
+            }
+        }
+    })
+
+    // menus have an own layer and so they are not part of the parent
+    if(permission.constraint !== undefined) {
+        cy.get("#constraintType").parent().click()
+        cy.get(".v-menu__content").contains(permission.constraint.type).click()
+    }
+})

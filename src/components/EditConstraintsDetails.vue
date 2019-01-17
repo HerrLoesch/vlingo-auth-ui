@@ -5,11 +5,13 @@
                 :items="types"
                 label="Type*"
                 reguired
+                id="constraintType"
                 :rules="[v => !!v || 'Please, select a type.']"
         ></v-select>
         <v-text-field
                 v-model="constraint.name"
                 label="Name*"
+                id="constraintName"
                 required
                 :rules="[v => !!v || 'Please, enter a name.']"
         ></v-text-field>
@@ -17,6 +19,7 @@
                 v-model="constraint.value"
                 label="Value*"
                 required
+                id="constraintValue"
                 :rules="[v => !!v || 'Please, enter a value.']"
         ></v-text-field>
     </v-container>

@@ -18,7 +18,7 @@
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn flat @click="cancel()">Cancel</v-btn>
-                <v-btn color="accent" flat :disabled="!valid" @click="save()">Save</v-btn>
+                <v-btn color="accent" flat :disabled="!valid" @click="save()" id="savePermissionButton">Save</v-btn>
             </v-card-actions>
         </v-form>
     </v-card>
@@ -26,7 +26,7 @@
 
 <script>
     import NameAndDescriptionInput from "../components/NameDescriptionInput"
-    import EditPermissionConstraintsDetails from "../components/EditPermissionConstraintsDetails"
+    import EditPermissionConstraintsDetails from "../components/EditConstraintsDetails"
 
     export default {
         components: {
