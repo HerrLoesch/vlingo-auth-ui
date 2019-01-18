@@ -2,6 +2,7 @@ import Vuex from "vuex"
 import {APPLICATION_STATE_MODULE, applicationStateModule} from "./applicationState.module"
 import {USER_MODULE, userModule} from "./user.module"
 import {GROUP_MODULE, groupModule} from "./group.module"
+import {PERMISSION_MODULE, permissionModule} from "./permission.module"
 import Vue from "vue"
 
 
@@ -11,7 +12,8 @@ const store = new Vuex.Store({
     modules: {
         [APPLICATION_STATE_MODULE]: applicationStateModule,
         [USER_MODULE]: userModule,
-        [GROUP_MODULE]: groupModule
+        [GROUP_MODULE]: groupModule,
+        [PERMISSION_MODULE]: permissionModule
     }
 })
 

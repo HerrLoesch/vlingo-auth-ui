@@ -27,6 +27,7 @@
 <script>
     import NameAndDescriptionInput from "../components/NameDescriptionInput"
     import EditPermissionConstraintsDetails from "../components/EditConstraintsDetails"
+    import {ADD_PERMISSION} from "../store/permission.module"
 
     export default {
         components: {
@@ -60,7 +61,7 @@
                 if (this.mode === "edit") {
                     // this.$store.dispatch(UPDATE_GROUP, this.group)
                 } else {
-                    // this.$store.dispatch(ADD_GROUP, this.group)
+                     this.$store.dispatch(ADD_PERMISSION, this.permission)
                 }
 
                 this.$emit("saved", this.permission)

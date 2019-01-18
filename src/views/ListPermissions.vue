@@ -90,16 +90,16 @@
         <v-dialog v-model="createDialogVisible" width="400">
             <v-card fluid>
                 <CreateOrEditPermission mode="create"
-                                   v-on:canceled="createDialogVisible = false"
-                                   v-on:saved="createDialogVisible = false"></CreateOrEditPermission>
+                                        v-on:canceled="createDialogVisible = false"
+                                        v-on:saved="createDialogVisible = false"></CreateOrEditPermission>
             </v-card>
         </v-dialog>
 
         <!-- Edit permission dialog -->
         <v-dialog v-model="editDialogVisible" width="400" scrollable>
             <CreateOrEditPermission mode="edit" :group="editablePermission"
-                               v-on:canceled="closeEditDialogs"
-                               v-on:saved="closeEditDialogs"></CreateOrEditPermission>
+                                    v-on:canceled="closeEditDialogs"
+                                    v-on:saved="closeEditDialogs"></CreateOrEditPermission>
         </v-dialog>
 
     </v-container>
@@ -107,63 +107,33 @@
 
 <script>
 
+    import {mapState} from "vuex"
     import CreateOrEditPermission from "./CreateOrEditPermission"
-    import ConstraintList from "../components/ConstraintList";
+    import ConstraintList from "../components/ConstraintList"
+    import {PERMISSION_MODULE, INITIALIZE_PERMISSIONS} from "../store/permission.module"
+
 
     export default {
         components: {
             ConstraintList,
             CreateOrEditPermission
         },
+        mounted() {
+            this.$store.dispatch(INITIALIZE_PERMISSIONS)
+        },
         name: "ListPermissions",
+
+        computed: mapState(PERMISSION_MODULE, {
+            permissions: state => state.permissions,
+            isLoading: state => state.isLoading
+        }),
         data: () => ({
-            isLoading: false,
             search: '',
             showLoadingBar: false,
             editablePermission: {},
             deleteConfirmationVisible: false,
             createDialogVisible: false,
             editDialogVisible: false,
-            permissions: [
-                {
-                    name: "Permission 1",
-                    description: "First permission",
-                    id: 1,
-                    constraints: [
-                        {
-                            name: "Constraint 1",
-                            description: "First constraint",
-                            type: "vlingo",
-                            value: "string"
-                        },
-                        {
-                            name: "Constraint 2",
-                            description: "Second constraint",
-                            type: "string",
-                            value: "2"
-                        }
-                    ]
-                },
-                {
-                    name: "Permission 2",
-                    description: "Second permission",
-                    id: 2,
-                    constraints: [
-                        {
-                            name: "Constraint 3",
-                            description: "Third constraint",
-                            type: "string",
-                            value: "3"
-                        },
-                        {
-                            name: "Constraint 4",
-                            description: "Fourth constraint",
-                            type: "string",
-                            value: "4"
-                        }
-                    ]
-                }
-            ],
             headers: [
                 {
                     text: 'Name',
