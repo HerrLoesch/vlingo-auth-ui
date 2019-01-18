@@ -27,6 +27,13 @@ describe("When a new permission is created", function () {
         cy.get("#permissions-list").get("[aria-label='Search']").type(permissionData.name)
         cy.get("#permissions-list").get(".v-table").should("contain", permissionData.description)
     })
+
+    it("and it has the entered constraint", function () {
+
+        cy.get("#permissions-list").get(".v-table").contains(permissionData.description).click()
+        cy.get("#permissions-list").get(".v-table").should("contain", permissionData.constraint.name)
+
+    })
 })
 
 

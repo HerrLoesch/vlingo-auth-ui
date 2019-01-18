@@ -44,6 +44,7 @@ export const permissionModule = {
             state.idTreshold += 1
             permission.id = state.idTreshold
             state.permissions.push(permission)
+            console.log(permission)
         },
         [UPDATE_PERMISSION_MUTATION](state, permission) {
             let existingPermission = _.find(state.permissions, {id: permission.id})

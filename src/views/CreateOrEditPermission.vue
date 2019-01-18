@@ -10,7 +10,7 @@
                         <v-divider></v-divider>
 
                         <v-subheader>Constraint</v-subheader>
-                        <edit-permission-constraints-details :constraint="permission.constraint"></edit-permission-constraints-details>
+                        <edit-permission-constraints-details :constraint="constraint"></edit-permission-constraints-details>
 
                     </div>
                 </v-card-text>
@@ -44,7 +44,8 @@
             }
         },
         data: () => ({
-            valid: false
+            valid: false,
+            constraint: {}
         }),
         computed: {
             title: function() {
@@ -61,7 +62,8 @@
                 if (this.mode === "edit") {
                      this.$store.dispatch(UPDATE_PERMISSION, this.permission)
                 } else {
-                     this.$store.dispatch(ADD_PERMISSION, this.permission)
+                    this.permission.constraints = [this.constraint]                    
+                    this.$store.dispatch(ADD_PERMISSION, this.permission)
                 }
 
                 this.$emit("saved", this.permission)
