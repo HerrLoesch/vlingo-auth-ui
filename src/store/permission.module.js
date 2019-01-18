@@ -9,8 +9,10 @@ import {EventBus} from "../plugins/EventBus"
 
 // "private" member
 const ADD_PERMISSION_MUTATION = "addPermissionMutation"
+const UPDATE_PERMISSION_MUTATION = "updatePermissionMutation"
 const ALL_PERMISSIONS_GETTER = "getAllPermissions"
 const ADD_PERMISSION_ACTION = "addPermissionAction"
+const UPDATE_PERMISSION_ACTION = "updatePermissionAction"
 const INITIALIZE_PERMISSIONS_ACTION = "initializePermissions"
 const SET_ISLOADING = "setIsLoading"
 
@@ -18,6 +20,8 @@ const SET_ISLOADING = "setIsLoading"
 export const PERMISSION_MODULE = "permissionModule"
 export const INITIALIZE_PERMISSIONS = PERMISSION_MODULE + "/" + INITIALIZE_PERMISSIONS_ACTION
 export const ADD_PERMISSION = PERMISSION_MODULE + "/" + ADD_PERMISSION_ACTION
+export const UPDATE_PERMISSION = PERMISSION_MODULE + "/" + UPDATE_PERMISSION_ACTION
+
 
 export const GET_ALL_PERMISSIONS = PERMISSION_MODULE + "/" + ALL_PERMISSIONS_GETTER
 
@@ -34,6 +38,10 @@ export const permissionModule = {
             state.idTreshold += 1
             permission.id = state.idTreshold
             state.permissions.push(permission)
+        },
+        [UPDATE_PERMISSION_MUTATION](state, permission) {
+            let existingPermission = _.find(state.permissions, {id: permission.id})
+            existingPermission.description = permission.description
         },
         [SET_ISLOADING](state, isLoading) {
             state.isLoading = isLoading
@@ -111,6 +119,12 @@ export const permissionModule = {
 
             // add actual API call
             EventBus.$emit("notification", "Added new permission " + permission.name)
-        }
+        },
+        [UPDATE_PERMISSION_ACTION]: function ({commit}, permission) {
+            commit(UPDATE_PERMISSION_MUTATION, permission)
+
+            // add actual API call
+            EventBus.$emit("notification", "Updated permission " + permission.name)
+        },
     }
 }

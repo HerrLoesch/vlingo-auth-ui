@@ -4,7 +4,7 @@
 
         <v-form v-model="valid">
                 <v-card-text>
-                    <name-and-description-input :value="permission"></name-and-description-input>
+                    <name-and-description-input :mode="mode" :value="permission"></name-and-description-input>
 
                     <div v-if="mode !== 'edit'">
                         <v-divider></v-divider>
@@ -27,7 +27,7 @@
 <script>
     import NameAndDescriptionInput from "../components/NameDescriptionInput"
     import EditPermissionConstraintsDetails from "../components/EditConstraintsDetails"
-    import {ADD_PERMISSION} from "../store/permission.module"
+    import {ADD_PERMISSION, UPDATE_PERMISSION} from "../store/permission.module"
 
     export default {
         components: {
@@ -59,7 +59,7 @@
             save() {
 
                 if (this.mode === "edit") {
-                    // this.$store.dispatch(UPDATE_GROUP, this.group)
+                     this.$store.dispatch(UPDATE_PERMISSION, this.permission)
                 } else {
                      this.$store.dispatch(ADD_PERMISSION, this.permission)
                 }

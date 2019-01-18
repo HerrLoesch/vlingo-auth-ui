@@ -97,7 +97,7 @@
 
         <!-- Edit permission dialog -->
         <v-dialog v-model="editDialogVisible" width="400" scrollable>
-            <CreateOrEditPermission mode="edit" :group="editablePermission"
+            <CreateOrEditPermission mode="edit" :permission="editablePermission"
                                     v-on:canceled="closeEditDialogs"
                                     v-on:saved="closeEditDialogs"></CreateOrEditPermission>
         </v-dialog>
