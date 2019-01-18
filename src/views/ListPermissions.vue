@@ -90,8 +90,8 @@
         <v-dialog v-model="createDialogVisible" width="400">
             <v-card fluid>
                 <CreateOrEditPermission mode="create"
-                                        v-on:canceled="createDialogVisible = false"
-                                        v-on:saved="createDialogVisible = false"></CreateOrEditPermission>
+                                        v-on:canceled="closeEditDialogs"
+                                        v-on:saved="closeEditDialogs"></CreateOrEditPermission>
             </v-card>
         </v-dialog>
 
@@ -110,8 +110,7 @@
     import {mapState} from "vuex"
     import CreateOrEditPermission from "./CreateOrEditPermission"
     import ConstraintList from "../components/ConstraintList"
-    import {PERMISSION_MODULE, INITIALIZE_PERMISSIONS} from "../store/permission.module"
-
+    import {PERMISSION_MODULE, INITIALIZE_PERMISSIONS, DELETE_PERMISSION} from "../store/permission.module"
 
     export default {
         components: {
@@ -167,7 +166,7 @@
                 this.deleteConfirmationVisible = true
             },
             deleteItem() {
-                // this.$store.dispatch(DELETE_GROUP, this.editablePermission)
+                this.$store.dispatch(DELETE_PERMISSION, this.editablePermission)
                 this.closeConfirmation()
             },
             closeConfirmation() {
@@ -176,6 +175,7 @@
             closeEditDialogs() {
                 this.editDialogVisible = false
                 this.editablePermission = {}
+                this.createDialogVisible = false
             }
         }
     }

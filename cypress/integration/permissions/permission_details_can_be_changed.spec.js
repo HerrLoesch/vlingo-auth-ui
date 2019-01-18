@@ -1,4 +1,4 @@
-describe("When data of a user is changed", () => {
+describe("When data of a permission is changed", () => {
 
     var permissionData
     var newPermissionData

@@ -10,9 +10,14 @@ import {EventBus} from "../plugins/EventBus"
 // "private" member
 const ADD_PERMISSION_MUTATION = "addPermissionMutation"
 const UPDATE_PERMISSION_MUTATION = "updatePermissionMutation"
+const DELETE_PERMISSION_MUTATION = "deletePermissionMutation"
+
 const ALL_PERMISSIONS_GETTER = "getAllPermissions"
+
 const ADD_PERMISSION_ACTION = "addPermissionAction"
 const UPDATE_PERMISSION_ACTION = "updatePermissionAction"
+const DELETE_PERMISSION_ACTION = "deletePermissionAction"
+
 const INITIALIZE_PERMISSIONS_ACTION = "initializePermissions"
 const SET_ISLOADING = "setIsLoading"
 
@@ -20,6 +25,7 @@ const SET_ISLOADING = "setIsLoading"
 export const PERMISSION_MODULE = "permissionModule"
 export const INITIALIZE_PERMISSIONS = PERMISSION_MODULE + "/" + INITIALIZE_PERMISSIONS_ACTION
 export const ADD_PERMISSION = PERMISSION_MODULE + "/" + ADD_PERMISSION_ACTION
+export const DELETE_PERMISSION = PERMISSION_MODULE + "/" + DELETE_PERMISSION_ACTION
 export const UPDATE_PERMISSION = PERMISSION_MODULE + "/" + UPDATE_PERMISSION_ACTION
 
 
@@ -43,6 +49,10 @@ export const permissionModule = {
             let existingPermission = _.find(state.permissions, {id: permission.id})
             existingPermission.description = permission.description
         },
+        [DELETE_PERMISSION_MUTATION](state, permission) {
+            let index = state.permissions.indexOf(permission)
+            state.permissions.splice(index, 1)
+        },
         [SET_ISLOADING](state, isLoading) {
             state.isLoading = isLoading
         },
@@ -57,7 +67,7 @@ export const permissionModule = {
                 resultPermissions.push(clone)
             })
 
-          return resultPermissions
+            return resultPermissions
         }
     },
     actions: {
@@ -67,7 +77,7 @@ export const permissionModule = {
             }
 
             commit(SET_ISLOADING, true)
-            
+
             let mockData = [
                 {
                     name: "Permission 1",
@@ -107,7 +117,7 @@ export const permissionModule = {
                         }
                     ]
                 }]
-            
+
             commit(ADD_PERMISSION_MUTATION, mockData[0])
             commit(ADD_PERMISSION_MUTATION, mockData[1])
 
@@ -125,6 +135,12 @@ export const permissionModule = {
 
             // add actual API call
             EventBus.$emit("notification", "Updated permission " + permission.name)
+        },
+        [DELETE_PERMISSION_ACTION]: function ({commit}, permission) {
+            commit(DELETE_PERMISSION_MUTATION, permission)
+
+            // add actual API call
+            EventBus.$emit("notification", "Deleted permission " + permission.name)
         },
     }
 }
