@@ -17,9 +17,6 @@ describe("When data of a permission is changed", () => {
                 // name can not be edited
                 newPermission.name = undefined
                 
-                // constraints are edited in another way                
-                newPermission.constraint = undefined
-
                 newPermissionData = newPermission
                 cy.enterPermissionDetails(newPermission, ".v-dialog--active")
 

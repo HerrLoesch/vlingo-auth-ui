@@ -12,6 +12,7 @@ describe("When a new permission is created", function () {
         cy.fixture("newPermission").then((permission) => {
             permissionData = permission
             cy.enterPermissionDetails(permission, ".v-dialog--active")
+            cy.enterConstraintDetails(permission.constraint, ".v-dialog--active")
 
             cy.get(".v-dialog--active").contains("Save").click()
 
