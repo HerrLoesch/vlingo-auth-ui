@@ -21,7 +21,7 @@
                        bottom
                        right
                        fab
-                       id="addGroupButton"
+                       id="addPermissionButton"
                 >
                     <v-icon>add</v-icon>
                 </v-btn>

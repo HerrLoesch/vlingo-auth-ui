@@ -8,7 +8,9 @@ describe("When a user is deleted from user list", () => {
 
         cy.fixture("existingUser").then((user) => {
             usedUserData = user
-            cy.get("#users-list").get("[aria-label='Search']").type(usedUserData.userName)
+            
+            cy.searchListFor("#users-list", usedUserData.userName)
+
             cy.get("#users-list").contains("delete").click()
             cy.get(".v-dialog--active").contains("Yes").click()
         })
@@ -17,21 +19,15 @@ describe("When a user is deleted from user list", () => {
     })
 
     it("then he can no longer be found.", () => {
-        cy.get("#users-list").within(() => {
-            cy.get("[aria-label='Search']").clear()
-            cy.get("[aria-label='Search']").type(usedUserData.userName)
-            cy.get(".v-table").should("not.contain", usedUserData.email)
-        })
+        cy.searchListFor("#users-list", usedUserData.userName)
 
+        cy.get("#users-list").get(".v-table").should("not.contain", usedUserData.email)
     })
 
     it("instead an error text is shown.", () => {
         let errorText = "Your search for \"" + usedUserData.userName + "\" found no results."
-        cy.get("#users-list").within(() => {
-            cy.get("[aria-label='Search']").clear()
-            cy.get("[aria-label='Search']").type(usedUserData.userName)
-        })
-
+        
+        cy.searchListFor("#users-list", usedUserData.userName)
         cy.get("#users-list").should("contain", errorText)
     })
 })

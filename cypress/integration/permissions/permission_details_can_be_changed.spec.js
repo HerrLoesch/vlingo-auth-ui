@@ -25,15 +25,15 @@ describe("When data of a permission is changed", () => {
         })
     })
 
-    it("then the old data can no longer be found.", () => {
-        cy.get("#permissions-list").get("[aria-label='Search']").clear()
-        cy.get("#permissions-list").get("[aria-label='Search']").type(permissionData.name)
+    it("then the old data can no longer be found.", () => {        
+
+        cy.searchListFor("#permissions-list", permissionData.name)
         cy.get("#permissions-list").should("not.contain", permissionData.description)
     })
 
     it("then the new description is to be found.", () => {
-        cy.get("#permissions-list").get("[aria-label='Search']").clear()
-        cy.get("#permissions-list").get("[aria-label='Search']").type(permissionData.name)
+        
+        cy.searchListFor("#permissions-list", permissionData.name)
         cy.get("#permissions-list").get(".v-table").should("contain", newPermissionData.description)
     })
 })

@@ -10,10 +10,8 @@ describe("When an existing group is changed", () => {
 
             existingGroupData = group
 
-            cy.get("#groups-list").within(() => {
-                cy.get("[aria-label='Search']").type(existingGroupData.name)
-                cy.get("#editGroupButton").click()
-            })
+            cy.searchListFor("#groups-list", existingGroupData.name)
+            cy.get("#editGroupButton").click()
         })
 
     })
@@ -35,8 +33,10 @@ describe("When an existing group is changed", () => {
         })
 
         it("then it can be found in the group list with its old name and new description.", () => {
+            
+            cy.searchListFor("#groups-list", existingGroupData.name)
+            
             cy.get("#groups-list").within(() => {
-                cy.get("[aria-label='Search']").clear().type(existingGroupData.name)
                 cy.get(".v-table").should("contain", existingGroupData.name)
                 cy.get(".v-table").should("contain", newGroupData.description)
             })

@@ -125,3 +125,10 @@ Cypress.Commands.add("enterConstraintDetails", (constraint, parent) => {
         })
     }
 })
+
+Cypress.Commands.add("searchListFor", (listId, searchString) => {
+    cy.get(listId).within(() => {
+        cy.get("[aria-label='Search']").clear()
+        cy.get("[aria-label='Search']").type(searchString)
+    })
+})

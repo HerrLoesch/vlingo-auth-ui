@@ -9,7 +9,8 @@ describe("When data of a user is changed", () => {
 
         cy.fixture("existingUser").then((user) => {
             usedUserData = user
-            cy.get("#users-list").get("[aria-label='Search']").type(usedUserData.userName)
+
+            cy.searchListFor("#users-list", usedUserData.userName)
             cy.get("#users-list").contains("edit").click()
 
             cy.fixture("newUser").then((newUser) => {
@@ -24,18 +25,21 @@ describe("When data of a user is changed", () => {
     })
 
     it("then the old data can no longer be found.", () => {
-        cy.get("#users-list").get("[aria-label='Search']").clear()
-        cy.get("#users-list").get("[aria-label='Search']").type(usedUserData.userName)
+        cy.searchListFor("#users-list", usedUserData.userName)
+
         cy.get("#users-list").should("not.contain", usedUserData.email)
     })
 
     it("the the new data is to be found.", () => {
-        cy.get("#users-list").get("[aria-label='Search']").clear()
-        cy.get("#users-list").get("[aria-label='Search']").type(newUserData.userName)
-        cy.get("#users-list").get(".v-table").should("contain", newUserData.userName)
-        cy.get("#users-list").get(".v-table").should("contain", newUserData.email)
-        cy.get("#users-list").get(".v-table").should("contain", newUserData.givenName)
-        cy.get("#users-list").get(".v-table").should("contain", newUserData.familyName)
-        cy.get("#users-list").get(".v-table").should("contain", newUserData.phone)
+
+        cy.searchListFor("#users-list", newUserData.userName)
+
+        cy.get("#users-list").within(() => {
+            cy.get(".v-table").should("contain", newUserData.userName)
+            cy.get(".v-table").should("contain", newUserData.email)
+            cy.get(".v-table").should("contain", newUserData.givenName)
+            cy.get(".v-table").should("contain", newUserData.familyName)
+            cy.get(".v-table").should("contain", newUserData.phone)
+        })        
     })
 })

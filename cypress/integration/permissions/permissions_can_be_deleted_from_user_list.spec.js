@@ -27,11 +27,9 @@ describe("When a permission is deleted from permission list", () => {
 
     it("instead an error text is shown.", () => {
         let errorText = "Your search for \"" + usedPermissionData.name + "\" found no results."
-        cy.get("#permissions-list").within(() => {
-            cy.get("[aria-label='Search']").clear()
-            cy.get("[aria-label='Search']").type(usedPermissionData.name)
-        })
+        
 
+        cy.searchListFor("#permissions-list", usedPermissionData.name)
         cy.get("#permissions-list").should("contain", errorText)
     })
 })

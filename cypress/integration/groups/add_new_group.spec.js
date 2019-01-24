@@ -17,8 +17,10 @@ describe("When a new group is added", () => {
     })
 
     it("then it can be found in the group list.", () => {
+        
+        cy.searchListFor("#groups-list", usedInputData.name)
+
         cy.get("#groups-list").within(() => {
-            cy.get("[aria-label='Search']").type(usedInputData.name)
             cy.get(".v-table").should("contain", usedInputData.name)
             cy.get(".v-table").should("contain", usedInputData.description)
         })

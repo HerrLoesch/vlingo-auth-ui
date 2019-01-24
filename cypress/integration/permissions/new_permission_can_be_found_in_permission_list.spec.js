@@ -7,7 +7,7 @@ describe("When a new permission is created", function () {
         cy.visit("/#/listPermissions")
 
 
-        cy.get('#addGroupButton').click()
+        cy.get('#addPermissionButton').click()
 
         cy.fixture("newPermission").then((permission) => {
             permissionData = permission
@@ -23,8 +23,8 @@ describe("When a new permission is created", function () {
     })
 
     it("then it can be found in the permission list", function () {
-
-        cy.get("#permissions-list").get("[aria-label='Search']").type(permissionData.name)
+        
+        cy.searchListFor("#permissions-list", permissionData.name)
         cy.get("#permissions-list").get(".v-table").should("contain", permissionData.description)
     })
 
