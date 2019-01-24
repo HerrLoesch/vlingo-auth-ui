@@ -72,7 +72,7 @@
 </template>
 
 <script>
-    import {ADD_CONSTRAINT} from "../store/permission.module"
+    import {ADD_CONSTRAINT, DELETE_CONSTRAINT} from "../store/permission.module"
     import EditConstraintsDetails from "./EditConstraintsDetails";
 
     export default {
@@ -118,7 +118,7 @@
             },
             deleteConstraint() {
                 this.deleteConfirmationVisible = false
-                // this.$store.dispatch(DELETE_CREDENTIAL_OF_USER, {user: this.user, credential: this.selectedConstraint})
+                this.$store.dispatch(DELETE_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
             },
             save() {
                 this.$store.dispatch(ADD_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})

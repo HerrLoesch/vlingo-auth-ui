@@ -13,6 +13,7 @@ const UPDATE_PERMISSION_MUTATION = "updatePermissionMutation"
 const DELETE_PERMISSION_MUTATION = "deletePermissionMutation"
 
 const ADD_CONSTRAINT_MUTATION = "addConstraintMutation"
+const DELETE_CONSTRAINT_MUTATION = "deleteConstraintMutation"
 
 const ALL_PERMISSIONS_GETTER = "getAllPermissions"
 
@@ -21,6 +22,7 @@ const UPDATE_PERMISSION_ACTION = "updatePermissionAction"
 const DELETE_PERMISSION_ACTION = "deletePermissionAction"
 
 const ADD_CONSTRAINT_ACTION = "addConstraintAction"
+const DELETE_CONSTRAINT_ACTION = "deleteConstraintAction"
 
 const INITIALIZE_PERMISSIONS_ACTION = "initializePermissions"
 const SET_ISLOADING = "setIsLoading"
@@ -32,6 +34,7 @@ export const ADD_PERMISSION = PERMISSION_MODULE + "/" + ADD_PERMISSION_ACTION
 export const DELETE_PERMISSION = PERMISSION_MODULE + "/" + DELETE_PERMISSION_ACTION
 export const UPDATE_PERMISSION = PERMISSION_MODULE + "/" + UPDATE_PERMISSION_ACTION
 export const ADD_CONSTRAINT = PERMISSION_MODULE + "/" + ADD_CONSTRAINT_ACTION
+export const DELETE_CONSTRAINT = PERMISSION_MODULE + "/" + DELETE_CONSTRAINT_ACTION
 
 export const GET_ALL_PERMISSIONS = PERMISSION_MODULE + "/" + ALL_PERMISSIONS_GETTER
 
@@ -47,6 +50,12 @@ export const permissionModule = {
         [ADD_PERMISSION_MUTATION](state, permission) {
             state.idTreshold += 1
             permission.id = state.idTreshold
+            
+            _.each(permission.constraints, constraint => {
+                state.idTreshold += 1
+                constraint.id = state.idTreshold                
+            })
+            
             state.permissions.push(permission)
             console.log(permission)
         },
@@ -70,7 +79,24 @@ export const permissionModule = {
                 return
             }
 
+            state.idTreshold += 1
+            data.constraint.id = state.idTreshold
             existingPermission.constraints.push(data.constraint)
+        },
+        [DELETE_CONSTRAINT_MUTATION](state, updateData) {
+            let existingPermission = _.find(state.permissions, {id: updateData.permission.id})
+
+            if (existingPermission === null) {
+                // TODO: Replace by notification or something
+                console.log("Permission was not found.")
+
+                return
+            }
+            
+            console.log(updateData)
+            console.log(state.permissions)
+
+            _.remove(existingPermission.constraints, {id: updateData.constraint.id})
         }
     },
     getters: {
@@ -157,6 +183,12 @@ export const permissionModule = {
 
             commit(ADD_CONSTRAINT_MUTATION, data)
             EventBus.$emit("notification", "Added new constraint " + data.constraint)
+        },
+        [DELETE_CONSTRAINT_ACTION]: function ({commit}, data) {
+            /* TODO: Add actual API call */
+
+            commit(DELETE_CONSTRAINT_MUTATION, data)
+            EventBus.$emit("notification", "Deleted constraint " + data.constraint)
         },
     }
 }
