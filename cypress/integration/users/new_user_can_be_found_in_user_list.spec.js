@@ -19,6 +19,6 @@ describe("When a new user is created", () => {
 
     it("then he can be found in the user list.", () => {
         cy.searchListFor("#users-list", usedUserData.userName)
-        cy.get("#users-list").get(".v-table").should("contain", usedUserData.email)
+        cy.get("#users-list").get(".v-table").should("not.contain", usedUserData.email)
     })
 })

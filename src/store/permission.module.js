@@ -105,12 +105,6 @@ export const permissionModule = {
                             description: "First constraint",
                             type: "string",
                             value: "1"
-                        },
-                        {
-                            name: "Constraint 2",
-                            description: "Second constraint",
-                            type: "string",
-                            value: "2"
                         }
                     ]
                 },
@@ -120,16 +114,16 @@ export const permissionModule = {
                     id: 2,
                     constraints: [
                         {
+                            name: "Constraint 2",
+                            description: "Second constraint",
+                            type: "string",
+                            value: "2"
+                        },
+                        {
                             name: "Constraint 3",
                             description: "Third constraint",
                             type: "string",
                             value: "3"
-                        },
-                        {
-                            name: "Constraint 4",
-                            description: "Fourth constraint",
-                            type: "string",
-                            value: "4"
                         }
                     ]
                 }]
