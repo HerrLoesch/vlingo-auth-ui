@@ -107,13 +107,7 @@ Cypress.Commands.add("enterPermissionDetails", (permission, parent) => {
 Cypress.Commands.add("enterConstraintDetails", (constraint, parent) => {
 
     if (constraint !== undefined) {
-
-        // menus have an own layer and so they are not part of the parent
-        if (constraint.type !== undefined) {
-            cy.get("#constraintType").parent().click()
-            cy.get(".v-menu__content").contains(constraint.type).click()
-        }
-
+      
         cy.get(parent).within(() => {
             if (constraint.name !== undefined) {
                 cy.get("#constraintName").clear().type(constraint.name)
@@ -123,6 +117,13 @@ Cypress.Commands.add("enterConstraintDetails", (constraint, parent) => {
                 cy.get("#constraintValue").clear().type(constraint.value)
             }
         })
+
+        // menus have an own layer and so they are not part of the parent
+        if (constraint.type !== undefined) {
+            cy.get("#constraintType").parent().click()
+            cy.get(".v-menu__content").contains(constraint.type).click()
+        }
+
     }
 })
 

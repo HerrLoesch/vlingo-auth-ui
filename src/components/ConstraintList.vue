@@ -6,7 +6,7 @@
             <v-spacer></v-spacer>
 
             <v-btn icon>
-                <v-icon color="primary" @click="createConstraint">add_circle_outline</v-icon>
+                <v-icon color="primary" @click="createConstraint" id="addConstraintButton">add_circle_outline</v-icon>
             </v-btn>
 
         </v-toolbar>
