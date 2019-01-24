@@ -72,7 +72,7 @@
 </template>
 
 <script>
-    // import {DELETE_CREDENTIAL_OF_USER} from "../store/user.module"
+    import {ADD_CONSTRAINT} from "../store/permission.module"
     import EditConstraintsDetails from "./EditConstraintsDetails";
 
     export default {
@@ -121,8 +121,9 @@
                 // this.$store.dispatch(DELETE_CREDENTIAL_OF_USER, {user: this.user, credential: this.selectedConstraint})
             },
             save() {
+                this.$store.dispatch(ADD_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
+
                 this.editConstraintDialogVisible = false
-                // this.$store.dispatch(UPDATE_CONSTRAINT {permission: this.selectedPermission, constraint: this.selectedConstraint})
             },
             cancel() {
                 this.editConstraintDialogVisible = false

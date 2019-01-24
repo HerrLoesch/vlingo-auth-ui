@@ -12,11 +12,15 @@ const ADD_PERMISSION_MUTATION = "addPermissionMutation"
 const UPDATE_PERMISSION_MUTATION = "updatePermissionMutation"
 const DELETE_PERMISSION_MUTATION = "deletePermissionMutation"
 
+const ADD_CONSTRAINT_MUTATION = "addConstraintMutation"
+
 const ALL_PERMISSIONS_GETTER = "getAllPermissions"
 
 const ADD_PERMISSION_ACTION = "addPermissionAction"
 const UPDATE_PERMISSION_ACTION = "updatePermissionAction"
 const DELETE_PERMISSION_ACTION = "deletePermissionAction"
+
+const ADD_CONSTRAINT_ACTION = "addConstraintAction"
 
 const INITIALIZE_PERMISSIONS_ACTION = "initializePermissions"
 const SET_ISLOADING = "setIsLoading"
@@ -27,7 +31,7 @@ export const INITIALIZE_PERMISSIONS = PERMISSION_MODULE + "/" + INITIALIZE_PERMI
 export const ADD_PERMISSION = PERMISSION_MODULE + "/" + ADD_PERMISSION_ACTION
 export const DELETE_PERMISSION = PERMISSION_MODULE + "/" + DELETE_PERMISSION_ACTION
 export const UPDATE_PERMISSION = PERMISSION_MODULE + "/" + UPDATE_PERMISSION_ACTION
-
+export const ADD_CONSTRAINT = PERMISSION_MODULE + "/" + ADD_CONSTRAINT_ACTION
 
 export const GET_ALL_PERMISSIONS = PERMISSION_MODULE + "/" + ALL_PERMISSIONS_GETTER
 
@@ -57,6 +61,17 @@ export const permissionModule = {
         [SET_ISLOADING](state, isLoading) {
             state.isLoading = isLoading
         },
+        [ADD_CONSTRAINT_MUTATION](state, data) {
+            let existingPermission = _.find(state.permissions, {id: data.permission.id})
+
+            if (existingPermission === null) {
+                // TODO: Replace by notification or something
+                console.log("Permission was not found.")
+                return
+            }
+
+            existingPermission.constraints.push(data.constraint)
+        }
     },
     getters: {
         [ALL_PERMISSIONS_GETTER]: (state) => {
@@ -142,6 +157,12 @@ export const permissionModule = {
 
             // add actual API call
             EventBus.$emit("notification", "Deleted permission " + permission.name)
+        },
+        [ADD_CONSTRAINT_ACTION]: function ({commit}, data) {
+            /* TODO: Add actual API call */
+
+            commit(ADD_CONSTRAINT_MUTATION, data)
+            EventBus.$emit("notification", "Added new constraint " + data.constraint)
         },
     }
 }
