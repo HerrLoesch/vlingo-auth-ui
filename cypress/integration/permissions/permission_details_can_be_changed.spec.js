@@ -9,7 +9,8 @@ describe("When data of a permission is changed", () => {
 
         cy.fixture("existingPermission").then((permission) => {
             permissionData = permission
-            cy.get("#permissions-list").get("[aria-label='Search']").type(permissionData.name)
+            
+            cy.searchListFor("#permissions-list", permissionData.name)
             cy.get("#permissions-list").contains("edit").click()
 
             cy.fixture("newPermission").then((newPermission) => {
