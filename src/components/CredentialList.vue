@@ -8,7 +8,18 @@
             </v-btn>
         </v-subheader>
             <v-list two-line dense>
-                <template v-for="credential in credentials">
+                
+                <template v-if="credentials.length === 0">
+                    <v-list-tile>
+                        <v-list-tile-content>
+                            <v-list-tile-title class="text-xs-center grey--text">
+                                No credentials selected
+                            </v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </template>
+                
+                <template v-else v-for="credential in credentials">
                     <v-list-tile :key="credential.id">
                         <v-list-tile-content>
                             <v-list-tile-title>{{credential.id}}</v-list-tile-title>
