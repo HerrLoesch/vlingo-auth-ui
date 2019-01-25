@@ -60,7 +60,7 @@
                     <v-card flat class="grey lighten-3">
                         <v-card-text>
                             <v-layout>
-                                <v-flex xs4>
+                                <v-flex xs6>
                                     <credential-list :credentials="props.item.credentials"
                                                      :user="props.item"></credential-list>
                                 </v-flex>

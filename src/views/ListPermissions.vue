@@ -57,7 +57,7 @@
                     <v-card flat class="grey lighten-3">
                         <v-card-text>
                             <v-layout>
-                                <v-flex xs4>
+                                <v-flex xs6>
                                     <constraint-list :constraints="props.item.constraints"
                                                      :permission="props.item"></constraint-list>
                                 </v-flex>

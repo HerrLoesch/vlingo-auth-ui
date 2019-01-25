@@ -8,33 +8,36 @@ import {EventBus} from "../plugins/EventBus"
  */
 
 // "private" member
-// TODO: follow naming structure as shown for modules
-const ADD_LOCAL_USER = "addLocalUser"
-const ADD_LOCAL_CREDENTIAL = "addCredentialToUser"
-const UPDATE_LOCAL_CREDENTIAL = "updateCredentialOfUser"
-const DELETE_LOCAL_CREDENTIAL = "deleteCredentialOfUser"
-const REMOVE_LOCAL_USER = "removeLocalUser"
-const UPDATE_LOCAL_USER = "updateLocalUser"
-const SET_LOCAL_USERS = "setLocalUsers"
+const SET_USERS_MUTATION = "setLocalUsers"
 const SET_ISLOADING = "setIsLoading"
-const INITIALIZE = "initializeUserStore"
-const CREATE = "createUser"
-const DELETE = "deleteUser"
-const UPDATE = "updateUser"
-const ADD_CREDENTIAL = "addCredential"
-const UPDATE_CREDENTIAL = "updateCredential"
-const DELETE_CREDENTIAL = "askForConstraintDeletion"
+const INITIALIZE_USERS_ACTION = "initializeUserStore"
 const ALL_USERS_GETTER = "getAllUsers"
+
+const ADD_USER_ACTION = "createUserAction"
+const DELETE_USER_ACTION = "deleteUserAction"
+const UPDATE_USER_ACTION = "updateUserAction"
+
+const ADD_CREDENTIAL_ACTION = "addCredentialAction"
+const UPDATE_CREDENTIAL_ACTION = "updateCredentialAction"
+const DELETE_CREDENTIAL_ACTION = "deleteCredentialAction"
+
+const ADD_USER_MUTATION = "addUserMutation"
+const DELETE_USER_MUTATION = "deleteUserMutation"
+const UPDATE_USER_MUTATION = "updateUserMutation"
+
+const ADD_CREDENTIAL_MUTATION = "addCredentialMutation"
+const UPDATE_CREDENTIAL_MUTATION = "updateCredentialMutation"
+const DELETE_CREDENTIAL_MUTATION = "deleteCredentialMutation"
 
 // "public" member
 export const USER_MODULE = "userModule"
-export const INITIALIZE_USER_MODULE = USER_MODULE + "/" + INITIALIZE
-export const CREATE_USER = USER_MODULE + "/" + CREATE
-export const DELETE_USER = USER_MODULE + "/" + DELETE
-export const UPDATE_USER = USER_MODULE + "/" + UPDATE
-export const ADD_CREDENTIAL_TO_USER = USER_MODULE + "/" + ADD_CREDENTIAL
-export const UPDATE_CREDENTIAL_OF_USER = USER_MODULE + "/" + UPDATE_CREDENTIAL
-export const DELETE_CREDENTIAL_OF_USER = USER_MODULE + "/" + DELETE_CREDENTIAL
+export const INITIALIZE_USER_MODULE = USER_MODULE + "/" + INITIALIZE_USERS_ACTION
+export const CREATE_USER = USER_MODULE + "/" + ADD_USER_ACTION
+export const DELETE_USER = USER_MODULE + "/" + DELETE_USER_ACTION
+export const UPDATE_USER = USER_MODULE + "/" + UPDATE_USER_ACTION
+export const ADD_CREDENTIAL_TO_USER = USER_MODULE + "/" + ADD_CREDENTIAL_ACTION
+export const UPDATE_CREDENTIAL_OF_USER = USER_MODULE + "/" + UPDATE_CREDENTIAL_ACTION
+export const DELETE_CREDENTIAL_OF_USER = USER_MODULE + "/" + DELETE_CREDENTIAL_ACTION
 export const GET_ALL_USERS = USER_MODULE + "/" + ALL_USERS_GETTER
 
 export const userModule = {
@@ -46,21 +49,21 @@ export const userModule = {
         idTreshold: 4
     },
     mutations: {
-        [SET_LOCAL_USERS](state, users) {
+        [SET_USERS_MUTATION](state, users) {
             state.users = users
         },
-        [ADD_LOCAL_USER](state, user) {
+        [ADD_USER_MUTATION](state, user) {
 
             state.idTreshold += 1
             user.id = state.idTreshold
 
             state.users.push(user)
         },
-        [REMOVE_LOCAL_USER](state, user) {
+        [DELETE_USER_MUTATION](state, user) {
             const index = state.users.indexOf(user)
             state.users.splice(index, 1)
         },
-        [UPDATE_LOCAL_USER](state, user) {
+        [UPDATE_USER_MUTATION](state, user) {
             let existingUser = _.find(state.users, {id: user.id})
 
             existingUser.userName = user.userName
@@ -73,7 +76,7 @@ export const userModule = {
         [SET_ISLOADING](state, isLoading) {
             state.isLoading = isLoading
         },
-        [ADD_LOCAL_CREDENTIAL](state, data) {
+        [ADD_CREDENTIAL_MUTATION](state, data) {
             let existingUser = _.find(state.users, {id: data.user.id})
 
             if (existingUser === null) {
@@ -84,7 +87,7 @@ export const userModule = {
 
             existingUser.credentials.push(data.credential)
         },
-        [UPDATE_LOCAL_CREDENTIAL](state, updateData) {
+        [UPDATE_CREDENTIAL_MUTATION](state, updateData) {
             let existingUser = _.find(state.users, {id: updateData.user.id})
 
             if (existingUser === null) {
@@ -98,7 +101,7 @@ export const userModule = {
             existingCredential.authority = updateData.credential.authority
             existingCredential.secret = updateData.credential.secret
         },
-        [DELETE_LOCAL_CREDENTIAL](state, updateData) {
+        [DELETE_CREDENTIAL_MUTATION](state, updateData) {
             let existingUser = _.find(state.users, {id: updateData.user.id})
 
             if (existingUser === null) {
@@ -112,7 +115,7 @@ export const userModule = {
         }
     },
     getters: {
-        [ALL_USERS_GETTER]: (state) => {
+        [GET_ALL_USERS]: (state) => {
 
             let resultUsers = []
             _.forEach(state.users, user => {
@@ -125,14 +128,14 @@ export const userModule = {
         }
     },
     actions: {
-        [INITIALIZE]: function ({commit}) {
+        [INITIALIZE_USERS_ACTION]: function ({commit}) {
             if (this.isUserModuleInitialized || this.state.isLoading) {
                 return
             }
             commit(SET_ISLOADING, true)
 
             // just for testing purpose
-            commit(SET_LOCAL_USERS, [{
+            commit(SET_USERS_MUTATION, [{
                 email: "max@mustermail.de",
                 familyName: "Mustermann",
                 givenName: "Max",
@@ -198,7 +201,7 @@ export const userModule = {
             commit(SET_ISLOADING, false)
             this.isUserModuleInitialized = true
         },
-        [CREATE]: function ({commit}, user) {
+        [ADD_USER_ACTION]: function ({commit}, user) {
 
             if (!this.isUserModuleInitialized) {
                 this.dispatch(INITIALIZE_USER_MODULE)
@@ -206,37 +209,37 @@ export const userModule = {
 
             /* TODO: Add actual API call */
 
-            commit(ADD_LOCAL_USER, user)
+            commit(ADD_USER_MUTATION, user)
             EventBus.$emit("notification", "Added new user.")
         },
-        [DELETE]: function ({commit}, user) {
+        [DELETE_USER_ACTION]: function ({commit}, user) {
             /* TODO: Add actual API call */
 
-            commit(REMOVE_LOCAL_USER, user)
+            commit(DELETE_USER_MUTATION, user)
             EventBus.$emit("notification", "User was deleted.")
         },
-        [UPDATE]: function ({commit}, newData) {
+        [UPDATE_USER_ACTION]: function ({commit}, newData) {
             /* TODO: Add actual API call */
 
-            commit(UPDATE_LOCAL_USER, newData)
+            commit(UPDATE_USER_MUTATION, newData)
             EventBus.$emit("notification", "User information changed.")
         },
-        [ADD_CREDENTIAL]: function ({commit}, data) {
+        [ADD_CREDENTIAL_ACTION]: function ({commit}, data) {
             /* TODO: Add actual API call */
 
-            commit(ADD_LOCAL_CREDENTIAL, data)
+            commit(ADD_CREDENTIAL_MUTATION, data)
             EventBus.$emit("notification", "Added new credential.")
         },
-        [UPDATE_CREDENTIAL]: function ({commit}, updateData) {
+        [UPDATE_CREDENTIAL_ACTION]: function ({commit}, updateData) {
             /* TODO: Add actual API call */
 
-            commit(UPDATE_LOCAL_CREDENTIAL, updateData)
+            commit(UPDATE_CREDENTIAL_MUTATION, updateData)
             EventBus.$emit("notification", "Credential data changed.")
         },
-        [DELETE_CREDENTIAL]: function ({commit}, data) {
+        [DELETE_CREDENTIAL_ACTION]: function ({commit}, data) {
             /* TODO: Add actual API call */
 
-            commit(DELETE_LOCAL_CREDENTIAL, data)
+            commit(DELETE_CREDENTIAL_MUTATION, data)
             EventBus.$emit("notification", "Credential was deleted.")
         }
     }
