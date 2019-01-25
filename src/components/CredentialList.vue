@@ -38,8 +38,6 @@
                             </v-btn>
                         </v-list-tile-action>
                     </v-list-tile>
-
-
                 </template>
             </v-list>
 
