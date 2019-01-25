@@ -31,7 +31,7 @@
             </template>
         </v-list>
 
-        <!-- Edit credential dialog -->
+        <!-- Edit constraint dialog -->
         <v-dialog v-model="editConstraintDialogVisible" width="800">
             <v-card>
                 <v-card-title class="headline teal darken-3 white--text" primary-title>
@@ -39,8 +39,8 @@
                 </v-card-title>
                 <edit-constraints-details
                                  :constraint="selectedConstraint"
-                                 v-on:canceled="editConstraintDialogVisible = false"
-                                 v-on:saved="editConstraintDialogVisible = false"></edit-constraints-details>
+                                 v-on:canceled="cancel()"
+                                 v-on:saved="save()"></edit-constraints-details>
 
                 <v-divider></v-divider>
 
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-    import {ADD_CONSTRAINT, DELETE_CONSTRAINT} from "../store/permission.module"
+    import {ADD_CONSTRAINT, DELETE_CONSTRAINT, UPDATE_CONSTRAINT} from "../store/permission.module"
     import EditConstraintsDetails from "./EditConstraintsDetails";
 
     export default {
@@ -121,7 +121,11 @@
                 this.$store.dispatch(DELETE_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
             },
             save() {
-                this.$store.dispatch(ADD_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
+                if(this.inputMode === "create"){
+                    this.$store.dispatch(ADD_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
+                } else {
+                    this.$store.dispatch(UPDATE_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
+                }
 
                 this.editConstraintDialogVisible = false
             },

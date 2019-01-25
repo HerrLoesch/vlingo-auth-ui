@@ -14,8 +14,7 @@ const DELETE_PERMISSION_MUTATION = "deletePermissionMutation"
 
 const ADD_CONSTRAINT_MUTATION = "addConstraintMutation"
 const DELETE_CONSTRAINT_MUTATION = "deleteConstraintMutation"
-
-const ALL_PERMISSIONS_GETTER = "getAllPermissions"
+const UPDATE_CONSTRAINT_MUTATION = "updateConstraintMutation"
 
 const ADD_PERMISSION_ACTION = "addPermissionAction"
 const UPDATE_PERMISSION_ACTION = "updatePermissionAction"
@@ -23,9 +22,11 @@ const DELETE_PERMISSION_ACTION = "deletePermissionAction"
 
 const ADD_CONSTRAINT_ACTION = "addConstraintAction"
 const DELETE_CONSTRAINT_ACTION = "deleteConstraintAction"
+const UPDATE_CONSTRAINT_ACTION = "updateConstraintAction"
 
 const INITIALIZE_PERMISSIONS_ACTION = "initializePermissions"
 const SET_ISLOADING = "setIsLoading"
+const ALL_PERMISSIONS_GETTER = "getAllPermissions"
 
 // "public" member
 export const PERMISSION_MODULE = "permissionModule"
@@ -35,6 +36,7 @@ export const DELETE_PERMISSION = PERMISSION_MODULE + "/" + DELETE_PERMISSION_ACT
 export const UPDATE_PERMISSION = PERMISSION_MODULE + "/" + UPDATE_PERMISSION_ACTION
 export const ADD_CONSTRAINT = PERMISSION_MODULE + "/" + ADD_CONSTRAINT_ACTION
 export const DELETE_CONSTRAINT = PERMISSION_MODULE + "/" + DELETE_CONSTRAINT_ACTION
+export const UPDATE_CONSTRAINT = PERMISSION_MODULE + "/" + UPDATE_CONSTRAINT_ACTION
 
 export const GET_ALL_PERMISSIONS = PERMISSION_MODULE + "/" + ALL_PERMISSIONS_GETTER
 
@@ -93,10 +95,30 @@ export const permissionModule = {
                 return
             }
             
-            console.log(updateData)
-            console.log(state.permissions)
-
             _.remove(existingPermission.constraints, {id: updateData.constraint.id})
+        },
+        [UPDATE_CONSTRAINT_MUTATION](state, updateData) {
+            let existingPermission = _.find(state.permissions, {id: updateData.permission.id})
+
+            if (existingPermission === null) {
+                // TODO: Replace by notification or something
+                console.log("Permission was not found.")
+
+                return
+            }
+            
+            let existingConstraint = _.find(existingPermission.constraints, {id: updateData.constraint.id})
+
+            if (existingConstraint === null) {
+                // TODO: Replace by notification or something
+                console.log("Permission was not found.")
+
+                return
+            }
+
+            existingConstraint.name = updateData.constraint.name
+            existingConstraint.type = updateData.constraint.type
+            existingConstraint.value = updateData.constraint.value
         }
     },
     getters: {
@@ -128,8 +150,7 @@ export const permissionModule = {
                     constraints: [
                         {
                             name: "Constraint 1",
-                            description: "First constraint",
-                            type: "string",
+                            type: "String",
                             value: "1"
                         }
                     ]
@@ -141,14 +162,12 @@ export const permissionModule = {
                     constraints: [
                         {
                             name: "Constraint 2",
-                            description: "Second constraint",
-                            type: "string",
+                            type: "String",
                             value: "2"
                         },
                         {
                             name: "Constraint 3",
-                            description: "Third constraint",
-                            type: "string",
+                            type: "String",
                             value: "3"
                         }
                     ]
@@ -189,6 +208,12 @@ export const permissionModule = {
 
             commit(DELETE_CONSTRAINT_MUTATION, data)
             EventBus.$emit("notification", "Deleted constraint " + data.constraint)
+        },
+        [UPDATE_CONSTRAINT_ACTION]: function ({commit}, data) {
+            /* TODO: Add actual API call */
+
+            commit(UPDATE_CONSTRAINT_MUTATION, data)
+            EventBus.$emit("notification", "Saved changes to constraint " + data.constraint)
         },
     }
 }
