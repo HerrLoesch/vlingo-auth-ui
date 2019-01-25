@@ -10,8 +10,19 @@
             </v-btn>
 
         </v-toolbar>
+
         <v-list two-line dense>
-            <template v-for="constraint in constraints">
+            <template v-if="constraints.length === 0">
+                <v-list-tile>
+                    <v-list-tile-content>
+                        <v-list-tile-title class="text-xs-center grey--text">
+                            No constraints selected
+                        </v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+            </template>
+
+            <template v-else v-for="constraint in constraints">
                 <v-list-tile :key="constraint.id">
                     <v-list-tile-content>
                         <v-list-tile-title>{{constraint.name}}</v-list-tile-title>
@@ -38,9 +49,9 @@
                     {{inputMode}} constraint
                 </v-card-title>
                 <edit-constraints-details
-                                 :constraint="selectedConstraint"
-                                 v-on:canceled="cancel()"
-                                 v-on:saved="save()"></edit-constraints-details>
+                        :constraint="selectedConstraint"
+                        v-on:canceled="cancel()"
+                        v-on:saved="save()"></edit-constraints-details>
 
                 <v-divider></v-divider>
 
@@ -118,13 +129,22 @@
             },
             deleteConstraint() {
                 this.deleteConfirmationVisible = false
-                this.$store.dispatch(DELETE_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
+                this.$store.dispatch(DELETE_CONSTRAINT, {
+                    permission: this.selectedPermission,
+                    constraint: this.selectedConstraint
+                })
             },
             save() {
-                if(this.inputMode === "create"){
-                    this.$store.dispatch(ADD_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
+                if (this.inputMode === "create") {
+                    this.$store.dispatch(ADD_CONSTRAINT, {
+                        permission: this.selectedPermission,
+                        constraint: this.selectedConstraint
+                    })
                 } else {
-                    this.$store.dispatch(UPDATE_CONSTRAINT, {permission: this.selectedPermission, constraint: this.selectedConstraint})
+                    this.$store.dispatch(UPDATE_CONSTRAINT, {
+                        permission: this.selectedPermission,
+                        constraint: this.selectedConstraint
+                    })
                 }
 
                 this.editConstraintDialogVisible = false
