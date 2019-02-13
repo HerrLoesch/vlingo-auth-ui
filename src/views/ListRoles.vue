@@ -28,15 +28,14 @@
                 </v-btn>
             </v-toolbar>
 
-            <!-- user list -->
-            <v-data-table :headers="headers" :items="users" :loading="isLoading" :search="search">
+            <!-- role list -->
+            <v-data-table :headers="headers" :items="roles" :loading="isLoading" :search="search">
                 <v-alert slot="no-results" :value="true" color="error" icon="warning">
                     Your search for "{{ search }}" found no results.
                 </v-alert>
                 <template slot="items" slot-scope="props">
                     <tr @click="props.expanded = !props.expanded">
-                        <td>{{ props.item.userName }}</td>
-                        <td class="text-xs-left">{{ props.item.name }}</td>
+                        <td>{{ props.item.name }}</td>
                         <td class="text-xs-left">{{ props.item.description }}</td>
                         <td class="justify-center layout px-0">
                             <v-icon small
@@ -111,12 +110,13 @@
 
 <script>
     import {mapState} from "vuex"
+    import {DELETE_ROLE, INITIALIZE_ROLE_MODULE, ROLE_MODULE} from "../store/role.module";
 
     export default {
         components: {
         },
         created() {
-          //  this.$store.dispatch(INITIALIZE_USER_MODULE)
+            this.$store.dispatch(INITIALIZE_ROLE_MODULE)
         },
         methods: {
             registeredUser() {
@@ -132,7 +132,7 @@
                 this.selectedRole = item
             },
             deleteItem() {
-            //    this.$store.dispatch(DELETE_USER, this.selectedRole)
+                this.$store.dispatch(DELETE_ROLE, this.selectedRole)
                 this.closeConfirmation()
             },
             closeConfirmation() {
@@ -146,10 +146,10 @@
                 this.editableRole = {}
             }
         },
-     /*   computed: mapState(USER_MODULE, {
-            users: state => state.users,
+        computed: mapState(ROLE_MODULE, {
+            roles: state => state.roles,
             isLoading: state => state.isLoading
-        }),*/
+        }),
         data: () => ({
             search: "",
             showLoadingBar: false,
@@ -169,6 +169,11 @@
                  align: 'left',
                  sortable: true,
                  value: 'description'
+            },
+            {
+                text: 'Actions',
+                align: 'Center',
+                sortable: false
             }]
         })
     }
