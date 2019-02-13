@@ -45,8 +45,7 @@
                                 edit
                             </v-icon>
                             <v-icon small
-                                    @click="askToDelete(props.item)"
-                            >
+                                    @click="askToDelete(props.item)">
                                 delete
                             </v-icon>
                         </td>
