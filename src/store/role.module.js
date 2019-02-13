@@ -20,10 +20,6 @@ const ADD_ROLE_MUTATION = "addRoleMutation"
 const DELETE_ROLE_MUTATION = "deleteRoleMutation"
 const UPDATE_ROLE_MUTATION = "updateRoleMutation"
 
-const ADD_CREDENTIAL_MUTATION = "addCredentialMutation"
-const UPDATE_CREDENTIAL_MUTATION = "updateCredentialMutation"
-const DELETE_CREDENTIAL_MUTATION = "deleteCredentialMutation"
-
 // "public" member
 export const ROLE_MODULE = "roleModule"
 export const INITIALIZE_ROLE_MODULE = ROLE_MODULE + "/" + INITIALIZE_ROLES_ACTION
