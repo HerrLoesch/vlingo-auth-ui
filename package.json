@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "test:integration": "npx cypress open"
+    "test:integration": "npx cypress open",
+    "run:backend": "java -jar bin\\vlingo-auth-authservice-0.7.9.jar"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
