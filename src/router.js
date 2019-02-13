@@ -6,6 +6,7 @@ import SignOn from "./views/SignOn"
 import ListUsers from "./views/ListUsers"
 import ListGroups from "./views/ListGroups"
 import ListPermissions from "./views/ListPermissions"
+import ListRoles from "./views/ListRoles" 
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
             path: "/listPermissions",
             name: "listPermissions",
             component: ListPermissions
+        },
+        {
+            path: "/listRoles",
+            name: "listRoles",
+            component: ListRoles
         },
         {
             path: "/dummy",

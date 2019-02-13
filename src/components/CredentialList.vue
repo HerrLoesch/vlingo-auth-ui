@@ -93,7 +93,7 @@
             }
         },
         computed: {
-            selectedUser() {
+            selectedRole() {
                 return this.user
             }
         },

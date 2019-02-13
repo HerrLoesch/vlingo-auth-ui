@@ -158,7 +158,7 @@
             roleViews: [
                 {
                     title: "Roles",
-                    name: "/dummy",
+                    name: "/listRoles",
                     icon: "people_outline"
                 }
             ],
