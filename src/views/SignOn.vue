@@ -47,15 +47,12 @@
         data: () => ({
             valid: false,
             loginData: {
-                username: null,
-                credentialId: null,
-                secret: null
+                username: "",
+                credentialId: "",
+                secret: ""
             }
         }),
         methods: {
-            userNameAsCredentialId() {
-                this.credentialId = this.username
-            },
             signOn() {
                 this.$store.dispatch(LOGIN, this.loginData)
             }

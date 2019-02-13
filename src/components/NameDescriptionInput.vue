@@ -32,7 +32,7 @@
            isInEditMode: false
         }),
         watch: {
-            value: function(newValue) {
+            value: function() {
                 this.isInEditMode = false
                 this.isInEditMode = this.mode === 'edit'
             }
