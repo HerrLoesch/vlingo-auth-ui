@@ -93,21 +93,21 @@
         </v-dialog>
 
         <!-- Edit group dialog -->
-        <v-dialog v-model="editGroupDialogVisible" width="400" scrollable>
+        <v-dialog v-model="editGroupDialogVisible" width="400">
             <CreateOrEditGroup mode="edit" :group="editableGroup"
                                v-on:canceled="closeEditGroupDialogs"
                                v-on:saved="closeEditGroupDialogs"></CreateOrEditGroup>
         </v-dialog>
 
         <!-- Manage inner groups dialog -->
-        <v-dialog v-model="editInnerGroupsDialogVisible" width="400" scrollable>
+        <v-dialog v-model="editInnerGroupsDialogVisible" width="400">
             <EditInnerGroups :group="editableGroup"
                               v-on:canceled="closeEditGroupDialogs"
                               v-on:saved="closeEditGroupDialogs"></EditInnerGroups>
         </v-dialog>
 
         <!-- Manage group members dialog -->
-        <v-dialog v-model="editGroupMembersDialogVisible" width="400" scrollable>
+        <v-dialog v-model="editGroupMembersDialogVisible" width="400">
             <EditGroupMembers :group="editableGroup"
                               v-on:canceled="closeEditGroupDialogs"
                               v-on:saved="closeEditGroupDialogs"></EditGroupMembers>
