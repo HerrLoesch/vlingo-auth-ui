@@ -32,6 +32,7 @@ Cypress.Commands.add("standardLogin", () => {
         cy.get("#secret").type(user.credential.secret)
 
         cy.get("#loginButton").click()
+        cy.wait(500)
     })
 })
 
