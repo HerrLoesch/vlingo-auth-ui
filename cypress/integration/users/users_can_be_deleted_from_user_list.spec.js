@@ -14,8 +14,6 @@ describe("When a user is deleted from user list", () => {
             cy.get("#users-list").contains("delete").click()
             cy.get(".v-dialog--active").contains("Yes").click()
         })
-
-        cy.wait(1500)
     })
 
     it("then he can no longer be found.", () => {

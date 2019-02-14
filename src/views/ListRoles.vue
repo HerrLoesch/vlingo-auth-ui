@@ -22,8 +22,7 @@
                        bottom
                        right
                        fab
-                       id="addRoleButton"
-                >
+                       id="addRoleButton">
                     <v-icon>add</v-icon>
                 </v-btn>
             </v-toolbar>
@@ -85,25 +84,16 @@
             </v-card>
         </v-dialog>
 
-        <!-- Register dialog -->
+        <!-- Add dialog -->
         <v-dialog v-model="addDialogVisible" width="800">
-            <v-card fluid>
-                <v-card-title class="headline teal darken-1 white--text" primary-title>
-                    Add Role
-                </v-card-title>
-                <!-- <register-user fluid v-on:canceled="addDialogVisible=false"
-                               v-on:registered="registeredUser"></register-user> -->
-            </v-card>
+            <create-or-edit-role :role="editableRole" mode="create" v-on:saved="savedEditedRole" v-on:canceled="closeEditDialog"></create-or-edit-role>
         </v-dialog>
 
         <!-- Edit role dialog -->
         <v-dialog v-model="editRoleDialogVisible" width="800">
-            <v-card>
-                <v-card-title class="headline teal darken-1 white--text" primary-title>Edit Role</v-card-title>
                 <!-- <edit-user :user="this.editableRole"
-                           v-on:canceled="closeEditUserDialog"
-                           v-on:saved="savedEditedUser"></edit-user> -->
-            </v-card>
+                           v-on:canceled="closeEditDialog"
+                           v-on:saved="savedEditedRole"></edit-user> -->
         </v-dialog>
     </v-container>
 </template>
@@ -111,9 +101,11 @@
 <script>
     import {mapState} from "vuex"
     import {DELETE_ROLE, INITIALIZE_ROLE_MODULE, ROLE_MODULE} from "../store/role.module";
+    import CreateOrEditRole from "./CreateOrEditRole";
 
     export default {
         components: {
+            CreateOrEditRole
         },
         created() {
             this.$store.dispatch(INITIALIZE_ROLE_MODULE)
@@ -138,11 +130,12 @@
             closeConfirmation() {
                 this.deleteConfirmationVisible = false
             },
-            closeEditUserDialog() {
+            closeEditDialog() {
+                this.addDialogVisible = false
                 this.editRoleDialogVisible = false
             },
-            savedEditedUser() {
-                this.closeEditUserDialog()
+            savedEditedRole() {
+                this.closeEditDialog()
                 this.editableRole = {}
             }
         },

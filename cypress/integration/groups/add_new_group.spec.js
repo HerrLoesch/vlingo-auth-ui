@@ -13,7 +13,6 @@ describe("When a new group is added", () => {
             cy.enterGroupDetails(group, ".v-dialog--active")
             cy.get(".v-dialog--active").contains("Save").click()
         })
-
     })
 
     it("then it can be found in the group list.", () => {

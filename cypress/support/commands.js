@@ -33,8 +33,6 @@ Cypress.Commands.add("standardLogin", () => {
 
         cy.get("#loginButton").click()
     })
-
-    cy.wait(1000)
 })
 
 Cypress.Commands.add("enterUserDetails", (user, parent) => {
@@ -125,6 +123,19 @@ Cypress.Commands.add("enterConstraintDetails", (constraint, parent) => {
         }
 
     }
+})
+
+Cypress.Commands.add("enterRoleDetails", (role, parent) => {
+    cy.get(parent).within(() => {
+
+        if (role.name !== undefined) {
+            cy.get("#nameField").clear().type(role.name)
+        }
+
+        if (role.description !== undefined) {
+            cy.get("#descriptionField").clear().type(role.description)
+        }
+    })
 })
 
 Cypress.Commands.add("searchListFor", (listId, searchString) => {

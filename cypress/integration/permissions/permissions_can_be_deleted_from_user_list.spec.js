@@ -14,8 +14,6 @@ describe("When a permission is deleted from permission list", () => {
             cy.get("#permissions-list").contains("delete").click()
             cy.get(".v-dialog--active").contains("Yes").click()
         })
-
-        cy.wait(1500)
     })
 
     it("then it can no longer be found.", () => {

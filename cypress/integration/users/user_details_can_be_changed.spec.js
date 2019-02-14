@@ -26,7 +26,6 @@ describe("When data of a user is changed", () => {
 
     it("then the old data can no longer be found.", () => {
         cy.searchListFor("#users-list", usedUserData.userName)
-
         cy.get("#users-list").should("not.contain", usedUserData.email)
     })
 

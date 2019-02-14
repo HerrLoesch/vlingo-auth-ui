@@ -147,11 +147,11 @@
             closeConfirmation() {
                 this.deleteConfirmationVisible = false
             },
-            closeEditUserDialog() {
+            closeEditDialog() {
                 this.editUserDialogVisible = false
             },
             savedEditedUser() {
-                this.closeEditUserDialog()
+                this.closeEditDialog()
                 this.editableUser = {}
             }
         },

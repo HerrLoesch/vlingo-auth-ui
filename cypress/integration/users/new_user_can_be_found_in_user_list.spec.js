@@ -13,8 +13,6 @@ describe("When a new user is created", () => {
             cy.enterUserDetails(user, ".v-dialog--active")
             cy.get("#registerButton").click()
         })
-
-        cy.wait(1500)
     })
 
     it("then he can be found in the user list.", () => {
