@@ -85,15 +85,13 @@
         </v-dialog>
 
         <!-- Add dialog -->
-        <v-dialog v-model="addDialogVisible" width="800">
+        <v-dialog v-model="addDialogVisible" width="400">
             <create-or-edit-role :role="editableRole" mode="create" v-on:saved="savedEditedRole" v-on:canceled="closeEditDialog"></create-or-edit-role>
         </v-dialog>
 
         <!-- Edit role dialog -->
-        <v-dialog v-model="editRoleDialogVisible" width="800">
-                <!-- <edit-user :user="this.editableRole"
-                           v-on:canceled="closeEditDialog"
-                           v-on:saved="savedEditedRole"></edit-user> -->
+        <v-dialog v-model="editRoleDialogVisible" width="400">
+            <create-or-edit-role :role="editableRole" mode="edit" v-on:saved="savedEditedRole" v-on:canceled="closeEditDialog"></create-or-edit-role>
         </v-dialog>
     </v-container>
 </template>
