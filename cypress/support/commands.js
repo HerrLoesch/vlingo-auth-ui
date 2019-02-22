@@ -23,6 +23,17 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+var tenantId
+
+Cypress.Commands.add("createTenant", (tenant, setId) => {
+        
+    cy.request({
+        method: 'POST',
+        url: 'http://localhost:8888/tenants',
+        body: tenant
+    }).then((response) => setId(response.body.tenantId))
+})
+
 Cypress.Commands.add("standardLogin", () => {
     cy.visit("/")
 

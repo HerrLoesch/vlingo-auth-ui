@@ -8,13 +8,9 @@ describe("When a new tenant is posted to the backend", () => {
     }
     
     let id
-
+    
     before(() => {
-        cy.request({
-            method: 'POST',
-            url: 'http://localhost:8888/tenants',             
-            body: tenant
-        }).then((response) => id = response.body.tenantId)
+        cy.createTenant(tenant, (newId => id = newId))
     })
 
     it("then it can be requested by using its id.", () => {
