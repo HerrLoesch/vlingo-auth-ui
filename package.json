@@ -5,10 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit",
-    "test:integration": "npx cypress open",
-    "backend": "java -jar bin\\vlingo-auth-authservice-0.7.9.jar"
+    "lint": "vue-cli-service lint",    
+    "cypress": "npx cypress open",
+    "backend": "java -jar bin\\vlingo-auth-authservice-0.7.9.jar",
+    "test:integration": "npm run serve | npm run backend | npm run cypress"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
