@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid id="permissions-list">
+    <div id="permissions-list">
         <v-card>
             <v-toolbar class="teal darken-4 white--text">
                 <span class="headline">Permissions</span>
@@ -102,7 +102,7 @@
                                     v-on:saved="closeEditDialogs"></CreateOrEditPermission>
         </v-dialog>
 
-    </v-container>
+    </div>
 </template>
 
 <script>

@@ -62,6 +62,7 @@
                 width="200"
                 clipped
                 app
+                persistent
                 class="elevation-2"
                 v-model="drawer"
                 id="application-drawer"
@@ -117,11 +118,17 @@
             </v-list>
         </v-navigation-drawer>
 
-        <v-content>
-            <v-fade-transition mode="out-in">
-                <router-view></router-view>
-            </v-fade-transition>
-        </v-content>
+        <v-container fluid class="pa-1 pt-4">
+            <v-layout>
+              <v-flex class="xs12">
+                <v-content class="pa-0">
+                  <v-fade-transition mode="out-in">
+                    <router-view></router-view>
+                  </v-fade-transition>
+                </v-content>
+              </v-flex>
+            </v-layout>
+        </v-container>
         <v-footer app fixed>
             <span>&copy; 2019</span>
         </v-footer>

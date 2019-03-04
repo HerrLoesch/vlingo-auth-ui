@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid id="users-list">
+    <div>
         <v-card>
             <v-toolbar class="teal darken-2 white--text">
 
@@ -109,8 +109,7 @@
                            v-on:saved="savedEditedUser"></edit-user>
             </v-card>
         </v-dialog>
-
-    </v-container>
+    </div>
 </template>
 
 <script>

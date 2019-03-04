@@ -3,9 +3,7 @@
 
         <v-container>
 
-            <div v-if="loggedIn">
-                <ApplicationFrame></ApplicationFrame>
-            </div>
+            <ApplicationFrame v-if="loggedIn"></ApplicationFrame>
 
             <v-layout v-else align-center justify-center row fill-height>
                 <v-flex></v-flex>

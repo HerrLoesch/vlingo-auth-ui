@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid id="groups-list">
+    <div id="groups-list">
         <v-card>
             <v-toolbar class="teal darken-3 white--text">
                 <span class="headline">Groups</span>
@@ -114,7 +114,7 @@
         </v-dialog>
 
 
-    </v-container>
+    </div>
 </template>
 
 <script>

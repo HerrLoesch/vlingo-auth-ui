@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid id="roles-list">
+    <div fluid id="roles-list">
         <v-card>
             <v-toolbar class="teal darken-1 white--text">
 
@@ -93,7 +93,7 @@
         <v-dialog v-model="editRoleDialogVisible" width="400">
             <create-or-edit-role :role="editableRole" mode="edit" v-on:saved="savedEditedRole" v-on:canceled="closeEditDialog"></create-or-edit-role>
         </v-dialog>
-    </v-container>
+    </div>
 </template>
 
 <script>
