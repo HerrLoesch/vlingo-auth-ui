@@ -63,25 +63,30 @@
                         </td>
                     </tr>
                 </template>
+                
+                <!-- Expanded View-->
+               <!-- <template slot="expand" slot-scope="props">
+                    <v-card flat class="grey lighten-3">
+                        <v-card-text>
+                            <v-layout>
+                                <v-flex xs6>
+                                    <sub-collection :add="showEditInnerGroupsDialog(props.item)">
+                                        
+                                    </sub-collection>
+                                </v-flex>
+                            </v-layout>
+                        </v-card-text>
+                    </v-card>
+                </template>-->
             </v-data-table>
         </v-card>
 
         <!-- Delete confirmation -->
-        <v-dialog v-model="deleteConfirmationVisible" width="400">
-            <v-card>
-                <v-card-title class="headline" primary-title>
-                    Delete?
-                </v-card-title>
-                <v-card-text>
-                    Do you really want to delete group <b>{{editableGroup.name}}</b>?
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn flat @click="closeConfirmation()">No</v-btn>
-                    <v-btn color="error" flat @click="deleteItem()">Yes</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <delete-confirmation :showDialog="deleteConfirmationVisible" 
+                             :identifier="editableGroup.name"
+                             v-on:canceled="deleteConfirmationVisible = false"
+                             v-on:confirmed="deleteItem()">            
+        </delete-confirmation> 
 
         <!-- Create group dialog -->
         <v-dialog v-model="createDialogVisible" width="400">
@@ -123,9 +128,11 @@
     import CreateOrEditGroup from "./CreateOrEditGroup";
     import EditInnerGroups from "./EditInnerGroups";
     import EditGroupMembers from "./EditGroupMembers";
+    import DeleteConfirmation from "../components/DeleteConfirmation";
 
     export default {
         components: {
+            DeleteConfirmation,
             EditInnerGroups,
             CreateOrEditGroup,
             EditGroupMembers
@@ -155,11 +162,8 @@
                 this.deleteConfirmationVisible = true
             },
             deleteItem() {
-                this.$store.dispatch(DELETE_GROUP, this.editableGroup)
-                this.closeConfirmation()
-            },
-            closeConfirmation() {
                 this.deleteConfirmationVisible = false
+                this.$store.dispatch(DELETE_GROUP, this.editableGroup)
             },
             closeEditGroupDialogs() {
                 this.editGroupDialogVisible = false

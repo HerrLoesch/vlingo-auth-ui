@@ -105,7 +105,7 @@
             <v-card>
                 <v-card-title class="headline teal darken-3 white--text" primary-title>Edit User</v-card-title>
                 <edit-user :user="this.editableUser"
-                           v-on:canceled="closeEditUserDialog"
+                           v-on:canceled="closeEditDialog"
                            v-on:saved="savedEditedUser"></edit-user>
             </v-card>
         </v-dialog>
