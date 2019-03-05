@@ -73,21 +73,11 @@
         </v-card>
 
         <!-- Delete confirmation -->
-        <v-dialog v-model="deleteConfirmationVisible" width="400">
-            <v-card>
-                <v-card-title class="headline" primary-title>
-                    Delete?
-                </v-card-title>
-                <v-card-text>
-                    Do you really want to delete user <b>{{selectedUser.userName}}</b>?
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn flat @click="closeConfirmation()">No</v-btn>
-                    <v-btn color="error" flat @click="deleteItem()">Yes</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <delete-confirmation :showDialog="deleteConfirmationVisible"
+                             :identifier="selectedUser.userName"
+                             v-on:canceled="deleteConfirmationVisible = false"
+                             v-on:confirmed="deleteItem()">
+        </delete-confirmation>
 
         <!-- Register dialog -->
         <v-dialog v-model="registerDialogVisible" width="800">
@@ -118,9 +108,11 @@
     import {INITIALIZE_USER_MODULE, DELETE_USER, USER_MODULE} from "../store/user.module"
     import RegisterUser from "./RegisterUser"
     import EditUser from "./EditUser"
+    import DeleteConfirmation from "../components/DeleteConfirmation";
 
     export default {
         components: {
+            DeleteConfirmation,
             EditUser,
             RegisterUser
         },

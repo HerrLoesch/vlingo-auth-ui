@@ -70,21 +70,11 @@
 
 
         <!-- Delete confirmation -->
-        <v-dialog v-model="deleteConfirmationVisible" width="400">
-            <v-card>
-                <v-card-title class="headline" primary-title>
-                    Delete?
-                </v-card-title>
-                <v-card-text>
-                    Do you really want to delete permission <b>{{editablePermission.name}}</b>?
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn flat @click="closeConfirmation()">No</v-btn>
-                    <v-btn color="error" flat @click="deleteItem()">Yes</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <delete-confirmation :showDialog="deleteConfirmationVisible"
+                             :identifier="editablePermission.name"
+                             v-on:canceled="deleteConfirmationVisible = false"
+                             v-on:confirmed="deleteItem()">
+        </delete-confirmation>
 
         <!-- Create permission dialog -->
         <v-dialog v-model="createDialogVisible" width="400">
