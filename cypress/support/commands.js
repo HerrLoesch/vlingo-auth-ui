@@ -23,15 +23,66 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-var tenantId
+var baseUrl = "http://localhost:8888/tenants"
 
-Cypress.Commands.add("createTenant", (tenant, setId) => {
+Cypress.Commands.add("addTenantToBackEnd", (tenant, setId) => {
         
     cy.request({
         method: 'POST',
         url: 'http://localhost:8888/tenants',
         body: tenant
     }).then((response) => setId(response.body.tenantId))
+})
+
+Cypress.Commands.add("addTenant", (setId) => {
+
+    let tenant = {
+        active: true,
+        description: "test tenant",
+        name: "tenant-0815"
+    }
+    
+    cy.addTenantToBackEnd(tenant, setId)    
+})
+
+Cypress.Commands.add("registerUserAtBackend", (tenantId, user) => {
+
+    let userData = {
+        "tenantId": tenantId,
+        "username": user.userName,
+        "active": true,
+        "profile": {
+            "emailAddress": user.email,
+            "phone": user.phone,
+            "name": {
+                "given": user.givenName,
+                "family": user.familyName,
+                "second": user.secondName
+            }
+        },
+        "credential": {
+            "authority": user.credential.authority,
+            "id": user.credential.id,
+            "secret": user.credential.secret,
+            "type": user.credential.type
+        }
+    }
+    
+    cy.request({
+        method: 'POST',
+        url: baseUrl + "/" + tenantId + "/users",
+        body: userData
+    })  
+
+})
+
+Cypress.Commands.add("setupBasicStructure", (tenantIdCallback) => {
+    cy.addTenant(tenantId => {
+        cy.fixture("loginUser").then((user => {
+            cy.registerUserAtBackend(tenantId, user)
+            tenantIdCallback(tenantId)
+        }))
+    })
 })
 
 Cypress.Commands.add("enterLoginData", (user, tenantId) => {

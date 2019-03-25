@@ -1,9 +1,11 @@
-describe("When I login with correct login data ", function() {
+describe("When I login with correct login data ", function () {
     before(() => {
-        cy.standardLogin()
+        cy.setupBasicStructure((tenantId =>
+                cy.standardLogin(tenantId)
+        ))
     })
 
-    it("then I can see the actual application.", function() {
+    it("then I can see the actual application.", function () {
         cy.get("#ApplicationFrame")
     })
 })

@@ -10,7 +10,7 @@ describe("When a new tenant is posted to the backend", () => {
     let id
     
     before(() => {
-        cy.createTenant(tenant, (newId => id = newId))
+        cy.addTenantToBackEnd(tenant, (newId => id = newId))
     })
 
     it("then it can be requested by using its id.", () => {

@@ -6,7 +6,6 @@
 
 // "private" member
 const SET_ISLOGEDIN = "setIsLoggedIn"
-const SET_DEMO_MODE = "setDemoMode"
 const LOGIN_USER = "logIn"
 const LOGOUT_USER = "logOut"
 
@@ -28,11 +27,7 @@ export const applicationStateModule = {
     },
     actions: {
         [LOGIN_USER]: function ({commit}, loginData) {
-            
-            if (loginData.tenantId === "") {
-                commit(SET_ISLOGEDIN, true)
-                commit(SET_DEMO_MODE, true)
-            }
+            commit(SET_ISLOGEDIN, true)
         },
         [LOGOUT_USER]: function ({commit}) {
             console.log("logout")
