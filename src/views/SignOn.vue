@@ -4,6 +4,13 @@
             <v-card width="400">
                 <v-card-text>
                     <v-text-field
+                            id="tenantId"
+                            v-model="loginData.tenantId"
+                            label="Tenant Id"
+                            required
+                            :rules="[v => !!v || 'Please, enter the id of the tenant.']"
+                    ></v-text-field>
+                    <v-text-field
                             id="username"
                             v-model="loginData.username"
                             label="Username"
@@ -47,6 +54,7 @@
         data: () => ({
             valid: false,
             loginData: {
+                tenantId: "",
                 username: "",
                 credentialId: "",
                 secret: ""

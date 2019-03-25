@@ -6,6 +6,7 @@
 
 // "private" member
 const SET_ISLOGEDIN = "setIsLoggedIn"
+const SET_DEMO_MODE = "setDemoMode"
 const LOGIN_USER = "logIn"
 const LOGOUT_USER = "logOut"
 
@@ -23,11 +24,15 @@ export const applicationStateModule = {
     mutations: {
         [SET_ISLOGEDIN](state, isLoggedIn) {
             state.isLoggedIn = isLoggedIn
-        },
+        }
     },
     actions: {
         [LOGIN_USER]: function ({commit}, loginData) {
-            commit(SET_ISLOGEDIN, loginData !== null)
+            
+            if (loginData.tenantId === "") {
+                commit(SET_ISLOGEDIN, true)
+                commit(SET_DEMO_MODE, true)
+            }
         },
         [LOGOUT_USER]: function ({commit}) {
             console.log("logout")

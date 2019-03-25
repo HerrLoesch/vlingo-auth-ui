@@ -34,13 +34,20 @@ Cypress.Commands.add("createTenant", (tenant, setId) => {
     }).then((response) => setId(response.body.tenantId))
 })
 
-Cypress.Commands.add("standardLogin", () => {
+Cypress.Commands.add("enterLoginData", (user, tenantId) => {
+
+    cy.get("#tenantId").type(tenantId)
+    cy.get("#username").type(user.userName)
+    cy.get("#credentialId").type(user.credential.id)
+    cy.get("#secret").type(user.credential.secret)
+})
+
+Cypress.Commands.add("standardLogin", (tenantId) => {
     cy.visit("/")
 
     cy.fixture("loginUser").then((user) => {
-        cy.get("#username").type(user.userName)
-        cy.get("#credentialId").type(user.credential.id)
-        cy.get("#secret").type(user.credential.secret)
+        
+        cy.enterLoginData(user, tenantId)
 
         cy.get("#loginButton").click()
         cy.wait(500)
