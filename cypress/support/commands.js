@@ -87,6 +87,10 @@ Cypress.Commands.add("setupBasicStructure", (tenantIdCallback) => {
 
 Cypress.Commands.add("enterLoginData", (user, tenantId) => {
 
+    if(tenantId === undefined) {
+        tenantId = 123456
+    }
+    
     cy.get("#tenantId").type(tenantId)
     cy.get("#username").type(user.userName)
     cy.get("#credentialId").type(user.credential.id)
