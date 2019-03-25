@@ -39,16 +39,15 @@
                             <v-icon>more_vert</v-icon>
                         </v-btn>
                     </v-toolbar-title>
-
                     <v-list>
-                        <v-list-tile>
+                        <v-list-tile href="https://github.com/vlingo/vlingo-auth" target="_blank">
                             <v-list-tile-title>
                                 <v-icon left>code</v-icon>
                                 Code
                             </v-list-tile-title>
                         </v-list-tile>
                         <v-divider></v-divider>
-                        <v-list-tile>
+                        <v-list-tile href="https://docs.vlingo.io/vlingo-auth" target="_blank">
                             <v-list-tile-title>
                                 <v-icon left>help</v-icon>
                                 Documentation
