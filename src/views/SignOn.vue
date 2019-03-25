@@ -48,7 +48,10 @@
 
 <script>
     import {LOGIN} from "../store/applicationState.module"
+    import Cookie from "js-cookie"
 
+    const cookieName = "vlingo-auth-tenant-info"
+    
     export default {
         name: "sing-on",
         data: () => ({
@@ -60,9 +63,20 @@
                 secret: ""
             }
         }),
+        mounted: function() {
+            let tenantInfo = Cookie.get(cookieName)
+            
+            if(tenantInfo !== null) {
+                tenantInfo = JSON.parse(tenantInfo)
+                this.loginData.tenantId = tenantInfo.tenantId
+            }               
+        },
         methods: {
-            signOn() {
-                this.$store.dispatch(LOGIN, this.loginData)
+            signOn() {              
+                let that = this
+                this.$store.dispatch(LOGIN, this.loginData).then( () => {
+                    Cookie.set(cookieName, { "tenantId": that.loginData.tenantId })
+                })
             }
         }
     }
