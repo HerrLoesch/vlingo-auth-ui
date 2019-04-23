@@ -11,21 +11,21 @@
     "test:integration": "npm run serve | npm run backend | npm run cypress"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
+    "@babel/polyfill": "^7.4.3",
     "axios": "^0.18.0",
-    "cypress": "^3.1.5",
+    "cypress": "^3.2.0",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
-    "vue": "^2.6.8",
-    "vue-router": "^3.0.2",
-    "vuetify": "^1.5.4",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "vuetify": "^1.5.12",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.1",
-    "@vue/cli-plugin-eslint": "^3.4.1",
-    "@vue/cli-plugin-unit-mocha": "^3.4.1",
-    "@vue/cli-service": "^3.4.1",
+    "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-plugin-eslint": "^3.6.0",
+    "@vue/cli-plugin-unit-mocha": "^3.6.0",
+    "@vue/cli-service": "^3.6.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-plugin-transform-imports": "^1.5.0",
     "chai": "^4.1.2",
@@ -33,6 +33,6 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-cli-plugin-vuetify": "^0.2.1",
-    "vue-template-compiler": "^2.6.8"
+    "vue-template-compiler": "^2.6.10"
   }
 }
