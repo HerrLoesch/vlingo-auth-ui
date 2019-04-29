@@ -6,6 +6,7 @@
 
 // "private" member
 const SET_ISLOGEDIN = "setIsLoggedIn"
+const SET_TENANTID = "setTenantId"
 const LOGIN_USER = "logIn"
 const LOGOUT_USER = "logOut"
 
@@ -18,15 +19,22 @@ export const LOGOUT = APPLICATION_STATE_MODULE + "/" + LOGOUT_USER
 export const applicationStateModule = {
     namespaced: true,
     state: {
-        isLoggedIn: false
+        isLoggedIn: false,
+        tenantId: null
     },
     mutations: {
         [SET_ISLOGEDIN](state, isLoggedIn) {
             state.isLoggedIn = isLoggedIn
+        },
+        [SET_TENANTID](state, tenantId) {
+            state.tenantId = tenantId
         }
     },
     actions: {
         [LOGIN_USER]: function ({commit}, loginData) {
+            
+            // TODO: Add API call, we fake it because it is currently not working.           
+            commit(loginData.tenantId)            
             commit(SET_ISLOGEDIN, true)
         },
         [LOGOUT_USER]: function ({commit}) {
