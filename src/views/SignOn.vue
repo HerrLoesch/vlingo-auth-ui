@@ -66,7 +66,7 @@
         mounted: function() {
             let tenantInfo = Cookie.get(cookieName)
             
-            if(tenantInfo !== null) {
+            if(tenantInfo !== null && tenantInfo !== undefined) {
                 tenantInfo = JSON.parse(tenantInfo)
                 this.loginData.tenantId = tenantInfo.tenantId
             }               
