@@ -83,13 +83,12 @@
         },
         methods: {
             signOn() {              
-                let that = this
                 this.$store.dispatch(LOGIN, this.loginData).then( () => {
                     Cookie.set(cookieName, { "tenantId": that.loginData.tenantId })
                     this.error = null
-                }, error => {
-                    this.error = error
-                })
+                }).catch(error => {
+                    console.log(error)
+                    this.error = "User could not be logged in. Please check username and password." })                    
             }
         }
     }

@@ -1,4 +1,3 @@
-import axios from "axios"
 
 describe("When an invalid user tries to login", () => {
 
@@ -9,7 +8,7 @@ describe("When an invalid user tries to login", () => {
         cy.route({
             method: "POST",
             url: "**/users/authentic",
-            response: false
+            status: 401
         })
 
         cy.standardLogin()

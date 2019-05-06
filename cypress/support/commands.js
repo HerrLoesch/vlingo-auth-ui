@@ -83,7 +83,7 @@ Cypress.Commands.add("setupBasicStructure", (tenantIdCallback) => {
     cy.route({
         method: "POST",
         url: '**/users/authentic',
-        response: true
+        response: "thisisamocktoken"
     })
     
     cy.addTenant(tenantId => {
@@ -204,7 +204,6 @@ Cypress.Commands.add("enterConstraintDetails", (constraint, parent) => {
             cy.get("#constraintType").parent().click()
             cy.get(".v-menu__content").contains(constraint.type).click()
         }
-
     }
 })
 
