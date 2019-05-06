@@ -1,6 +1,5 @@
 describe("When I login with correct login data ", function () {
-
-    before( ()=>  {
+    before(() => {
         cy.setupBasicStructure((tenantId =>
                 cy.standardLogin(tenantId)
         ))
