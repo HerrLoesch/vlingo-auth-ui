@@ -34,6 +34,14 @@
                             type="password"
                             :rules="[v => !!v || 'Please, enter the secret.']"
                     ></v-text-field>
+
+                    <v-alert
+                            :value="error"
+                            type="error"
+                    >
+                        {{error}}
+                    </v-alert>                    
+                    
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -49,6 +57,7 @@
 <script>
     import {LOGIN} from "../store/applicationState.module"
     import Cookie from "js-cookie"
+    import {EventBus} from "../plugins/EventBus";
 
     const cookieName = "vlingo-auth-tenant-info"
     
@@ -56,6 +65,7 @@
         name: "sing-on",
         data: () => ({
             valid: false,
+            error: null,
             loginData: {
                 tenantId: "",
                 username: "",
@@ -69,13 +79,16 @@
             if(tenantInfo !== null && tenantInfo !== undefined) {
                 tenantInfo = JSON.parse(tenantInfo)
                 this.loginData.tenantId = tenantInfo.tenantId
-            }               
+            }
         },
         methods: {
             signOn() {              
                 let that = this
                 this.$store.dispatch(LOGIN, this.loginData).then( () => {
                     Cookie.set(cookieName, { "tenantId": that.loginData.tenantId })
+                    this.error = null
+                }, error => {
+                    this.error = error
                 })
             }
         }

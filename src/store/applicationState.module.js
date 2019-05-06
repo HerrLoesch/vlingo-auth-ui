@@ -1,3 +1,5 @@
+import { HTTP } from "./httpconfig"
+import {EventBus, CONNECTIONERROR} from "../plugins/EventBus";
 /* Vuex makes heavily use of magic strings.
    We have to compensate this with string constants.
    Unfortunatly, that gets a bit messy if you use also namespaces.
@@ -15,12 +17,12 @@ export const APPLICATION_STATE_MODULE = "applicationStateModule"
 export const LOGIN = APPLICATION_STATE_MODULE + "/" + LOGIN_USER
 export const LOGOUT = APPLICATION_STATE_MODULE + "/" + LOGOUT_USER
 
-
 export const applicationStateModule = {
     namespaced: true,
     state: {
         isLoggedIn: false,
-        tenantId: null
+        tenantId: null,
+        statusText: null
     },
     mutations: {
         [SET_ISLOGEDIN](state, isLoggedIn) {
@@ -31,14 +33,26 @@ export const applicationStateModule = {
         }
     },
     actions: {
-        [LOGIN_USER]: function ({commit}, loginData) {
+        [LOGIN_USER]: async function ({commit}, loginData) {
             
-            // TODO: Add API call, we fake it because it is currently not working.           
-            commit(loginData.tenantId)            
-            commit(SET_ISLOGEDIN, true)
+            return new Promise((resolve, reject) => {
+                HTTP.defaults.baseURL ="http://localhost:8888/tenants/" + loginData.tenantId  + "/"
+
+                HTTP.get("users/authentic").then(response => {
+                    if(response.data === true) {
+                        commit(SET_TENANTID, loginData.tenantId)
+                        commit(SET_ISLOGEDIN, true)
+                        
+                        resolve()
+                    } else {
+                        reject("User could not be logged in. Please check username and password.")
+                    }
+                }).catch(error => {
+                    reject(error)
+                })
+            })
         },
         [LOGOUT_USER]: function ({commit}) {
-            console.log("logout")
             commit(SET_ISLOGEDIN, false)
         },
     }

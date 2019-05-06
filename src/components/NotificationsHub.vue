@@ -54,7 +54,7 @@
 </template>
 
 <script>
-    import {EventBus} from "../plugins/EventBus";
+    import {EventBus, NOTIFICATION, CONNECTIONERROR} from "../plugins/EventBus";
 
     export default {
         name: "NotificationsHub",
@@ -65,7 +65,13 @@
 
         }),
         mounted() {
-            EventBus.$on("notification", data => {
+            EventBus.$on(NOTIFICATION, data => {
+                this.notifications.push(data)
+                this.notificationText = data
+                this.notificationVisible = true
+            });
+            
+            EventBus.$on(CONNECTIONERROR, data => {
                 this.notifications.push(data)
                 this.notificationText = data
                 this.notificationVisible = true

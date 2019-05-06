@@ -1,5 +1,5 @@
 import _ from "lodash"
-import {EventBus} from "../plugins/EventBus"
+import {EventBus, NOTIFICATION} from "../plugins/EventBus"
 
 /* Vuex makes heavily use of magic strings.
    We have to compensate this with string constants.
@@ -210,37 +210,37 @@ export const userModule = {
             /* TODO: Add actual API call */
 
             commit(ADD_USER_MUTATION, user)
-            EventBus.$emit("notification", "Added new user.")
+            EventBus.$emit(NOTIFICATION, "Added new user.")
         },
         [DELETE_USER_ACTION]: function ({commit}, user) {
             /* TODO: Add actual API call */
 
             commit(DELETE_USER_MUTATION, user)
-            EventBus.$emit("notification", "User was deleted.")
+            EventBus.$emit(NOTIFICATION, "User was deleted.")
         },
         [UPDATE_USER_ACTION]: function ({commit}, newData) {
             /* TODO: Add actual API call */
 
             commit(UPDATE_USER_MUTATION, newData)
-            EventBus.$emit("notification", "User information changed.")
+            EventBus.$emit(NOTIFICATION, "User information changed.")
         },
         [ADD_CREDENTIAL_ACTION]: function ({commit}, data) {
             /* TODO: Add actual API call */
 
             commit(ADD_CREDENTIAL_MUTATION, data)
-            EventBus.$emit("notification", "Added new credential.")
+            EventBus.$emit(NOTIFICATION, "Added new credential.")
         },
         [UPDATE_CREDENTIAL_ACTION]: function ({commit}, updateData) {
             /* TODO: Add actual API call */
 
             commit(UPDATE_CREDENTIAL_MUTATION, updateData)
-            EventBus.$emit("notification", "Credential data changed.")
+            EventBus.$emit(NOTIFICATION, "Credential data changed.")
         },
         [DELETE_CREDENTIAL_ACTION]: function ({commit}, data) {
             /* TODO: Add actual API call */
 
             commit(DELETE_CREDENTIAL_MUTATION, data)
-            EventBus.$emit("notification", "Credential was deleted.")
+            EventBus.$emit(NOTIFICATION, "Credential was deleted.")
         }
     }
 }
