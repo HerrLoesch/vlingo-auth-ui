@@ -3,10 +3,12 @@ import axios from "axios"
 describe("When an invalid user tries to login", () => {
 
     before( ()=>  {
+        
+        // this is mocked because the backend does not work as expected.
         cy.server()
         cy.route({
-            method: 'GET',
-            url: '**/users/authentic',
+            method: "POST",
+            url: "**/users/authentic",
             response: false
         })
 

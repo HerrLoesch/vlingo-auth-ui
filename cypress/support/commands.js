@@ -77,6 +77,15 @@ Cypress.Commands.add("registerUserAtBackend", (tenantId, user) => {
 })
 
 Cypress.Commands.add("setupBasicStructure", (tenantIdCallback) => {
+    
+    // authentification does not work currently so we have to mock it.
+    cy.server()
+    cy.route({
+        method: "POST",
+        url: '**/users/authentic',
+        response: true
+    })
+    
     cy.addTenant(tenantId => {
         cy.fixture("loginUser").then((user => {
             cy.registerUserAtBackend(tenantId, user)

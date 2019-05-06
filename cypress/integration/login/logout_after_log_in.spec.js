@@ -1,5 +1,13 @@
 describe("When I logout after successful login ", function() {
     before(() => {
+        
+        cy.server()
+        cy.route({
+            method: "POST",
+            url: '**/users/authentic',
+            response: true
+        })
+        
         cy.standardLogin()
     })
 

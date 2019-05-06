@@ -38,7 +38,7 @@ export const applicationStateModule = {
             return new Promise((resolve, reject) => {
                 HTTP.defaults.baseURL ="http://localhost:8888/tenants/" + loginData.tenantId  + "/"
 
-                HTTP.get("users/authentic").then(response => {
+                HTTP.post("users/authentic").then(response => {
                     if(response.data === true) {
                         commit(SET_TENANTID, loginData.tenantId)
                         commit(SET_ISLOGEDIN, true)

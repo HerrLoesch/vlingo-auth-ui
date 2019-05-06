@@ -3,6 +3,14 @@ describe("When I register a new user on the start page ", function () {
     var usedUserData = {}
 
     before(() => {
+        // this is mocked because the backend does not work as expected.
+        cy.server()
+        cy.route({
+            method: "POST",
+            url: "**/users/authentic",
+            response: false
+        })
+        
         cy.visit("/")
         cy.get("#registerUserButton").click()
 
