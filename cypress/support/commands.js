@@ -23,7 +23,8 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-var baseUrl = "http://localhost:8888/tenants"
+let users = []
+let tenantId = 123456
 
 Cypress.Commands.add("addTenantToBackEnd", (tenant, setId) => {
         
@@ -45,7 +46,7 @@ Cypress.Commands.add("addTenant", (setId) => {
     cy.addTenantToBackEnd(tenant, setId)    
 })
 
-Cypress.Commands.add("registerUserAtBackend", (tenantId, user) => {
+Cypress.Commands.add("registerUserAtBackend", (user) => {
 
     let userData = {
         "tenantId": tenantId,
@@ -68,21 +69,24 @@ Cypress.Commands.add("registerUserAtBackend", (tenantId, user) => {
         }
     }
     
-    cy.request({
-        method: 'POST',
-        url: baseUrl + "/" + tenantId + "/users",
-        body: userData
-    })  
-
+    users.push(userData)
+    
+    cy.route("**/users/", users)
 })
 
 Cypress.Commands.add("setupBasicStructure", (tenantIdCallback) => {
-    cy.addTenant(tenantId => {
-        cy.fixture("loginUser").then((user => {
-            cy.registerUserAtBackend(tenantId, user)
-            tenantIdCallback(tenantId)
-        }))
+
+    cy.server()
+    cy.route({
+        method: 'GET',
+        url: '**/users/authentic',
+        response: true
     })
+    
+    cy.fixture("loginUser").then((user => {
+        cy.registerUserAtBackend( user)
+        tenantIdCallback(tenantId)
+    }))    
 })
 
 Cypress.Commands.add("enterLoginData", (user, tenantId) => {
