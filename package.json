@@ -11,21 +11,21 @@
     "test:integration": "npm run serve | npm run backend | npm run cypress"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.3",
-    "axios": "^0.18.0",
-    "cypress": "^3.2.0",
+    "@babel/polyfill": "^7.4.4",
+    "axios": "^0.18.1",
+    "cypress": "^3.3.2",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
-    "vuetify": "^1.5.12",
-    "vuex": "^3.1.0"
+    "vuetify": "^1.5.16",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.6.0",
-    "@vue/cli-plugin-eslint": "^3.6.0",
-    "@vue/cli-plugin-unit-mocha": "^3.6.0",
-    "@vue/cli-service": "^3.6.0",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-plugin-unit-mocha": "^3.8.0",
+    "@vue/cli-service": "^3.8.4",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-plugin-transform-imports": "^1.5.0",
     "chai": "^4.1.2",
