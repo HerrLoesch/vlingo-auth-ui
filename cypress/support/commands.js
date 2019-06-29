@@ -23,98 +23,27 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-var baseUrl = "http://localhost:8888/tenants"
-
-Cypress.Commands.add("addTenantToBackEnd", (tenant, setId) => {
-        
-    cy.request({
-        method: 'POST',
-        url: 'http://localhost:8888/tenants',
-        body: tenant
-    }).then((response) => setId(response.body.tenantId))
-})
-
-Cypress.Commands.add("addTenant", (setId) => {
-
-    let tenant = {
-        active: true,
-        description: "test tenant",
-        name: "tenant-0815"
-    }
-    
-    cy.addTenantToBackEnd(tenant, setId)    
-})
-
-Cypress.Commands.add("registerUserAtBackend", (tenantId, user) => {
-
-    let userData = {
-        "tenantId": tenantId,
-        "username": user.userName,
-        "active": true,
-        "profile": {
-            "emailAddress": user.email,
-            "phone": user.phone,
-            "name": {
-                "given": user.givenName,
-                "family": user.familyName,
-                "second": user.secondName
-            }
-        },
-        "credential": {
-            "authority": user.credential.authority,
-            "id": user.credential.id,
-            "secret": user.credential.secret,
-            "type": user.credential.type
-        }
-    }
-    
-    cy.request({
-        method: 'POST',
-        url: baseUrl + "/" + tenantId + "/users",
-        body: userData
-    })  
-
-})
-
-Cypress.Commands.add("setupBasicStructure", (tenantIdCallback) => {
-    
-    // authentification does not work currently so we have to mock it.
-    cy.server()
-    cy.route({
-        method: "POST",
-        url: '**/users/authentic',
-        response: "thisisamocktoken"
-    })
-    
-    cy.addTenant(tenantId => {
-        cy.fixture("loginUser").then((user => {
-            cy.registerUserAtBackend(tenantId, user)
-            tenantIdCallback(tenantId)
-        }))
-    })
-})
 
 Cypress.Commands.add("enterLoginData", (user, tenantId) => {
-
+    
     if(tenantId === undefined) {
         tenantId = 123456
     }
-    
-    cy.get("#tenantId").type(tenantId)
-    cy.get("#username").type(user.userName)
-    cy.get("#credentialId").type(user.credential.id)
-    cy.get("#secret").type(user.credential.secret)
+
+    cy.get("#tenantId").clear().type(tenantId)
+    cy.get("#username").clear().type(user.userName)
+    cy.get("#credentialId").clear().type(user.credential.id)
+    cy.get("#secret").clear().type(user.credential.secret)
 })
 
-Cypress.Commands.add("standardLogin", (tenantId) => {
+Cypress.Commands.add("standardLogin", () => {
     cy.visit("/")
 
     cy.fixture("loginUser").then((user) => {
-        
-        cy.enterLoginData(user, tenantId)
+
+        cy.enterLoginData(user)
 
         cy.get("#loginButton").click()
-        cy.wait(500)
     })
 })
 
@@ -204,6 +133,7 @@ Cypress.Commands.add("enterConstraintDetails", (constraint, parent) => {
             cy.get("#constraintType").parent().click()
             cy.get(".v-menu__content").contains(constraint.type).click()
         }
+
     }
 })
 

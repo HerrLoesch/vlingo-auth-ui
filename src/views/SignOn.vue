@@ -57,7 +57,6 @@
 <script>
     import {LOGIN} from "../store/applicationState.module"
     import Cookie from "js-cookie"
-    import {EventBus} from "../plugins/EventBus";
 
     const cookieName = "vlingo-auth-tenant-info"
     
@@ -82,7 +81,8 @@
             }
         },
         methods: {
-            signOn() {              
+            signOn() {           
+                var that = this   
                 this.$store.dispatch(LOGIN, this.loginData).then( () => {
                     Cookie.set(cookieName, { "tenantId": that.loginData.tenantId })
                     this.error = null

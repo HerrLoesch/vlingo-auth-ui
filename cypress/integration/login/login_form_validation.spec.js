@@ -9,15 +9,6 @@ describe("When login form is visible ", function() {
         })
     })
 
-    context("and valid data is given", () => {
-
-        it("then login is possible.", function() {
-            cy.enterLoginData(userData, "123456")
-
-            cy.get("#sign-on").get("#loginButton").should("be.enabled")
-        })
-    })
-
     context("then login is not possible", function() {
 
         it("if tenant id is empty.", function() {
@@ -59,6 +50,15 @@ describe("When login form is visible ", function() {
             cy.get("#secret").clear()
 
             cy.get("#loginButton").should("be.disabled")
+        })
+    })
+
+    context("and valid data is given", () => {
+
+        it("then login is possible.", function() {
+            cy.enterLoginData(userData, "123456")
+
+            cy.get("#sign-on").get("#loginButton").should("be.enabled")
         })
     })
 })

@@ -1,5 +1,5 @@
-import { userService } from "./services/userService"
-import { HTTP } from "./httpconfig"
+/* import { userService } from "./services/userService"
+import { HTTP } from "./httpconfig" */
 
 /* Vuex makes heavily use of magic strings.
    We have to compensate this with string constants.
@@ -28,14 +28,16 @@ export const applicationStateModule = {
         }
     },
     actions: {
-        [LOGIN_USER]: async function ({commit}, loginData) {
+        [LOGIN_USER]: async function ({commit}/*, loginData*/) {
 
-            HTTP.defaults.baseURL ="http://localhost:8888/tenants/" + loginData.tenantId  + "/"
+            commit(SET_ISLOGEDIN, true)
+
+            /* HTTP.defaults.baseURL ="http://localhost:8888/tenants/" + loginData.tenantId  + "/"
                         
             return userService.login(loginData.username, loginData.password, loginData.tenantId)
                 .then((token) => {
                     commit(SET_ISLOGEDIN, true)
-                }) 
+                }) */ 
         },
         [LOGOUT_USER]: function ({commit}) {
             commit(SET_ISLOGEDIN, false)
