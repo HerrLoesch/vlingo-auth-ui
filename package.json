@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "cypress": "^3.3.2",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
